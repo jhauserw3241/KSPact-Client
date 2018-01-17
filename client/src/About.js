@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-class Home extends Component {
+class About extends Component {
 	render() {
 		return (
-			<div className="App">
-				<header className="App-header">
-					<img src={logo} className="App-logo" alt="logo" />
-					<h1 className="App-title">Welcome to React</h1>
-				</header>
-				<p className="App-intro">
+			<div className="About">
+				<p className="About-intro">
 					This is the about page.
 				</p>
 			</div>
@@ -18,4 +12,4 @@ class Home extends Component {
 	}
 }
 
-export default Home;
+export default About;

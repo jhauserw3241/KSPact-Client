@@ -1,0 +1,50 @@
+@import "Base.css";
+
+.Header {
+	text-align: center;
+}
+
+.Header-header {
+	color: white;
+}
+
+nav.navbar.navbar-default {
+	/*background-color: red;*/
+	background-color: var(--dark-gray);
+	border-color: var(--dark-gray);
+	color: white;
+}
+
+.navbar-header {
+	color: var(--light-purple);
+	padding: 10px;
+	font-size: 3em;
+	font-weight: bold;
+}
+
+.Header-title {
+	font-size: 1.5em;
+}
+
+.Header-intro {
+	font-size: large;
+}
+
+.right-side-button{
+	float:right;
+}
+
+.nav-body {
+	float: right;
+	padding: 15px;
+}
+
+a !important {
+	color: white;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
