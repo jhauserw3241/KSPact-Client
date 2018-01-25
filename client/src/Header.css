@@ -1,7 +1,6 @@
 @import "Base.css";
 
 .Header {
-	/*background-color: red;*/
 	background-color: var(--dark-gray);
 	border-color: var(--dark-gray);
 	color: white;
