@@ -1,14 +1,6 @@
 @import "Base.css";
 
 .Header {
-	text-align: center;
-}
-
-.Header-header {
-	color: white;
-}
-
-nav.navbar.navbar-default {
 	/*background-color: red;*/
 	background-color: var(--dark-gray);
 	border-color: var(--dark-gray);
@@ -16,31 +8,27 @@ nav.navbar.navbar-default {
 }
 
 .navbar-header {
-	color: var(--light-purple);
 	padding: 10px;
-	font-size: 3em;
-	font-weight: bold;
 }
 
-.Header-title {
-	font-size: 1.5em;
-}
-
-.Header-intro {
+.Header-logo {
 	font-size: large;
-}
-
-.right-side-button{
-	float:right;
+	display: inline-block;
 }
 
 .nav-body {
 	float: right;
-	padding: 15px;
 }
 
-a !important {
+.nav-link {
 	color: white;
+	padding: 1.5em !important;
+	display: inline-block !important;
+}
+
+.nav-link:hover {
+	color: white;
+	background-color: black;
 }
 
 body {
