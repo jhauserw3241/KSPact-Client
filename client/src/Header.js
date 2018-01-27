@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import logo from './logo.svg';
+import logo from './images/header/light-green-kspact.png';
 import './Header.css';
 
 class Header extends Component {
@@ -10,7 +10,7 @@ class Header extends Component {
 				<header>
 					<div className="Navbar">
 						<div className="Header-logo">
-							<img src={logo} className="App-logo" alt="logo" />
+							<img src={logo} className="Logo-img" alt="logo" />
 						</div>
 						<div className="nav-body">
 							<NavLink to="/home" className="nav-link">Home</NavLink>
