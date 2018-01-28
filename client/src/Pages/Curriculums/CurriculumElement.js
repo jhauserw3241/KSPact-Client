@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import './Page.css';
-import './Card.css';
+import './../../CSS/Card.css';
 
 class CurriculumElement extends Component {
 	goToLink(link) {

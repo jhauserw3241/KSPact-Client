@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import CurriculumElement from './CurriculumElement';
-import './Page.css';
 
 class Curriculums extends Component {
 	constructor(props) {
@@ -39,8 +38,6 @@ class Curriculums extends Component {
 							<CurriculumElement key={curriculum.id} id={curriculum.id} name={curriculum.name} description={curriculum.description} link={curriculum.link} color={curriculum.color} />
 						)}
 					</div>
-					
-					Test
 				</div>
 				
 				<main>
