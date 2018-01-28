@@ -3,18 +3,8 @@ import './Page.css';
 import './Card.css';
 
 class CurriculumElement extends Component {
-	constructor(props) {
-		super(props);
-	}
-	
-	componentDidMount() {
-		console.log('elem')
-	}
-	
 	goToLink(link) {
-		console.log(link);
 		window.location=link;
-		/*window.location="http://www.google.com";*/
 	}
 	
 	render() {
@@ -23,7 +13,6 @@ class CurriculumElement extends Component {
         }
 		
 		var link = this.props.link;
-		console.log(link);
 		
 		return (
 			<div className="CurriculumElement card" onClick={() => this.goToLink(link)}>
