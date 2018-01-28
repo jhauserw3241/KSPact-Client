@@ -1,0 +1,19 @@
+.list-container {
+	display: -webkit-box;
+}
+
+.card {
+	display: inline-flex;
+	height: 250px;
+	width: 30%;
+	border-radius: 10px;
+	margin: 10px;
+}
+
+.card-img {
+	height: 90%;
+}
+
+.card-text {
+
+}
