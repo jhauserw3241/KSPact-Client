@@ -12,6 +12,8 @@
 
 .card-img {
 	height: 90%;
+	background-size: 100%;
+	background-repeat: no-repeat;
 }
 
 .card-text {
