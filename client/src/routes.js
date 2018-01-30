@@ -12,11 +12,11 @@ export const Main = () => (
 		<Switch>
 			<Route exact path='/' component={Home} />
 			<Route exact path='/home' component={Home} />
-			<Route exact path='/about' component={About} />
 			<Route exact path='/members' component={Members} />
 			<Route exact path='/hardware' component={Hardware} />
 			<Route exact path='/software' component={Software} />
 			<Route exact path='/curriculums' component={Curriculums} />
+			<Route exact path='/about' component={About} />
 		</Switch>
 	</main>
 )

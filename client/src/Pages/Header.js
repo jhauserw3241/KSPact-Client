@@ -14,11 +14,11 @@ class Header extends Component {
 						</div>
 						<div className="nav-body">
 							<NavLink to="/home" className="nav-link">Home</NavLink>
-							<NavLink to="/about" className="nav-link">About</NavLink>
 							<NavLink to="/members" className="nav-link">Members</NavLink>
 							<NavLink to="/hardware" className="nav-link">Hardware</NavLink>
 							<NavLink to="/software" className="nav-link">Software</NavLink>
 							<NavLink to="/curriculums" className="nav-link">Curriculums</NavLink>
+							<NavLink to="/about" className="nav-link">About</NavLink>
 						</div>
 					</div>
 				</header>
