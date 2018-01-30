@@ -64,7 +64,7 @@ class Members extends Component {
 					className="card-modal"
 				>
 					<div className="modal-header">
-						<h2>Curiculum</h2>
+						<h2>Member</h2>
 						<button className="close-btn" onClick={this.closeModal}>
 							<span aria-hidden="true">X</span>
 						</button>
