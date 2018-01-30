@@ -89,8 +89,6 @@ class Curriculums extends Component {
 				</Modal>
 			
 				<div className="container">
-					This is the curriculums page. Welcome!
-					
 					<div className="list-container">
 						{this.state.curriculums.map(curriculum =>
 							<CurriculumElement key={curriculum.id} id={curriculum.id} name={curriculum.name} description={curriculum.description} link={curriculum.link} color={curriculum.color} modalHandler={this.openModal} />

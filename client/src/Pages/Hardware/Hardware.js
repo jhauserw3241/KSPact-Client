@@ -87,8 +87,6 @@ class Hardware extends Component {
 				</Modal>
 			
 				<div className="container">
-					This is the hardware page. Welcome!
-					
 					<div className="list-container">
 						{this.state.hardware.map(hardwareElem =>
 							<HardwareElement key={hardwareElem.id} id={hardwareElem.id} name={hardwareElem.name} description={hardwareElem.description} serialNum={hardwareElem.serial_num} color={hardwareElem.color} modalHandler={this.openModal} />

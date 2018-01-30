@@ -103,8 +103,6 @@ class Members extends Component {
 				</Modal>
 			
 				<div className="container">
-					This is the members page. Welcome!
-					
 					<div className="list-container">
 						{this.state.members.map(member =>
 							<MemberElement
