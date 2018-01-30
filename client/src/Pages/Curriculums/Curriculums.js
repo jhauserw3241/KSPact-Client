@@ -33,8 +33,6 @@ class Curriculums extends Component {
 	}
 	
 	componentDidMount() {
-		console.log('test')
-		
 		fetch(`/curriculums`, {
 			headers : { 
 				'Content-Type': 'application/json',
@@ -43,11 +41,8 @@ class Curriculums extends Component {
 		})
 		.then(res => res.json())
 		.then(curriculums => {
-			console.log(curriculums);
 			this.setState({ curriculums });
 		});
-		
-		console.log('test end')
 	}
 	
 	render() {
