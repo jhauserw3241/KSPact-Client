@@ -81,7 +81,7 @@ class Hardware extends Component {
 					</div>
 					<div className="modal-footer">
 						<div className="row">
-							<input type="submit" onClick={this.closeModal} value="Close" />
+							<input type="submit" onClick={this.closeModal} value="OK" />
 						</div>
 					</div>
 				</Modal>
