@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SoftwareElement from './SoftwareElement';
 import Modal from 'react-modal';
+import fire from './../../fire';
 
 class Software extends Component {
 	constructor(props) {
@@ -33,7 +34,7 @@ class Software extends Component {
 	}
 	
 	componentDidMount() {
-		fetch(`/software`, {
+		/*fetch(`/software`, {
 			headers : { 
 				'Content-Type': 'application/json',
 				'Accept': 'application/json'
@@ -42,7 +43,12 @@ class Software extends Component {
 		.then(res => res.json())
 		.then(software => {
 			this.setState({ software });
-		});
+		});*/
+
+		var softwareRef = fire.database().ref("software/");
+
+		softwareRef.orderByChild("name").on("value", (data) =>
+			this.setState({software: data.val()}));
 	}
 	
 	render() {
