@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MemberElement from './MemberElement';
 import Modal from 'react-modal';
+import fire from './../../fire';
 
 class Members extends Component {
 	constructor(props) {
@@ -41,16 +42,10 @@ class Members extends Component {
 	}
 	
 	componentDidMount() {
-		fetch(`/members`, {
-			headers : { 
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-			}
-		})
-		.then(res => res.json())
-		.then(members => {
-			this.setState({ members });
-		});
+		var membersRef = fire.database().ref("members/");
+
+		membersRef.orderByChild("name").on("value", (data) =>
+			this.setState({members: data.val()}));
 	}
 	
 	render() {
