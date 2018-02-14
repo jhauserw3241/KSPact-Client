@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CurriculumElement from './CurriculumElement';
 import Modal from 'react-modal';
+import fire from './../../fire';
 
 class Curriculums extends Component {
 	constructor(props) {
@@ -33,16 +34,10 @@ class Curriculums extends Component {
 	}
 	
 	componentDidMount() {
-		fetch(`/curriculums`, {
-			headers : { 
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-			}
-		})
-		.then(res => res.json())
-		.then(curriculums => {
-			this.setState({ curriculums });
-		});
+		var curriculumRef = fire.database().ref("curriculums/");
+
+		curriculumRef.orderByChild("name").on("value", (data) =>
+			this.setState({curriculums: data.val()}));
 	}
 	
 	render() {
