@@ -43,7 +43,6 @@ class Hardware extends Component {
 				
 		hardwareRef.orderByChild("name").on("value", (data) =>
 			this.setState({hardware: data.val()}));
-		console.log(this.state.hardware);
 	}
 	
 	render() {
