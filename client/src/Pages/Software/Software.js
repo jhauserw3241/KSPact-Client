@@ -34,17 +34,6 @@ class Software extends Component {
 	}
 	
 	componentDidMount() {
-		/*fetch(`/software`, {
-			headers : { 
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-			}
-		})
-		.then(res => res.json())
-		.then(software => {
-			this.setState({ software });
-		});*/
-
 		var softwareRef = fire.database().ref("software/");
 
 		softwareRef.orderByChild("name").on("value", (data) =>
