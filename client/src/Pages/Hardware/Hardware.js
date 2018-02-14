@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HardwareElement from './HardwareElement';
 import Modal from 'react-modal';
+import fire from './../../fire';
 
 class Hardware extends Component {
 	constructor(props) {
@@ -16,6 +17,7 @@ class Hardware extends Component {
 
 		this.openModal = this.openModal.bind(this);
 		this.closeModal = this.closeModal.bind(this);
+		this.setHardware = this.setHardware.bind(this);
 	}
 
 	openModal(name, description, serialNum, color) {
@@ -31,18 +33,17 @@ class Hardware extends Component {
 	closeModal() {
 		this.setState({modalIsOpen: false});
 	}
+
+	setHardware(newList) {
+		this.setState({hardware: newList});
+	}
 	
 	componentDidMount() {
-		fetch(`/hardware`, {
-			headers : { 
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-			}
-		})
-		.then(res => res.json())
-		.then(hardware => {
-			this.setState({ hardware });
-		});
+		var hardwareRef = fire.database().ref("hardware/");
+				
+		hardwareRef.orderByChild("name").on("value", (data) =>
+			this.setState({hardware: data.val()}));
+		console.log(this.state.hardware);
 	}
 	
 	render() {
