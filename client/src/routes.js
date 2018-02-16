@@ -6,6 +6,7 @@ import Members from './Pages/Members/Members';
 import Hardware from './Pages/Hardware/Hardware';
 import Software from './Pages/Software/Software';
 import Curriculums from './Pages/Curriculums/Curriculums';
+import Profile from './Pages/Profile/Profile';
 import Login from './Pages/Login/Login';
 import Signout from './Pages/Signout/Signout';
 
@@ -19,6 +20,7 @@ export const Main = () => (
 			<Route exact path='/software' component={Software} />
 			<Route exact path='/curriculums' component={Curriculums} />
 			<Route exact path='/about' component={About} />
+			<Route exact path='/profile' component={Profile} />
 			<Route exact path='/login' component={Login} />
 			<Route exact path='/signout' component={Signout} />
 		</Switch>
