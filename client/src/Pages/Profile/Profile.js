@@ -12,20 +12,25 @@ class Profile extends Component {
         }
     }
 
-	render() {
-		var user = fire.auth().currentUser;
+    componentDidMount() {
+        var user = fire.auth().currentUser;
 		if(user) {
             var membersRef = fire.database().ref("members/");
             membersRef.child(user.uid).on("value", (data) =>
-                this.setState({ member: data.val() }));
+                this.setState({
+                    member: data.val()
+                    }));
+        }
+    }
 
-            console.log(this.state.member.first_name);
-
+	render() {
+		var user = fire.auth().currentUser;
+		if(user) {
             return (
 				<div className="Home">
 					<div className="container">
                         <h1 className="form-header">Profile</h1>
-                        <form method="POST" onSubmit={this.handleSubmit}>
+                        <form method="POST">
                             <fieldset>
                                 <label htmlFor="firstName">First Name:</label>
                                 <input type="text" id="firstName" value={this.state.member.first_name} disabled />
