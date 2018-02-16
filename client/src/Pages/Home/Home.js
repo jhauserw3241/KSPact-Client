@@ -3,36 +3,38 @@ import fire from './../../fire';
 
 class Home extends Component {
 	render() {
-		fire.auth().onAuthStateChanged(
+		/*fire.auth().onAuthStateChanged(
             function(user) {
                 console.log("Authentication changed");
                 if (user) {
                     // User is signed in.
                     alert("Email: " +  user.email);
                     user.getIdToken().then(function(accessToken) {
-                        alert("User is signed in");
+						alert("User is signed in");
                     });
                 } else {
-                    alert("User is signed out");
-                }
+					alert("User is signed out");
+				}
             },
             function(error) {
                 console.log(error);
             }
-        );
+        );*/
 
 		var user = fire.auth().currentUser;
 		if(user) {
+			// User is signed in
 			return (
 				<div className="Home">
 					<div className="container">
-						This is the home page. Welcome!<br />
-						<br />
-						Secret text
+						This is the home page. Welcome!<br/>
+						<br/>
+						Secrets!!!!!!!!!!!!!!!!!
 					</div>
 				</div>
 			);
-        } else {
+		} else {
+			// User is signed out
 			return (
 				<div className="Home">
 					<div className="container">
