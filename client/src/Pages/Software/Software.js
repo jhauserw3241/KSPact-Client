@@ -86,7 +86,14 @@ class Software extends Component {
 				<div className="container">
 					<div className="list-container">
 						{this.state.software.map(softwareElem =>
-							<SoftwareElement key={softwareElem.id} id={softwareElem.id} name={softwareElem.name} description={softwareElem.description} link={softwareElem.link} color={softwareElem.color} modalHandler={this.openModal} />
+							<SoftwareElement
+								key={softwareElem.id}
+								id={softwareElem.id}
+								name={softwareElem.name}
+								description={softwareElem.description}
+								link={softwareElem.link}
+								color={softwareElem.color}
+								modalHandler={this.openModal} />
 						)}
 					</div>
 				</div>
