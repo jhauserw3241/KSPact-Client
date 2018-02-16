@@ -86,7 +86,14 @@ class Curriculums extends Component {
 				<div className="container">
 					<div className="list-container">
 						{this.state.curriculums.map(curriculum =>
-							<CurriculumElement key={curriculum.id} id={curriculum.id} name={curriculum.name} description={curriculum.description} link={curriculum.link} color={curriculum.color} modalHandler={this.openModal} />
+							<CurriculumElement
+								key={curriculum.id}
+								id={curriculum.id}
+								name={curriculum.name}
+								description={curriculum.description}
+								link={curriculum.link}
+								color={curriculum.color}
+								modalHandler={this.openModal} />
 						)}
 					</div>
 				</div>
