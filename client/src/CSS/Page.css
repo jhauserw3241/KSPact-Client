@@ -7,6 +7,9 @@ body {
 	margin-bottom: 20px;
 	width: calc(100% - 40px);
 	max-width: 100%;
+}
+
+.content {
 	padding: 10px;
 	border-radius: 10px;
 	border-style: solid;

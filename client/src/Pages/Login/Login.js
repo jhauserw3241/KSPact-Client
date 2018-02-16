@@ -65,18 +65,20 @@ class Login extends Component {
                 return (
                     <div className="Home">
                         <div className="container">
-                            <h1 className="form-header">Login</h1>
-                            <form method="POST" onSubmit={this.handleSubmit}>
-                                <fieldset>
-                                    <label htmlFor="email">Email:</label>
-                                    <input type="text" id="email" onChange={this.handleEmailChange} />
-                                </fieldset>
-                                <fieldset>
-                                    <label htmlFor="password">Password:</label>
-                                    <input type="password" id="password" onChange={this.handlePasswordChange} />
-                                </fieldset>
-                                <input type="submit" value="Submit" />
-                            </form>
+                            <div className="content">
+                                <h1 className="form-header">Login</h1>
+                                <form method="POST" onSubmit={this.handleSubmit}>
+                                    <fieldset>
+                                        <label htmlFor="email">Email:</label>
+                                        <input type="text" id="email" onChange={this.handleEmailChange} />
+                                    </fieldset>
+                                    <fieldset>
+                                        <label htmlFor="password">Password:</label>
+                                        <input type="password" id="password" onChange={this.handlePasswordChange} />
+                                    </fieldset>
+                                    <input type="submit" value="Submit" />
+                                </form>
+                            </div>
                         </div>
                     </div>
                 );
@@ -84,22 +86,24 @@ class Login extends Component {
                 return (
                     <div className="Home">
                         <div className="container">
-                            <div class="alert alert-danger">
-                                <strong>Error:</strong> {this.state.authError}
+                            <div className="content">
+                                <div class="alert alert-danger">
+                                    <strong>Error:</strong> {this.state.authError}
+                                </div>
+        
+                                <h1 className="form-header">Login</h1>
+                                <form method="POST" onSubmit={this.handleSubmit}>
+                                    <fieldset>
+                                        <label htmlFor="email">Email:</label>
+                                        <input type="text" id="email" onChange={this.handleEmailChange} />
+                                    </fieldset>
+                                    <fieldset>
+                                        <label htmlFor="password">Password:</label>
+                                        <input type="password" id="password" onChange={this.handlePasswordChange} />
+                                    </fieldset>
+                                    <input type="submit" value="Submit" />
+                                </form>
                             </div>
-    
-                            <h1 className="form-header">Login</h1>
-                            <form method="POST" onSubmit={this.handleSubmit}>
-                                <fieldset>
-                                    <label htmlFor="email">Email:</label>
-                                    <input type="text" id="email" onChange={this.handleEmailChange} />
-                                </fieldset>
-                                <fieldset>
-                                    <label htmlFor="password">Password:</label>
-                                    <input type="password" id="password" onChange={this.handlePasswordChange} />
-                                </fieldset>
-                                <input type="submit" value="Submit" />
-                            </form>
                         </div>
                     </div>
                 );

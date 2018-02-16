@@ -27,9 +27,11 @@ class Home extends Component {
 			return (
 				<div className="Home">
 					<div className="container">
-						This is the home page. Welcome!<br/>
-						<br/>
-						Secrets!!!!!!!!!!!!!!!!!
+						<div className="content">
+							This is the home page. Welcome!<br/>
+							<br/>
+							Secrets!!!!!!!!!!!!!!!!!
+						</div>
 					</div>
 				</div>
 			);
@@ -38,7 +40,9 @@ class Home extends Component {
 			return (
 				<div className="Home">
 					<div className="container">
-						This is the home page. Welcome!
+						<div className="content">
+							This is the home page. Welcome!
+						</div>
 					</div>
 				</div>
 			);
