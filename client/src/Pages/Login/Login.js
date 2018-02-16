@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import  { Redirect } from 'react-router-dom';
 import fire from './../../fire';
+import './../../CSS/Form.css';
 
 class Login extends Component {
     constructor(props) {
@@ -64,6 +65,7 @@ class Login extends Component {
                 return (
                     <div className="Home">
                         <div className="container">
+                            <h1 className="form-header">Login</h1>
                             <form method="POST" onSubmit={this.handleSubmit}>
                                 <fieldset>
                                     <label htmlFor="email">Email:</label>
@@ -86,6 +88,7 @@ class Login extends Component {
                                 <strong>Error:</strong> {this.state.authError}
                             </div>
     
+                            <h1 className="form-header">Login</h1>
                             <form method="POST" onSubmit={this.handleSubmit}>
                                 <fieldset>
                                     <label htmlFor="email">Email:</label>
