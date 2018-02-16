@@ -41,12 +41,10 @@ class Login extends Component {
             var errorMessage = error.message;
             switch(errorCode) {
                 case 'auth/invalid-email':
-                    alert("Invalid email");
                     self.setState({ authError: "Invalid email" });
                     break;
                 case 'auth/user-not-found':
                 case 'auth/wrong-password':
-                    alert("Incorrect email/password");
                     self.setState({ authError: "Incorrect email/password" });
                     break;
                 default:
