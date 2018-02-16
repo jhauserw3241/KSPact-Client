@@ -35,9 +35,10 @@ class Login extends Component {
             self.setState({ redirect: true });
         })
         .catch(function(error) {
+            // Handle errors when trying to log in
             var errorCode = error.code;
             var errorMessage = error.message;
-            // ...
+            console.log("Error " + errorCode + ": " + errorMessage);
         });
     }
 
