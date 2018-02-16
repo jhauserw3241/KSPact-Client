@@ -33,10 +33,6 @@ class Hardware extends Component {
 	closeModal() {
 		this.setState({modalIsOpen: false});
 	}
-
-	setHardware(newList) {
-		this.setState({hardware: newList});
-	}
 	
 	componentDidMount() {
 		var hardwareRef = fire.database().ref("hardware/");
@@ -89,7 +85,14 @@ class Hardware extends Component {
 				<div className="container">
 					<div className="list-container">
 						{this.state.hardware.map(hardwareElem =>
-							<HardwareElement key={hardwareElem.id} id={hardwareElem.id} name={hardwareElem.name} description={hardwareElem.description} serialNum={hardwareElem.serial_num} color={hardwareElem.color} modalHandler={this.openModal} />
+							<HardwareElement
+								key={hardwareElem.id}
+								id={hardwareElem.id}
+								name={hardwareElem.name}
+								description={hardwareElem.description}
+								serialNum={hardwareElem.serial_num}
+								color={hardwareElem.color}
+								modalHandler={this.openModal} />
 						)}
 					</div>
 				</div>
