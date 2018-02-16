@@ -39,24 +39,6 @@ class Login extends Component {
             var errorMessage = error.message;
             // ...
         });
-        
-        /*fire.auth().onAuthStateChanged(
-            function(user) {
-                console.log("Authentication changed");
-                if (user) {
-                    // User is signed in.
-                    alert("Email: " +  user.email);
-                    user.getIdToken().then(function(accessToken) {
-                        alert("User is signed in");
-                    });
-                } else {
-                    alert("User is signed out");
-                }
-            },
-            function(error) {
-                console.log(error);
-            }
-        );*/
     }
 
 	render() {
