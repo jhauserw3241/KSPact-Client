@@ -111,8 +111,7 @@ class Members extends Component {
 								picture={member.picture}
 								gradeLevel={member.grade_level}
 								title={member.title}
-								modalHandler={this.openModal}
-							/>
+								modalHandler={this.openModal} />
 						)}
 					</div>
 				</div>
