@@ -60,7 +60,7 @@ class Login extends Component {
                 <Redirect to ="/home" />
             );
         } else  {
-            if(this.state.authError == "") {
+            if(this.state.authError === "") {
                 return (
                     <div className="Home">
                         <div className="container">
