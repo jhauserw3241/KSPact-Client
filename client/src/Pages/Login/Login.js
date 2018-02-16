@@ -7,8 +7,9 @@ class Login extends Component {
 		super(props);
 		this.state = {
             redirect: false,
+            authError: "",
 			email: "",
-			password: ""
+            password: ""
 		};
 
 		this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -38,7 +39,20 @@ class Login extends Component {
             // Handle errors when trying to log in
             var errorCode = error.code;
             var errorMessage = error.message;
-            console.log("Error " + errorCode + ": " + errorMessage);
+            switch(errorCode) {
+                case 'auth/invalid-email':
+                    alert("Invalid email");
+                    self.setState({ authError: "Invalid email" });
+                    break;
+                case 'auth/user-not-found':
+                case 'auth/wrong-password':
+                    alert("Incorrect email/password");
+                    self.setState({ authError: "Incorrect email/password" });
+                    break;
+                default:
+                    console.log("Error " + errorCode + ": " + errorMessage);
+                    self.setState({ authError: errorMessage });
+            }
         });
     }
 
@@ -48,23 +62,47 @@ class Login extends Component {
                 <Redirect to ="/home" />
             );
         } else  {
-            return (
-                <div className="Home">
-                    <div className="container">
-                        <form method="POST" onSubmit={this.handleSubmit}>
-                            <fieldset>
-                                <label htmlFor="email">Email:</label>
-                                <input type="text" id="email" onChange={this.handleEmailChange} />
-                            </fieldset>
-                            <fieldset>
-                                <label htmlFor="password">Password:</label>
-                                <input type="password" id="password" onChange={this.handlePasswordChange} />
-                            </fieldset>
-                            <input type="submit" value="Submit" />
-                        </form>
+            if(this.state.authError == "") {
+                return (
+                    <div className="Home">
+                        <div className="container">
+                            <form method="POST" onSubmit={this.handleSubmit}>
+                                <fieldset>
+                                    <label htmlFor="email">Email:</label>
+                                    <input type="text" id="email" onChange={this.handleEmailChange} />
+                                </fieldset>
+                                <fieldset>
+                                    <label htmlFor="password">Password:</label>
+                                    <input type="password" id="password" onChange={this.handlePasswordChange} />
+                                </fieldset>
+                                <input type="submit" value="Submit" />
+                            </form>
+                        </div>
                     </div>
-                </div>
-            );
+                );
+            } else {
+                return (
+                    <div className="Home">
+                        <div className="container">
+                            <div class="alert alert-danger">
+                                <strong>Error:</strong> {this.state.authError}
+                            </div>
+    
+                            <form method="POST" onSubmit={this.handleSubmit}>
+                                <fieldset>
+                                    <label htmlFor="email">Email:</label>
+                                    <input type="text" id="email" onChange={this.handleEmailChange} />
+                                </fieldset>
+                                <fieldset>
+                                    <label htmlFor="password">Password:</label>
+                                    <input type="password" id="password" onChange={this.handlePasswordChange} />
+                                </fieldset>
+                                <input type="submit" value="Submit" />
+                            </form>
+                        </div>
+                    </div>
+                );
+            }
         }
 	}
 }
