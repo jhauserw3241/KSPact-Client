@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './../../CSS/Card.css';
-import ProfilePic from './../../images/defaults/profile_default.png';
+import ProfilePic from './../../images/defaults/profile.png';
 
 class MemberElement extends Component {	
 	render() {
