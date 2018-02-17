@@ -17,7 +17,6 @@ class Hardware extends Component {
 
 		this.openModal = this.openModal.bind(this);
 		this.closeModal = this.closeModal.bind(this);
-		this.setHardware = this.setHardware.bind(this);
 	}
 
 	openModal(name, description, serialNum, color) {
