@@ -25,7 +25,7 @@ class Header extends Component {
 								<NavLink to="/software" className="nav-link">Software</NavLink>
 								<NavLink to="/curriculums" className="nav-link">Curriculums</NavLink>
 								<NavLink to="/about" className="nav-link">About</NavLink>
-								<NavLink to="/profile" className="nav-link">Profile</NavLink>
+								<NavLink to="/dashboard" className="nav-link">Dashboard</NavLink>
 								<NavLink to="/signout" className="nav-link">Signout</NavLink>
 							</div>
 						</div>
