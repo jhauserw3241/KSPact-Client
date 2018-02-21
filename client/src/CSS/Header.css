@@ -23,6 +23,7 @@
 	color: white;
 	padding: 2.35em !important;
 	display: inline-block !important;
+	text-decoration: none;
 }
 
 .nav-link:hover {
