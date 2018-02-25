@@ -13,17 +13,7 @@ class Login extends Component {
             password: ""
 		};
 
-		this.handleEmailChange = this.handleEmailChange.bind(this);
-		this.handlePasswordChange = this.handlePasswordChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleEmailChange(event) {
-        this.setState({email: event.target.value});
-    }
-
-    handlePasswordChange(event) {
-        this.setState({password: event.target.value});
     }
 
     handleSubmit(event) {
@@ -61,53 +51,37 @@ class Login extends Component {
                 <Redirect to ="/home" />
             );
         } else  {
-            if(this.state.authError === "") {
-                return (
-                    <div className="Home">
-                        <div className="container">
-                            <div className="content">
-                                <h1 className="form-header">Login</h1>
-                                <form method="POST" onSubmit={this.handleSubmit}>
-                                    <fieldset>
-                                        <label htmlFor="email">Email:</label>
-                                        <input type="text" id="email" onChange={this.handleEmailChange} />
-                                    </fieldset>
-                                    <fieldset>
-                                        <label htmlFor="password">Password:</label>
-                                        <input type="password" id="password" onChange={this.handlePasswordChange} />
-                                    </fieldset>
-                                    <input type="submit" value="Submit" />
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                );
-            } else {
-                return (
-                    <div className="Home">
-                        <div className="container">
-                            <div className="content">
+            return (
+                <div className="Login">
+                    <div className="container">
+                        <div className="content">
+                            { (this.state.authError !== "") ?
                                 <div class="alert alert-danger">
                                     <strong>Error:</strong> {this.state.authError}
-                                </div>
-        
-                                <h1 className="form-header">Login</h1>
-                                <form method="POST" onSubmit={this.handleSubmit}>
-                                    <fieldset>
-                                        <label htmlFor="email">Email:</label>
-                                        <input type="text" id="email" onChange={this.handleEmailChange} />
-                                    </fieldset>
-                                    <fieldset>
-                                        <label htmlFor="password">Password:</label>
-                                        <input type="password" id="password" onChange={this.handlePasswordChange} />
-                                    </fieldset>
-                                    <input type="submit" value="Submit" />
-                                </form>
-                            </div>
+                                </div> : null }
+    
+                            <h1 className="form-header">Login</h1>
+                            <form method="POST" onSubmit={this.handleSubmit}>
+                                <fieldset>
+                                    <label htmlFor="email">Email:</label>
+                                    <input
+                                        type="text"
+                                        name="email"
+                                        onChange={(event) => this.setState({email: event.target.value})} />
+                                </fieldset>
+                                <fieldset>
+                                    <label htmlFor="password">Password:</label>
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        onChange={(event) => this.setState({password: event.target.value})} />
+                                </fieldset>
+                                <input type="submit" value="Submit" />
+                            </form>
                         </div>
                     </div>
-                );
-            }
+                </div>
+            );
         }
 	}
 }
