@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
 import Header from './Pages/Header';
 import { Main } from './routes';
@@ -15,11 +15,11 @@ const App = () => (
 )
 
 render((
-	<BrowserRouter>
+	<HashRouter>
 		<div>
 			<App />
 		</div>
-	</BrowserRouter>),
+	</HashRouter>),
 	document.getElementById('root')
 );
 
