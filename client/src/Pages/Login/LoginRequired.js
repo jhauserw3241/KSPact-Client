@@ -15,7 +15,7 @@ class LoginRequired extends Component {
         var self = this;
         fire.auth().onAuthStateChanged(function(user) {
             if (user) {
-                self.setState({user: user});    
+                self.setState({user: user});
             } else {
                 self.setState({user: undefined});
             }
