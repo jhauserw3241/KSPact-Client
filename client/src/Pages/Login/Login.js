@@ -67,14 +67,16 @@ class Login extends Component {
                                     <input
                                         type="text"
                                         name="email"
-                                        onChange={(event) => this.setState({email: event.target.value})} />
+                                        onChange={(event) => this.setState({email: event.target.value})}
+                                        required />
                                 </fieldset>
                                 <fieldset>
                                     <label htmlFor="password">Password:</label>
                                     <input
                                         type="password"
                                         name="password"
-                                        onChange={(event) => this.setState({password: event.target.value})} />
+                                        onChange={(event) => this.setState({password: event.target.value})}
+                                        required />
                                 </fieldset>
                                 <input type="submit" value="Submit" />
                             </form>
