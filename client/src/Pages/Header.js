@@ -26,7 +26,6 @@ class Header extends Component {
 	}
 
 	render() {
-		console.log(this.state.user);
 		return (
 			<div className="Header">
 				<header>
