@@ -37,7 +37,8 @@ class LoginRequired extends Component {
             var privs = "none";
             var membersRef = fire.database().ref("members/");
             membersRef.orderByChild('email').equalTo(this.state.user.email).on("value", function(data) {
-                if(data.val() !== undefined) {
+                if( (data.val() !== undefined) &&
+                    (data.val() !== null)) {
                         privs = data.val().priv;
                 }
             });
