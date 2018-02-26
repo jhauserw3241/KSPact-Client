@@ -8,6 +8,7 @@ import Software from './Pages/Software/Software';
 import Curriculums from './Pages/Curriculums/Curriculums';
 import Profile from './Pages/Profile/Profile';
 import Dashboard from './Pages/Dashboard/Dashboard';
+import Signup from './Pages/Signup/Signup';
 import Login from './Pages/Login/Login';
 import Signout from './Pages/Signout/Signout';
 
@@ -23,6 +24,7 @@ export const Main = () => (
 			<Route exact path='/about' component={About} />
 			<Route exact path='/profile' component={Profile} />
 			<Route exact path='/dashboard' component={Dashboard} />
+			<Route exact path='/signup' component={Signup} />
 			<Route exact path='/login' component={Login} />
 			<Route exact path='/signout' component={Signout} />
 		</Switch>
