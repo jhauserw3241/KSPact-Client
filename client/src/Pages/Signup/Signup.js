@@ -31,61 +31,21 @@ class Signup extends Component {
 
         var self = this;
 
-        //console.log("Start the signup functionality handler");
-
         // Check passwords are the same
         if(this.state.password !== this.state.confirmPassword) {
             //console.log("Passwords were the same");
             this.setState({formError: "Passwords don't match"});
         }
 
-        //console.log("Errors: " + this.state.formError);
         // Add user if no problems
         if(this.state.formError === "") {
-            //console.log("There were no errors");
-            //console.log(fire.auth().currentUser);
-
-            //console.log("test");
-
-            fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(function(data) {
-                /* user.sendEmailVerification().then(function() {
-                    // Email sent.
-                }).catch(function(error) {
-                    // An error happened.
-                });*/
-
-                //console.log("Creating the user was a success");
+            fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+            .then(function(data) {
+                // Get info for current user
                 var user = fire.auth().currentUser;
-                //console.log(user);
-                //console.log(user.uid);
 
-                // Get a key for a new member
-                //var newKey = fire.database().ref().child('members').push().key;
-                var newKey = user.uid;
-
-                // Collect the information for a new member
-                var newMember = {
-                    first_name: self.state.first_name,
-                    last_name: self.state.last_name,
-                    email: self.state.email,
-                    school: self.state.school,
-                    bio: self.state.bio,
-                    grade_level: self.state.grade_level,
-                    title: self.state.title,
-                    priv: "pending member",
-                    id: newKey
-                };
-
-                console.log(newKey);
-
-                // Update profile information
-                //var updates = {};
-                //updates['/members/' + newKey] = newMember;
-
-                //console.log(updates);
-                //fire.database().ref().update(updates);
-
-                fire.database.ref('/members/' + newKey)
+                // Add user information to firebase DB
+                fire.database().ref('/members/' + user.uid)
                 .set({
                     first_name: self.state.first_name,
                     last_name: self.state.last_name,
@@ -95,17 +55,20 @@ class Signup extends Component {
                     grade_level: self.state.grade_level,
                     title: self.state.title,
                     priv: "pending member",
-                    id: newKey
-                }).catch(function(err) {
-                    console.log(err.code + ": " + err.message);
+                    id: user.uid
+                }).catch(function(error) {
+                    self.setState({ formError: error.code + ": " + error.message });
                 });
 
+                // This is commented out for debug purposes
+                // This will be officially added later on in the project
+                /* user.sendEmailVerification().then(function() {
+                    // Email sent.
+                }).catch(function(error) {
+                    // An error happened.
+                });*/
             }).catch(function(error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.log(error.code + ": " + error.message);
-                //self.setState({ formError: errorCode + ": " + errorMessage });
+                self.setState({ formError: error.code + ": " + error.message });
             });
         }
     }
