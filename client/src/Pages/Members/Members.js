@@ -43,9 +43,8 @@ class Members extends Component {
 	
 	componentDidMount() {
 		var membersRef = fire.database().ref("members/");
-
-		membersRef.orderByChild("name").on("value", (data) =>
-			this.setState({members: data.val()}));
+		membersRef.orderByChild("last_name").on("value", (data) =>
+			this.setState({members: Object.values(data.val())}));
 	}
 	
 	render() {
