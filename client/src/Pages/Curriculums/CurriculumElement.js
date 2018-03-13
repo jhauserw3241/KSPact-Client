@@ -39,12 +39,12 @@ class CurriculumElement extends Component {
 	}
 	
 	goToLink() {
-		window.location=this.props.link;
+		window.location=this.state.link;
 	}
 	
 	render() {
 		var divStyle = {
-            backgroundColor: this.props.color
+            backgroundColor: this.state.color
 		}
 	
 		return (
