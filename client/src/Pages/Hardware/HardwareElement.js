@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Modal from 'react-modal';
 import fire from './../../fire';
 import './../../CSS/Card.css';
 
@@ -20,13 +19,12 @@ class HardwareElement extends Component {
 	}
 
 	editHardware() {
-		console.log("Allow edits");
 		this.setState({allowEdits: true});
 	}
 
 	saveHardware() {
-		console.log("Save data");
-		
+		console.log(this.state.serialNum)
+
 		// Update profile information
         var updates = {};
         updates['/hardware/' + this.props.id] = {
@@ -45,11 +43,6 @@ class HardwareElement extends Component {
 		var divStyle = {
             backgroundColor: this.state.color
 		}
-		
-		var name = this.props.name;
-		var desc = this.props.description;
-		var serialNum = this.props.serialNum;
-		var color = this.props.color;
 	
 		return (
 			<div className="HardwareElement card">
