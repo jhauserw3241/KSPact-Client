@@ -43,7 +43,7 @@ class HardwareElement extends Component {
 
 	render() {
 		var divStyle = {
-            backgroundColor: this.props.color
+            backgroundColor: this.state.color
 		}
 		
 		var name = this.props.name;
