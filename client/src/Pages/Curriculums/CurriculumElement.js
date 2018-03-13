@@ -20,13 +20,10 @@ class CurriculumElement extends Component {
 	}
 
 	editCurriculum() {
-		console.log("Allow edits");
 		this.setState({allowEdits: true});
 	}
 
 	saveCurriculum() {
-		console.log("Save data");
-
         // Update curriculum information
         var updates = {};
         updates['/curriculums/' + this.props.id] = {
