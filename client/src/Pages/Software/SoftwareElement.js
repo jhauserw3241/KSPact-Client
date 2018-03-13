@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Modal from 'react-modal';
+import fire from './../../fire';
 import './../../CSS/Card.css';
 
 class SoftwareElement extends Component {
@@ -7,89 +7,131 @@ class SoftwareElement extends Component {
 		super(props);
 
 		this.state = {
-			modalIsOpen: false,
-			name: "",
-			description: "",
-			link: "",
-			color: ""
+			allowEdits: false,
+			name: this.props.name,
+			description: this.props.description,
+			link: this.props.link,
+			color: this.props.color
 		};
 
-		this.openModal = this.openModal.bind(this);
-		this.closeModal = this.closeModal.bind(this);
+		this.editSoftware = this.editSoftware.bind(this);
+		this.saveSoftware = this.saveSoftware.bind(this);
+		this.goToLink = this.goToLink.bind(this);
 	}
 
-	openModal(name, description, link, color) {
-		this.setState({
-			modalIsOpen: true,
-			name: name,
-			description: description,
-			link: link,
-			color: color
-		});
+	editSoftware() {
+		console.log("Allow edits");
+		this.setState({allowEdits: true});
 	}
 
-	closeModal() {
-		this.setState({modalIsOpen: false});
+	saveSoftware() {
+		console.log("Save data");
+		
+		// Update profile information
+        var updates = {};
+        updates['/software/' + this.props.id] = {
+			id: this.props.id,
+			name: this.state.name,
+			description: this.state.description,
+			link: this.state.link,
+			color: this.state.color
+		};
+        fire.database().ref().update(updates);
+
+		this.setState({allowEdits: false});
 	}
 
-	goToLink(link) {
-		window.location=link;
+	goToLink() {
+		window.location=this.state.link;
 	}
 	
 	render() {
 		var divStyle = {
-            backgroundColor: this.props.color
+            backgroundColor: this.state.color
         }
-		
-		var name = this.props.name;
-		var description = this.props.description;
-		var link = this.props.link;
-		var color = this.props.color;
 	
 		return (
-			<div className="SoftwareElement card" onClick={() => this.openModal(name, description, link, color)}>
-				<Modal
-					isOpen={this.state.modalIsOpen}
-					onRequestClose={this.closeModal}
-					contentLabel="Software Modal"
-					ariaHideApp={false}
-					className="card-modal"
-				>
-					<div className="modal-header">
-						<h2>Software</h2>
-						<button className="close-btn" onClick={this.closeModal}>
-							<span aria-hidden="true">X</span>
-						</button>
-					</div>
-					<div className="modal-body">
-						<div className="row">
-							<div className="form-text">Name: </div>
-							<div className="form-field"><input type="text" value={this.state.name} disabled /></div>
-						</div>
-						<div className="row">
-							<div className="form-text">Description: </div>
-							<div className="form-field"><input type="text" value={this.state.description} disabled /></div>
-						</div>
-						<div className="row">
-							<div className="form-text">Link: </div>
-							<div className="form-field"><input type="text" value={this.state.link} disabled /></div>
-						</div>
-						<div className="row">
-							<div className="form-text">Color: </div>
-							<div className="form-field"><input type="text" value={this.state.color} disabled /></div>
-						</div>
-					</div>
-					<div className="modal-footer">
-						<div className="row">
-							<form action={this.state.link}>
-								<input type="submit" value="Go to Link" />
+			<div className="SoftwareElement card">
+				<div
+					className="modal fade"
+					id={"softwareModal-" + this.props.id}
+					tabIndex="-1"
+					role="dialog"
+					aria-labelledby="SoftwareModal"
+					aria-hidden="true">
+					<div className="modal-dialog" role="document">
+						<div className="modal-content">
+							<div className="modal-header">
+								<h5 className="modal-title" id="softwareModalTitle">Modal title</h5>
+								<button type="button" className="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<form>
+								<div className="modal-body">
+									<fieldset>
+										<label htmlFor="name">Name:</label>
+										<input
+											type="text"
+											name="name"
+											onChange={event => this.setState({name: event.target.value})}
+											value={this.state.name}
+											disabled={this.state.allowEdits ? false : true} />
+									</fieldset>
+									<fieldset>
+										<label htmlFor="description">Description:</label>
+										<input
+											type="text"
+											name="description"
+											onChange={event => this.setState({description: event.target.value})}
+											value={this.state.description}
+											disabled={this.state.allowEdits ? false : true} />
+									</fieldset>
+									<fieldset>
+										<label htmlFor="link">Link:</label>
+										<input
+											type="text"
+											name="link"
+											onChange={event => this.setState({link: event.target.value})}
+											value={this.state.link}
+											disabled={this.state.allowEdits ? false : true} />
+									</fieldset>
+								</div>
+
+								<div className="modal-footer">
+									<button
+										type="button"
+										className="btn btn-secondary"
+										onClick={this.goToLink}>
+										Go To Link
+									</button>
+									{(this.state.allowEdits) ?
+										<button
+											type="button"
+											className="btn btn-secondary"
+											onClick={this.saveSoftware}>
+											Save
+										</button> :
+										<button
+											type="button"
+											className="btn btn-secondary"
+											onClick={this.editSoftware}>
+											Edit
+										</button>}
+									<button
+										type="button"
+										className="btn btn-primary"
+										data-dismiss="modal">
+										Cancel
+									</button>
+								</div>
 							</form>
 						</div>
 					</div>
-				</Modal>
+				</div>
 
-				<div className="card-img" style={divStyle}></div>
-				<div className="card-text">
+				<div className="card-img" style={divStyle} data-toggle="modal" data-target={"#softwareModal-" + this.props.id}></div>
+				<div className="card-text" data-toggle="modal" data-target={"#softwareModal-" + this.props.id}>
 					{this.props.name}
 				</div>
 			</div>
