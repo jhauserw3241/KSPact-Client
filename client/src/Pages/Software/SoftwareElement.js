@@ -17,6 +17,7 @@ class SoftwareElement extends Component {
 		this.editSoftware = this.editSoftware.bind(this);
 		this.saveSoftware = this.saveSoftware.bind(this);
 		this.goToLink = this.goToLink.bind(this);
+		this.deleteSoftware = this.deleteSoftware.bind(this);
 	}
 
 	editSoftware() {
@@ -40,6 +41,12 @@ class SoftwareElement extends Component {
 
 	goToLink() {
 		window.location=this.state.link;
+	}
+
+	deleteSoftware() {
+		var updates = {};
+        updates['/software/' + this.props.id] = null;
+        fire.database().ref().update(updates);
 	}
 	
 	render() {
@@ -130,6 +137,11 @@ class SoftwareElement extends Component {
 				<div className="card-img" style={divStyle} data-toggle="modal" data-target={"#softwareModal-" + this.props.id}></div>
 				<div className="card-text" data-toggle="modal" data-target={"#softwareModal-" + this.props.id}>
 					{this.props.name}
+				</div>
+				<div className="card-btns">
+					<button className="btn btn-danger card-delete-btn" onClick={this.deleteSoftware}>
+						Delete
+					</button>
 				</div>
 			</div>
 		);
