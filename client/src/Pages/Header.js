@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import LoginRequired from './Login/LoginRequired';
 import logo from './../Images/header/light-green-kspact.png';
 import fire from './../fire.js';
 import './../CSS/Header.css';
@@ -28,32 +29,56 @@ class Header extends Component {
 	render() {
 		return (
 			<div className="Header">
-				<header>
-					<div className="Navbar">
-						<div className="Header-logo">
-							<img src={logo} className="Logo-img" alt="logo" />
-						</div>
-						<div className="nav-body">
-							<NavLink to="/home" className="nav-link">Home</NavLink>
-							<NavLink to="/members" className="nav-link">Members</NavLink>
-							<NavLink to="/hardware" className="nav-link">Hardware</NavLink>
-							<NavLink to="/software" className="nav-link">Software</NavLink>
-							<NavLink to="/curriculums" className="nav-link">Curriculums</NavLink>
-							<NavLink to="/about" className="nav-link">About</NavLink>
-							{ this.state.user ?
-								<NavLink to="/dashboard" className="nav-link">Dashboard</NavLink> : null }
-							{ this.state.user ?
-								<NavLink to="/signout" className="nav-link">Signout</NavLink> : null }
-							{ !this.state.user ?
-								<NavLink to="/login" className="nav-link">Login</NavLink> : null }
-							{ !this.state.user ?
-								<NavLink to="/signup" className="nav-link">Signup</NavLink> : null }
-						</div>
+				<nav class="navbar navbar-expand-lg navbar-dark Navbar">
+					<div className="Header-logo">
+						<img src={logo} className="Logo-img" alt="logo" />
 					</div>
-				</header>
-				<main>
-					{this.props.children}
-				</main>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<NavLink to="/home" className="nav-link">Home</NavLink>
+							</li>
+							<li class="nav-item">
+								<NavLink to="/members" className="nav-link">Members</NavLink>
+							</li>
+							<li class="nav-item">
+								<NavLink to="/hardware" className="nav-link">Hardware</NavLink>
+							</li>
+							<li class="nav-item">
+								<NavLink to="/software" className="nav-link">Software</NavLink>
+							</li>
+							<li class="nav-item">
+								<NavLink to="/curriculums" className="nav-link">Curriculums</NavLink>
+							</li>
+							<li class="nav-item">
+								<NavLink to="/about" className="nav-link">About</NavLink>
+							</li>
+							<LoginRequired>
+								<li class="nav-item">
+									<NavLink to="/dashboard" className="nav-link">Dashboard</NavLink>
+								</li>
+							</LoginRequired>
+							<LoginRequired>
+								<li class="nav-item">
+									<NavLink to="/signout" className="nav-link">Signout</NavLink>
+								</li>
+							</LoginRequired>
+							<LoginRequired requiredRole="none">
+								<li class="nav-item">
+									<NavLink to="/login" className="nav-link">Login</NavLink>
+								</li>
+							</LoginRequired>
+							<LoginRequired requiredRole="none">
+								<li class="nav-item">
+									<NavLink to="/signup" className="nav-link">Signup</NavLink>
+								</li>
+							</LoginRequired>
+						</ul>
+					</div>
+				</nav>
 			</div>
 		);
 	}
