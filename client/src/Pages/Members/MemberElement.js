@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './../../CSS/Card.css';
 import ProfilePic from './../../Images/defaults/profile.png';
+import fire from './../../fire';
+import admin from './../../fire-admin';
 
 class MemberElement extends Component {	
 	constructor(props) {
@@ -16,7 +18,27 @@ class MemberElement extends Component {
 			gradeLevel: this.props.gradeLevel,
 			title: this.props.title
 		};
+
+		this.banMember = this.banMember.bind(this);
 	}
+	
+	banMember() {
+		console.log(this.props.id);
+		// Remove member authentication information
+		admin.auth().deleteUser(this.props.id)
+		.then(function() {
+			console.log("Successfully deleted user");
+		})
+		.catch(function(error) {
+			console.log(error.code + ": " + error.message);
+		});
+		
+		// Remove member information from database
+		/*var updates = {};
+        updates['/members/' + this.props.id] = null;
+        fire.database().ref().update(updates);*/
+	}
+
 	render() {
 		var divStyle = {
 			backgroundImage: `url(${this.props.pic ? this.props.pic : ProfilePic})`
@@ -107,6 +129,11 @@ class MemberElement extends Component {
 				<div className="card-img" style={divStyle} data-toggle="modal" data-target={"#memberModal-" + this.props.id}></div>
 				<div className="card-text" data-toggle="modal" data-target={"#memberModal-" + this.props.id}>
 					{this.props.firstName} {this.props.lastName}
+				</div>
+				<div className="card-btns">
+					<button className="btn btn-danger card-delete-btn" onClick={this.banMember}>
+						Ban
+					</button>
 				</div>
 			</div>
 		);
