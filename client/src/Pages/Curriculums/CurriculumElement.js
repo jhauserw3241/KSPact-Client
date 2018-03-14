@@ -17,6 +17,7 @@ class CurriculumElement extends Component {
 		this.editCurriculum = this.editCurriculum.bind(this);
 		this.saveCurriculum = this.saveCurriculum.bind(this);
 		this.goToLink = this.goToLink.bind(this);
+		this.deleteCurriculum = this.deleteCurriculum.bind(this);
 	}
 
 	editCurriculum() {
@@ -40,6 +41,12 @@ class CurriculumElement extends Component {
 	
 	goToLink() {
 		window.location=this.state.link;
+	}
+
+	deleteCurriculum() {
+		var updates = {};
+        updates['/curriculums/' + this.props.id] = null;
+        fire.database().ref().update(updates);
 	}
 	
 	render() {
@@ -130,6 +137,11 @@ class CurriculumElement extends Component {
 				<div className="card-img" style={divStyle} data-toggle="modal" data-target={"#curriculumModal-" + this.props.id}></div>
 				<div className="card-text" data-toggle="modal" data-target={"#curriculumModal-" + this.props.id}>
 					{this.props.name}
+				</div>
+				<div className="card-btns">
+					<button className="btn btn-danger card-delete-btn" onClick={this.deleteCurriculum}>
+						Delete
+					</button>
 				</div>
 			</div>
 		);

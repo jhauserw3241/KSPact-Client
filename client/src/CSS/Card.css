@@ -23,6 +23,14 @@
 	text-overflow: ellipsis;
 }
 
+.card-btns {
+	padding: 5px;
+}
+
+.card-delete-btn {
+	margin-left: calc(50% - 50px);
+}
+
 .card-modal {
 	background-color: white;
 	width: 50%;
