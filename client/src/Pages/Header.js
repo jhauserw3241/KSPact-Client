@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import logo from './../images/header/light-green-kspact.png';
+import logo from './../Images/header/light-green-kspact.png';
 import fire from './../fire.js';
 import './../CSS/Header.css';
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import  { Redirect } from 'react-router-dom';
-import ProfilePic from './../../images/defaults/profile.png';
+import ProfilePic from './../../Images/defaults/profile.png';
 import fire from './../../fire';
 import './../../CSS/Form.css';
 import './../../CSS/Profile.css';
