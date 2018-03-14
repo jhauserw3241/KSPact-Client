@@ -14,7 +14,7 @@ class Members extends Component {
 			email: "",
 			school: "",
 			bio: "",
-			picture: "",
+			pic: "",
 			gradeLevel: "",
 			title: ""
 		};
@@ -23,7 +23,7 @@ class Members extends Component {
 		this.closeModal = this.closeModal.bind(this);
 	}
 
-	openModal(firstName, lastName, email, school, bio, picture, gradeLevel, title) {
+	openModal(firstName, lastName, email, school, bio, picture, gradeLevel, title, pic) {
 		this.setState({
 			modalIsOpen: true,
 			firstName: firstName,
@@ -31,7 +31,7 @@ class Members extends Component {
 			email: email,
 			school: school,
 			bio: bio !== null ? bio : "",
-			picture: picture,
+			pic: pic,
 			gradeLevel: gradeLevel,
 			title: title
 		});
@@ -110,6 +110,7 @@ class Members extends Component {
 								picture={member.picture}
 								gradeLevel={member.grade_level}
 								title={member.title}
+								pic={member.pic}
 								modalHandler={this.openModal} />
 						)}
 					</div>

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import  { Redirect } from 'react-router-dom';
+import ProfilePic from './../../images/defaults/profile.png';
 import fire from './../../fire';
 import './../../CSS/Form.css';
+import './../../CSS/Profile.css';
 
 class Profile extends Component {
     constructor(props) {
@@ -16,11 +18,13 @@ class Profile extends Component {
             bio: "",
             grade_level: "",
             title: "",
+            pic: "",
             disable_edits: true
         }
 
         this.toggleEditting = this.toggleEditting.bind(this);
         this.saveChanges = this.saveChanges.bind(this);
+        this.handlePic = this.handlePic.bind(this);
     }
 
     componentDidMount() {
@@ -80,7 +84,28 @@ class Profile extends Component {
         this.toggleEditting(event);
     }
 
+    handlePic(event) {
+        event.preventDefault();
+        var self = this;
+
+        var file = event.target.files[0];
+        var ref = fire.storage().ref('profiles').child(file.name);        
+        ref.put(file).then(()=>{
+            ref.getDownloadURL().then((url) => {
+                self.setState({pic: url});
+            }).catch((err) => {
+                self.setState({ formError: err.code + ": " + err.message });
+            });
+        }).catch((error) => {
+            self.setState({ formError: error.code + ": " + error.message });
+        });
+    }
+
 	render() {
+		var divStyle = {
+			backgroundImage: `url(${this.props.pic ? this.props.pic : ProfilePic})`
+		}
+		
 		if(this.state.user) {
             return (
 				<div className="Home">
@@ -88,6 +113,9 @@ class Profile extends Component {
                         <div className="content">
                             <h1 className="form-header">Profile</h1>
                             <form method="POST">
+                                <fieldset>
+                                    <div className="profile-img" style={divStyle}></div>
+                                </fieldset>
                                 <fieldset>
                                     <label htmlFor="firstName">First Name:</label>
                                     <input
@@ -150,6 +178,10 @@ class Profile extends Component {
                                         value={this.state.title}
                                         onChange={(event) => this.setState({title: event.target.value})}
                                         disabled={this.state.disable_edits} />
+                                </fieldset>
+                                <fieldset>
+                                    <label htmlFor="pic">Picture:</label>
+                                    <input type="file" name="pic" onChange={this.handlePic}/>
                                 </fieldset>
                                 <fieldset>
                                     { this.state.disable_edits ?

@@ -17,13 +17,13 @@ class Signup extends Component {
             bio: "",
             grade_level: "",
             title: "",
+            pic: "",
             formError: "",
             redirect: false
         }
 
         this.signUp = this.signUp.bind(this);
-
-        //console.log("Start the signup class");
+        this.handlePic = this.handlePic.bind(this);
     }
 
     signUp(event) {
@@ -33,7 +33,6 @@ class Signup extends Component {
 
         // Check passwords are the same
         if(this.state.password !== this.state.confirmPassword) {
-            //console.log("Passwords were the same");
             this.setState({formError: "Passwords don't match"});
         }
 
@@ -54,6 +53,7 @@ class Signup extends Component {
                     bio: self.state.bio,
                     grade_level: self.state.grade_level,
                     title: self.state.title,
+                    pic: self.state.pic,
                     priv: "pending member",
                     id: user.uid
                 }).catch(function(error) {
@@ -71,6 +71,23 @@ class Signup extends Component {
                 self.setState({ formError: error.code + ": " + error.message });
             });
         }
+    }
+
+    handlePic(event) {
+        event.preventDefault();
+        var self = this;
+
+        var file = event.target.files[0];
+        var ref = fire.storage().ref('profiles').child(file.name);        
+        ref.put(file).then(()=>{
+            ref.getDownloadURL().then((url) => {
+                self.setState({pic: url});
+            }).catch((err) => {
+                self.setState({ formError: err.code + ": " + err.message });
+            });
+        }).catch((error) => {
+            self.setState({ formError: error.code + ": " + error.message });
+        });
     }
 
 	render() {
@@ -167,6 +184,10 @@ class Signup extends Component {
                                         name="title"
                                         value={this.state.title}
                                         onChange={(event) => this.setState({title: event.target.value})} />
+                                </fieldset>
+                                <fieldset>
+                                    <label htmlFor="pic">Picture:</label>
+                                    <input type="file" name="pic" onChange={this.handlePic}/>
                                 </fieldset>
                                 <input type="submit" value="Submit" />
                             </form>

@@ -5,22 +5,21 @@ import ProfilePic from './../../images/defaults/profile.png';
 class MemberElement extends Component {	
 	render() {
 		var divStyle = {
-            backgroundImage: `url(${ProfilePic})`
-        }
+			backgroundImage: `url(${this.props.pic ? this.props.pic : ProfilePic})`
+		}
 		
-		var firstName = this.props.firstName;
-		var lastName = this.props.lastName;
-		var email = this.props.email;
-		var school = this.props.school;
-		var bio = this.props.bio;
-		var picture = this.props.picture;
-		var gradeLevel = this.props.gradeLevel;
-		var title = this.props.title;
-	
 		return (
 			<div
 				className="MemberElement card"
-				onClick={() => this.props.modalHandler(firstName, lastName, email, school, bio, picture, gradeLevel, title)}
+				onClick={() => this.props.modalHandler(
+					this.props.firstName,
+					this.props.lastName,
+					this.props.email,
+					this.props.school,
+					this.props.bio,
+					this.props.pic,
+					this.props.gradeLevel,
+					this.props.title)}
 			>
 				<div className="card-img" style={divStyle}></div>
 				<div className="card-text">

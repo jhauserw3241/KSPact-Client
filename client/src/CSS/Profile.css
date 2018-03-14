@@ -1,0 +1,7 @@
+.profile-img {
+    width: 50%;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-left: calc(50% - 75px);
+}
