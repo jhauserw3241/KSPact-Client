@@ -19,16 +19,13 @@ class Curriculums extends Component {
 	}
 
 	addCurriculum() {
-		console.log("Save all the data");
-
 		var self = this;
 		var curriculumsRef = fire.database().ref('/curriculums/');
 
 		// Get id for new curriculum
 		var id = curriculumsRef.push().path["pieces_"][1];
-		console.log(id);
 
-		// Add user information to firebase DB
+		// Add curriculum object to firebase DB
 		fire.database().ref('/curriculums/' + id)
 		.set({
 			id: id,
@@ -38,6 +35,13 @@ class Curriculums extends Component {
 			color: "#"+((1<<24)*Math.random()|0).toString(16) // Generate random color
 		}).catch(function(error) {
 			self.setState({ formError: error.code + ": " + error.message });
+		});
+
+		// Clear the data in the add modal
+		this.setState({
+			name: "",
+			description: "",
+			link: ""
 		});
 	}
 
@@ -73,21 +77,24 @@ class Curriculums extends Component {
 										<input
 											type="text"
 											name="name"
-											onChange={event => this.setState({name: event.target.value})} />
+											onChange={event => this.setState({name: event.target.value})}
+											value={this.state.name} />
 									</fieldset>
 									<fieldset>
 										<label htmlFor="description">Description:</label>
 										<input
 											type="text"
 											name="description"
-											onChange={event => this.setState({description: event.target.value})} />
+											onChange={event => this.setState({description: event.target.value})}
+											value={this.state.description} />
 									</fieldset>
 									<fieldset>
 										<label htmlFor="link">Link:</label>
 										<input
 											type="text"
 											name="link"
-											onChange={event => this.setState({link: event.target.value})} />
+											onChange={event => this.setState({link: event.target.value})}
+											value={this.state.link} />
 									</fieldset>
 								</div>
 								<div className="modal-footer">
