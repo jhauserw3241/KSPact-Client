@@ -16,6 +16,7 @@ class HardwareElement extends Component {
 
 		this.editHardware = this.editHardware.bind(this);
 		this.saveHardware = this.saveHardware.bind(this);
+		this.deleteHardware = this.deleteHardware.bind(this);
 	}
 
 	editHardware() {
@@ -37,6 +38,12 @@ class HardwareElement extends Component {
         fire.database().ref().update(updates);
 
 		this.setState({allowEdits: false});
+	}
+
+	deleteHardware() {
+		var updates = {};
+        updates['/hardware/' + this.props.id] = null;
+        fire.database().ref().update(updates);
 	}
 
 	render() {
@@ -121,6 +128,11 @@ class HardwareElement extends Component {
 				<div className="card-img" style={divStyle} data-toggle="modal" data-target={"#hardwareModal-" + this.props.id}></div>
 				<div className="card-text" data-toggle="modal" data-target={"#hardwareModal-" + this.props.id}>
 					{this.props.name}
+				</div>
+				<div className="card-btns">
+					<button className="btn btn-danger card-delete-btn" onClick={this.deleteHardware}>
+						Delete
+					</button>
 				</div>
 			</div>
 		);
