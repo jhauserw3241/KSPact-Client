@@ -20,13 +20,10 @@ class SoftwareElement extends Component {
 	}
 
 	editSoftware() {
-		console.log("Allow edits");
 		this.setState({allowEdits: true});
 	}
 
 	saveSoftware() {
-		console.log("Save data");
-		
 		// Update profile information
         var updates = {};
         updates['/software/' + this.props.id] = {
