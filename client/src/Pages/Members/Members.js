@@ -7,38 +7,8 @@ class Members extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			members: [],
-			modalIsOpen: false,
-			firstName: "",
-			lastName: "",
-			email: "",
-			school: "",
-			bio: "",
-			pic: "",
-			gradeLevel: "",
-			title: ""
+			members: []
 		};
-
-		this.openModal = this.openModal.bind(this);
-		this.closeModal = this.closeModal.bind(this);
-	}
-
-	openModal(firstName, lastName, email, school, bio, picture, gradeLevel, title, pic) {
-		this.setState({
-			modalIsOpen: true,
-			firstName: firstName,
-			lastName: lastName,
-			email: email,
-			school: school,
-			bio: bio !== null ? bio : "",
-			pic: pic,
-			gradeLevel: gradeLevel,
-			title: title
-		});
-	}
-
-	closeModal() {
-		this.setState({modalIsOpen: false});
 	}
 	
 	componentDidMount() {
@@ -50,52 +20,6 @@ class Members extends Component {
 	render() {
 		return (
 			<div className="Members">
-				<Modal
-					isOpen={this.state.modalIsOpen}
-					onRequestClose={this.closeModal}
-					contentLabel="Example Modal"
-					ariaHideApp={false}
-					className="card-modal"
-				>
-					<div className="modal-header">
-						<h2>Member</h2>
-						<button className="close-btn" onClick={this.closeModal}>
-							<span aria-hidden="true">X</span>
-						</button>
-					</div>
-					<div className="modal-body">
-						<div className="row">
-							<div className="form-text">Name: </div>
-							<div className="form-field"><input type="text" value={`${this.state.firstName} ${this.state.lastName}`} disabled /></div>
-						</div>
-						<div className="row">
-							<div className="form-text">Email: </div>
-							<div className="form-field"><input type="text" value={this.state.email} disabled /></div>
-						</div>
-						<div className="row">
-							<div className="form-text">School: </div>
-							<div className="form-field"><input type="text" value={this.state.school} disabled /></div>
-						</div>
-						<div className="row">
-							<div className="form-text">Bio: </div>
-							<div className="form-field"><input type="text" value={this.state.bio} disabled /></div>
-						</div>
-						<div className="row">
-							<div className="form-text">Grade Level: </div>
-							<div className="form-field"><input type="text" value={this.state.gradeLevel} disabled /></div>
-						</div>
-						<div className="row">
-							<div className="form-text">Title: </div>
-							<div className="form-field"><input type="text" value={this.state.title} disabled /></div>
-						</div>
-					</div>
-					<div className="modal-footer">
-						<div className="row">
-							<input type="submit" onClick={this.closeModal} value="Close" />
-						</div>
-					</div>
-				</Modal>
-			
 				<div className="container">
 					<div className="list-container">
 						{this.state.members.map(member =>
