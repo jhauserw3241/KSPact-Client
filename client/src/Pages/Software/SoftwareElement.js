@@ -18,6 +18,7 @@ class SoftwareElement extends Component {
 		this.saveSoftware = this.saveSoftware.bind(this);
 		this.goToLink = this.goToLink.bind(this);
 		this.deleteSoftware = this.deleteSoftware.bind(this);
+		this.resetEdit = this.resetEdit.bind(this);
 	}
 
 	editSoftware() {
@@ -48,6 +49,10 @@ class SoftwareElement extends Component {
         updates['/software/' + this.props.id] = null;
         fire.database().ref().update(updates);
 	}
+
+	resetEdit() {
+		this.setState({allowEdits: false});
+	}
 	
 	render() {
 		var divStyle = {
@@ -67,8 +72,13 @@ class SoftwareElement extends Component {
 						<div className="modal-content">
 							<div className="modal-header">
 								<h5 className="modal-title" id="softwareModalTitle">Edit Software</h5>
-								<button type="button" className="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
+								<button
+									type="button"
+									className="close"
+									data-dismiss="modal"
+									onClick={this.resetEdit}
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
 							<form>
@@ -128,7 +138,8 @@ class SoftwareElement extends Component {
 									<button
 										type="button"
 										className="btn btn-danger"
-										data-dismiss="modal">
+										data-dismiss="modal"
+										onClick={this.resetEdit}>
 										Cancel
 									</button>
 								</div>
