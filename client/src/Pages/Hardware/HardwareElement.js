@@ -17,6 +17,7 @@ class HardwareElement extends Component {
 		this.editHardware = this.editHardware.bind(this);
 		this.saveHardware = this.saveHardware.bind(this);
 		this.deleteHardware = this.deleteHardware.bind(this);
+		this.resetEdit = this.resetEdit.bind(this);
 	}
 
 	editHardware() {
@@ -24,8 +25,6 @@ class HardwareElement extends Component {
 	}
 
 	saveHardware() {
-		console.log(this.state.serialNum)
-
 		// Update profile information
         var updates = {};
         updates['/hardware/' + this.props.id] = {
@@ -46,6 +45,10 @@ class HardwareElement extends Component {
         fire.database().ref().update(updates);
 	}
 
+	resetEdit() {
+		this.setState({allowEdits: false});
+	}
+
 	render() {
 		var divStyle = {
             backgroundColor: this.state.color
@@ -64,8 +67,13 @@ class HardwareElement extends Component {
 						<div className="modal-content">
 							<div className="modal-header">
 								<h5 className="modal-title" id="hardwareModalTitle">Edit Hardware</h5>
-								<button type="button" className="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
+								<button
+									type="button"
+									className="close"
+									data-dismiss="modal"
+									onClick={this.resetEdit}
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
 							<form>
@@ -119,7 +127,8 @@ class HardwareElement extends Component {
 									<button
 										type="button"
 										className="btn btn-danger"
-										data-dismiss="modal">
+										data-dismiss="modal"
+										onClick={this.resetEdit}>
 										Cancel
 									</button>
 								</div>
