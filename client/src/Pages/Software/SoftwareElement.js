@@ -118,7 +118,7 @@ class SoftwareElement extends Component {
 										</button> :
 										<button
 											type="button"
-											className="btn btn-secondary"
+											className="btn btn-warning"
 											onClick={this.editSoftware}>
 											Edit
 										</button>}
