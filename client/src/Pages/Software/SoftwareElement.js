@@ -112,7 +112,7 @@ class SoftwareElement extends Component {
 									{(this.state.allowEdits) ?
 										<button
 											type="button"
-											className="btn btn-secondary"
+											className="btn btn-success"
 											onClick={this.saveSoftware}>
 											Save
 										</button> :

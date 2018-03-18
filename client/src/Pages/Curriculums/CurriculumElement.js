@@ -112,7 +112,7 @@ class CurriculumElement extends Component {
 									{(this.state.allowEdits) ?
 										<button
 											type="button"
-											className="btn btn-secondary"
+											className="btn btn-success"
 											onClick={this.saveCurriculum}>
 											Save
 										</button> :
