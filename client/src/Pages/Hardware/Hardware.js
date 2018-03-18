@@ -99,10 +99,10 @@ class Hardware extends Component {
 								<div className="modal-footer">
 									<button
 										type="button"
-										className="btn btn-secondary"
+										className="btn btn-success"
 										onClick={this.addHardware}
 										data-dismiss="modal">
-										Add
+										Save
 									</button>
 									<button
 										type="button"
