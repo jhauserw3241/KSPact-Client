@@ -70,16 +70,17 @@ class HardwareElement extends Component {
 							</div>
 							<form>
 								<div className="modal-body">
-									<fieldset>
+									<div className="form-group">
 										<label htmlFor="name">Name:</label>
 										<input
 											type="text"
 											name="name"
+											className="form-control"
 											onChange={event => this.setState({name: event.target.value})}
 											value={this.state.name}
 											disabled={this.state.allowEdits ? false : true} />
-									</fieldset>
-									<fieldset>
+									</div>
+									<div className="form-group">
 										<label htmlFor="description">Description:</label>
 										<textarea
 											className="form-control"
@@ -88,16 +89,17 @@ class HardwareElement extends Component {
 											onChange={event => this.setState({description: event.target.value})}
 											value={this.state.description}
 											disabled={this.state.allowEdits ? false : true}></textarea>
-									</fieldset>
-									<fieldset>
+									</div>
+									<div className="form-group">
 										<label htmlFor="serialNum">Serial Number:</label>
 										<input
 											type="text"
 											name="serialNum"
+											className="form-control"
 											onChange={event => this.setState({serialNum: event.target.value})}
 											value={this.state.serialNum}
 											disabled={this.state.allowEdits ? false : true} />
-									</fieldset>
+									</div>
 								</div>
 
 								<div className="modal-footer">

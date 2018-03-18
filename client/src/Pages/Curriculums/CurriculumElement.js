@@ -73,16 +73,17 @@ class CurriculumElement extends Component {
 							</div>
 							<form>
 								<div className="modal-body">
-									<fieldset>
+									<div className="form-group">
 										<label htmlFor="name">Name:</label>
 										<input
 											type="text"
 											name="name"
+											className="form-control"
 											onChange={event => this.setState({name: event.target.value})}
 											value={this.state.name}
 											disabled={ this.state.allowEdits ? false : true } />
-									</fieldset>
-									<fieldset>
+									</div>
+									<div className="form-group">
 										<label htmlFor="description">Description:</label>
 										<textarea
 											className="form-control"
@@ -91,16 +92,17 @@ class CurriculumElement extends Component {
 											onChange={event => this.setState({description: event.target.value})}
 											value={this.state.description}
 											disabled={this.state.allowEdits ? false : true}></textarea>
-									</fieldset>
-									<fieldset>
+									</div>
+									<div className="form-group">
 										<label htmlFor="link">Link:</label>
 										<input
 											type="text"
 											name="link"
+											className="form-control"
 											onChange={event => this.setState({link: event.target.value})}
 											value={this.state.link}
 											disabled={ this.state.allowEdits ? false : true } />
-									</fieldset>
+									</div>
 								</div>
 
 								<div className="modal-footer">

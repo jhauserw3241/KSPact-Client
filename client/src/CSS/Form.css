@@ -4,29 +4,6 @@
     text-align: center;
 }
 
-fieldset {
-    padding: 1em;
-    font:80%/1 sans-serif;
-}
-
-input[type="text"], input[type="password"], textarea {
-    width: 50%;
-}
-
-textarea.form-control {
-    width: 50%;
-    margin-bottom: 2px;
-}
-
 input[type="submit"] {
     margin-left: calc(50% - 40px);
-}
-
-label {
-    float:left;
-    width:25%;
-    margin-right:0.5em;
-    padding-top:0.2em;
-    text-align:right;
-    font-weight:bold;
 }
