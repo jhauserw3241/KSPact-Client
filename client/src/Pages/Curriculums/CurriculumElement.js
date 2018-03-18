@@ -18,6 +18,7 @@ class CurriculumElement extends Component {
 		this.saveCurriculum = this.saveCurriculum.bind(this);
 		this.goToLink = this.goToLink.bind(this);
 		this.deleteCurriculum = this.deleteCurriculum.bind(this);
+		this.resetEdit = this.resetEdit.bind(this);
 	}
 
 	editCurriculum() {
@@ -48,6 +49,10 @@ class CurriculumElement extends Component {
         updates['/curriculums/' + this.props.id] = null;
         fire.database().ref().update(updates);
 	}
+
+	resetEdit() {
+		this.setState({allowEdits: false});
+	}
 	
 	render() {
 		var divStyle = {
@@ -67,8 +72,13 @@ class CurriculumElement extends Component {
 						<div className="modal-content">
 							<div className="modal-header">
 								<h5 className="modal-title" id="curriculumModalTitle">Edit Curriculum</h5>
-								<button type="button" className="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
+								<button
+									type="button"
+									className="close"
+									data-dismiss="modal"
+									onClick={this.resetEdit}
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
 							<form>
@@ -128,7 +138,8 @@ class CurriculumElement extends Component {
 									<button
 										type="button"
 										className="btn btn-danger"
-										data-dismiss="modal">
+										data-dismiss="modal"
+										onClick={this.resetEdit}>
 										Cancel
 									</button>
 								</div>
