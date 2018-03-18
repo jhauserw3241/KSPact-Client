@@ -84,12 +84,13 @@ class SoftwareElement extends Component {
 									</fieldset>
 									<fieldset>
 										<label htmlFor="description">Description:</label>
-										<input
-											type="text"
+										<textarea
+											className="form-control"
+											rows="5"
 											name="description"
 											onChange={event => this.setState({description: event.target.value})}
 											value={this.state.description}
-											disabled={this.state.allowEdits ? false : true} />
+											disabled={this.state.allowEdits ? false : true}></textarea>
 									</fieldset>
 									<fieldset>
 										<label htmlFor="link">Link:</label>
