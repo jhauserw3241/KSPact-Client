@@ -16,7 +16,7 @@ class Hardware extends Component {
 	
 	componentDidMount() {
 		var hardwareRef = fire.database().ref("hardware_requests");
-		hardwareRef.orderByChild("name").on("value", (data) =>
+		hardwareRef.orderByChild("status").equalTo("pending").on("value", (data) =>
 			this.setState({hardware_requests: data.val() ? Object.values(data.val()) : []}));
 	}
 
