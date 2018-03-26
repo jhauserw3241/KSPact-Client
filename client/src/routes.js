@@ -4,6 +4,7 @@ import Home from './Pages/Home/Home';
 import About from './Pages/About/About';
 import Members from './Pages/Members/Members';
 import Hardware from './Pages/Hardware/Hardware';
+import HardwareApproval from './Pages/HardwareApproval/HardwareApproval';
 import Software from './Pages/Software/Software';
 import Curriculums from './Pages/Curriculums/Curriculums';
 import Profile from './Pages/Profile/Profile';
@@ -19,6 +20,7 @@ export const Main = () => (
 			<Route exact path='/home' component={Home} />
 			<Route exact path='/members' component={Members} />
 			<Route exact path='/hardware' component={Hardware} />
+			<Route exact path='/hardwareapproval' component={HardwareApproval} />
 			<Route exact path='/software' component={Software} />
 			<Route exact path='/curriculums' component={Curriculums} />
 			<Route exact path='/about' component={About} />
