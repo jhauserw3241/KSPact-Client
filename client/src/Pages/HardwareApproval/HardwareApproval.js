@@ -38,9 +38,11 @@ class Hardware extends Component {
 							<HardwareRequestElement
 								key={requestElem.id}
 								id={requestElem.id}
-								name={requestElem.name}
-								description={requestElem.description}
-								serialNum={requestElem.serialNum}
+								requestor_name={requestElem.requestor_name}
+								requested_hardware_name={requestElem.requested_hardware_name}
+								requested_hardware_serial_number={requestElem.requested_hardware_serial_number}
+								request_start={requestElem.start}
+								request_end={requestElem.end}
 								color={requestElem.color}
 								updateFormError={this.updateFormError} />
 						)}

@@ -74,7 +74,7 @@ class HardwareRequestElement extends Component {
 											type="text"
 											name="requestedHardwareSerialNum"
 											className="form-control"
-											value={this.props.requested_hardware_serial_num}
+											value={this.props.requested_hardware_serial_number}
 											disabled={true} />
 									</div>
 									<div className="form-group">
