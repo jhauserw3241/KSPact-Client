@@ -15,6 +15,7 @@ class Hardware extends Component {
 		};
 
 		this.addHardware = this.addHardware.bind(this);
+		this.updateFormError = this.updateFormError.bind(this);
 	}
 
 	addHardware() {
@@ -49,6 +50,9 @@ class Hardware extends Component {
 		hardwareRef.orderByChild("name").on("value", (data) =>
 			this.setState({hardware: data.val() ? Object.values(data.val()) : []}));
 	}
+
+	updateFormError(err) {
+		this.setState({ formError: err });
 	}
 	
 	render() {
@@ -121,6 +125,11 @@ class Hardware extends Component {
 				</div>
 
 				<div className="container">
+					{ (this.state.formError !== "") ?
+						<div className="alert alert-danger">
+							<strong>Error:</strong> {this.state.formError}
+						</div> : null }
+
 					<button
 						type="button"
 						className="btn btn-success"
@@ -136,7 +145,8 @@ class Hardware extends Component {
 								name={hardwareElem.name}
 								description={hardwareElem.description}
 								serialNum={hardwareElem.serialNum}
-								color={hardwareElem.color} />
+								color={hardwareElem.color}
+								updateFormError={this.updateFormError} />
 						)}
 					</div>
 				</div>
