@@ -146,18 +146,20 @@ class HardwareRequestElement extends Component {
 					{this.props.name}
 				</div>
 				<div className="card-btns">
-					<button
-						type="button"
-						className="btn btn-primary"
-						onClick={this.approveRequest}>
-						Approve
-					</button>
-					<button
-						type="button"
-						className="btn btn-primary"
-						onClick={this.declineRequest}>
-						Decline
-					</button>
+					<div className="mod-btns">
+						<button
+							type="button"
+							className="btn btn-success"
+							onClick={this.approveRequest}>
+							Approve
+						</button>
+						<button
+							type="button"
+							className="btn btn-danger"
+							onClick={this.declineRequest}>
+							Decline
+						</button>
+					</div>
 				</div>
 			</div>
 		);

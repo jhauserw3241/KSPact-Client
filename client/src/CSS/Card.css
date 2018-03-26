@@ -27,6 +27,14 @@
 	padding: 5px;
 }
 
+.mod-btns {
+	margin-left: 20%;
+}
+
+.mod-btns>button {
+	margin: 5px;
+}
+
 .card-delete-btn {
 	margin-left: calc(50% - 50px);
 }
