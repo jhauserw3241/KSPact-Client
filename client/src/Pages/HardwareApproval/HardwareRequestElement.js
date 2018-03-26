@@ -117,14 +117,14 @@ class HardwareRequestElement extends Component {
 								<div className="modal-footer">
 									<button
 										type="button"
-										className="btn btn-primary"
+										className="btn btn-success"
 										onClick={this.approveRequest}
 										data-dismiss="modal">
 										Approve
 									</button>
 									<button
 										type="button"
-										className="btn btn-primary"
+										className="btn btn-danger"
 										onClick={this.declineRequest}
 										data-dismiss="modal">
 										Decline
