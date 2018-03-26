@@ -49,7 +49,7 @@ class Software extends Component {
 		var softwareRef = fire.database().ref("software/");
 
 		softwareRef.orderByChild("name").on("value", (data) =>
-			this.setState({software: data.val()}));
+			this.setState({software: data.val() ? Object.values(data.val()) : []}));
 	}
 	
 	render() {
@@ -129,7 +129,7 @@ class Software extends Component {
 						Add
 					</button>
 					<div className="list-container">
-						{Object.values(this.state.software).map(softwareElem =>
+						{this.state.software.map(softwareElem =>
 							<SoftwareElement
 								key={softwareElem.id}
 								id={softwareElem.id}

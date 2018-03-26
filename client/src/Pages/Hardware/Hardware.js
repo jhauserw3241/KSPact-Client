@@ -47,7 +47,8 @@ class Hardware extends Component {
 	componentDidMount() {
 		var hardwareRef = fire.database().ref("hardware/");
 		hardwareRef.orderByChild("name").on("value", (data) =>
-			this.setState({hardware: data.val()}));
+			this.setState({hardware: data.val() ? Object.values(data.val()) : []}));
+	}
 	}
 	
 	render() {
@@ -128,7 +129,7 @@ class Hardware extends Component {
 						Add
 					</button>
 					<div className="list-container">
-						{Object.values(this.state.hardware).map(hardwareElem =>
+						{this.state.hardware.map(hardwareElem =>
 							<HardwareElement
 								key={hardwareElem.id}
 								id={hardwareElem.id}

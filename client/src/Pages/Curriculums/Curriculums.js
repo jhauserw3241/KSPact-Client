@@ -49,7 +49,7 @@ class Curriculums extends Component {
 		var curriculumRef = fire.database().ref("curriculums/");
 
 		curriculumRef.orderByChild("name").on("value", (data) =>
-			this.setState({curriculums: data.val()}));
+			this.setState({curriculums: data.val() ? Object.values(data.val()) : []}));
 	}
 
 	render() {
@@ -129,7 +129,7 @@ class Curriculums extends Component {
 						Add
 					</button>
 					<div className="list-container">
-						{Object.values(this.state.curriculums).map(curriculum =>
+						{this.state.curriculums.map(curriculum =>
 							<CurriculumElement
 								key={curriculum.id}
 								id={curriculum.id}
