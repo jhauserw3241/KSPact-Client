@@ -15,11 +15,29 @@ class HardwareRequestElement extends Component {
 	}
 
 	approveRequest() {
-		console.log("Approved request");
+		var self = this;
+
+		// Update the status of the request
+		var hardwareRequestRef = fire.database().ref('hardware_requests').child(this.props.id);
+		hardwareRequestRef.update({
+			status: "approved"
+		})
+		.catch(function(error) {
+			this.props.updateFormError(error.code + ": " + error.message);
+		});
 	}
 
 	declineRequest() {
-		console.log("Declined request");
+		var self = this;
+
+		// Update the status of the request
+		var hardwareRequestRef = fire.database().ref('hardware_requests').child(this.props.id);
+		hardwareRequestRef.update({
+			status: "declined"
+		})
+		.catch(function(error) {
+			this.props.updateFormError(error.code + ": " + error.message);
+		});
 	}
 
 	render() {
@@ -100,13 +118,15 @@ class HardwareRequestElement extends Component {
 									<button
 										type="button"
 										className="btn btn-primary"
-										onClick={this.approveRequest}>
+										onClick={this.approveRequest}
+										data-dismiss="modal">
 										Approve
 									</button>
 									<button
 										type="button"
 										className="btn btn-primary"
-										onClick={this.declineRequest}>
+										onClick={this.declineRequest}
+										data-dismiss="modal">
 										Decline
 									</button>
 									<button
