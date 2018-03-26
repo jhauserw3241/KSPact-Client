@@ -39,6 +39,10 @@
 	margin-left: calc(50% - 50px);
 }
 
+.card-cancel-btn {
+	margin-left: calc(50% - 75px);
+}
+
 .card-modal {
 	background-color: white;
 	width: 50%;

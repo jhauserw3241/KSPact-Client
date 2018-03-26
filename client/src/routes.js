@@ -8,6 +8,7 @@ import HardwareApproval from './Pages/HardwareApproval/HardwareApproval';
 import Software from './Pages/Software/Software';
 import Curriculums from './Pages/Curriculums/Curriculums';
 import Profile from './Pages/Profile/Profile';
+import MyHardwareRequests from './Pages/MyHardwareRequests/MyHardwareRequests';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Signup from './Pages/Signup/Signup';
 import Login from './Pages/Login/Login';
@@ -25,6 +26,7 @@ export const Main = () => (
 			<Route exact path='/curriculums' component={Curriculums} />
 			<Route exact path='/about' component={About} />
 			<Route exact path='/profile' component={Profile} />
+			<Route exact path='/myhardwarerequests' component={MyHardwareRequests} />
 			<Route exact path='/dashboard' component={Dashboard} />
 			<Route exact path='/signup' component={Signup} />
 			<Route exact path='/login' component={Login} />

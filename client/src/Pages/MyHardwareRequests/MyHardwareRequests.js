@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import HardwareRequestElement from './HardwareRequestElement';
 import fire from './../../fire';
 
-class HardwareApproval extends Component {
+class MyHardwareRequests extends Component {
 	constructor(props) {
 		super(props);
 
@@ -15,8 +15,10 @@ class HardwareApproval extends Component {
 	}
 	
 	componentDidMount() {
+        var member_id = fire.auth().currentUser.uid;
+
 		var hardwareRef = fire.database().ref("hardware_requests");
-		hardwareRef.orderByChild("status").equalTo("pending").on("value", (data) =>
+		hardwareRef.orderByChild("requestor_id").equalTo(member_id).on("value", (data) =>
 			this.setState({hardware_requests: data.val() ? Object.values(data.val()) : []}));
 	}
 
@@ -26,7 +28,7 @@ class HardwareApproval extends Component {
 	
 	render() {
 		return (
-			<div className="HardwareApproval">
+			<div className="MyHardwareRequests">
 				<div className="container">
 					{ (this.state.formError !== "") ?
 						<div className="alert alert-danger">
@@ -38,11 +40,11 @@ class HardwareApproval extends Component {
 							<HardwareRequestElement
 								key={requestElem.id}
 								id={requestElem.id}
-								requestor_name={requestElem.requestor_name}
 								requested_hardware_name={requestElem.requested_hardware_name}
 								requested_hardware_serial_number={requestElem.requested_hardware_serial_number}
 								request_start={requestElem.start}
-								request_end={requestElem.end}
+                                request_end={requestElem.end}
+                                request_status={requestElem.status}
 								color={requestElem.color}
 								updateFormError={this.updateFormError} />
 						)}
@@ -57,4 +59,4 @@ class HardwareApproval extends Component {
 	}
 }
 
-export default HardwareApproval;
+export default MyHardwareRequests;

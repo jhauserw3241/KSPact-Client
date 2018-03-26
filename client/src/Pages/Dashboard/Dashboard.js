@@ -15,6 +15,10 @@ class Dashboard extends Component {
                                 pic="defaults/profile.png"
                                 link="/profile"
                                 name="Profile" />
+                            <DashboardElement
+                                pic="defaults/hardware_requests.png"
+                                link="/myhardwarerequests"
+                                name="My Hardware Requests" />
                         </div>
                     </div>
                     
