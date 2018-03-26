@@ -65,13 +65,6 @@ class HardwareElement extends Component {
 		memberRef.on("value", function(data) {
 			// Get member name
 			var member = data.val();
-			console.log("Member name: " + member.first_name + " " + member.last_name);
-			console.log("hardware id: " + self.props.id);
-			console.log("hardware name: " + self.props.name);
-			console.log("serial num: " + self.props.serialNum);
-			console.log("start: " + self.state.request_start)
-			console.log("end: " + self.state.request_end)
-
 
 			// Get id for hardware request
 			var hardwareRequestRef = fire.database().ref('hardware_requests').push();
