@@ -16,8 +16,9 @@ class HardwareElement extends Component {
 			description: this.props.description,
 			serialNum: this.props.serialNum,
 			color: this.props.color,
-			start: "",
-			end: "",
+			request_name: "",
+			request_start: "",
+			request_end: "",
 		};
 
 		this.editHardware = this.editHardware.bind(this);
@@ -55,7 +56,51 @@ class HardwareElement extends Component {
 	}
 
 	requestHardware() {
-		
+		var self = this;
+
+		// Get the member information
+		var member_id = fire.auth().currentUser.uid;
+		console.log(member_id);
+		var memberRef = fire.database().ref('members').child(member_id);
+		memberRef.on("value", function(data) {
+			// Get member name
+			var member = data.val();
+			console.log("Member name: " + member.first_name + " " + member.last_name);
+			console.log("hardware id: " + self.props.id);
+			console.log("hardware name: " + self.props.name);
+			console.log("serial num: " + self.props.serialNum);
+			console.log("start: " + self.state.request_start)
+			console.log("end: " + self.state.request_end)
+
+
+			// Get id for hardware request
+			var hardwareRequestRef = fire.database().ref('hardware_requests').push();
+			var request_id = hardwareRequestRef.path["pieces_"][1];
+
+			// Add hardware request object to firebase DB
+			hardwareRequestRef.update({
+				id: request_id,
+				requestor_id: member_id,
+				requestor_name: member.first_name + " " + member.last_name,
+				requested_hardware_id: self.props.id,
+				requested_hardware_name: self.props.name,				
+				requested_hardware_serial_number: self.props.serialNum,
+				start: self.state.request_start,
+				end: self.state.request_end,
+				status: "pending",
+				color: "#"+((1<<24)*Math.random()|0).toString(16) // Generate random color
+			})
+			.then(function() {
+				// Clear the data in the hardware request modal
+				self.setState({
+					request_start: "",
+					request_end: "",
+				});
+			})
+			.catch(function(error) {
+				this.props.updateFormError(error.code + ": " + error.message);
+			});
+		});
 	}
 
 	resetEdit() {
@@ -63,16 +108,16 @@ class HardwareElement extends Component {
 	}
 
 	validStart( current ) {
-		if(this.state.end != "") {
-			return current.isBefore( this.state.end );
+		if(this.state.request_end != "") {
+			return current.isBefore( this.state.request_end );
 		} else {
 			return true;
 		}
 	}
 
 	validEnd( current ) {
-		if(this.state.start != "") {
-			return current.isAfter( this.state.start );
+		if(this.state.request_start != "") {
+			return current.isAfter( this.state.request_start );
 		} else {
 			return true;
 		}
@@ -191,7 +236,7 @@ class HardwareElement extends Component {
 										<label htmlFor="request-start">Start Date:</label>
 										<DateTime
 											timeFormat={false}
-											onChange={event => this.setState({ start: event._d })}
+											onChange={event => this.setState({ request_start: event._d })}
 											inputProps={{ placeholder: "Click to select a date" }}
 											isValidDate={(current) => this.validStart(current)} />
 									</div>
@@ -199,7 +244,7 @@ class HardwareElement extends Component {
 										<label htmlFor="request-end">End Date:</label>
 										<DateTime
 											timeFormat={false}
-											onChange={event => this.setState({ end: event._d })}
+											onChange={event => this.setState({ request_end: event._d })}
 											inputProps={{ placeholder: "Click to select a date" }}
 											isValidDate={(current) => this.validEnd(current)} />
 									</div>
@@ -209,7 +254,8 @@ class HardwareElement extends Component {
 									<button
 										type="button"
 										className="btn btn-success"
-										onClick={this.requestHardware}>
+										onClick={this.requestHardware}
+										data-dismiss="modal">
 										Send
 									</button>
 									<button
