@@ -113,82 +113,101 @@ class Profile extends Component {
                         <div className="content">
                             <h1 className="form-header">Profile</h1>
                             <form method="POST">
-                                <fieldset>
+                                <div className="form-group">
                                     <div className="profile-img" style={divStyle}></div>
-                                </fieldset>
-                                <fieldset>
+                                </div>
+                                <div className="form-group">
                                     <label htmlFor="firstName">First Name:</label>
                                     <input
                                         type="text"
                                         name="firstName"
+                                        className="form-control"
                                         value={this.state.first_name}
                                         onChange={(event) => this.setState({first_name: event.target.value})}
                                         disabled={this.state.disable_edits} />
-                                </fieldset>
-                                <fieldset>
+                                </div>
+                                <div className="form-group">
                                     <label htmlFor="lastName">Last Name:</label>
                                     <input
                                         type="text"
                                         name="lastName"
+                                        className="form-control"
                                         value={this.state.last_name}
                                         onChange={(event) => this.setState({last_name: event.target.value})}
                                         disabled={this.state.disable_edits} />
-                                </fieldset>
-                                <fieldset>
+                                </div>
+                                <div className="form-group">
                                     <label htmlFor="email">Email:</label>
                                     <input
                                         type="text"
                                         name="email"
+                                        className="form-control"
                                         value={this.state.email}
                                         onChange={(event) => this.setState({email: event.target.value})}
                                         disabled={this.state.disable_edits} />
-                                </fieldset>
-                                <fieldset>
+                                </div>
+                                <div className="form-group">
                                     <label htmlFor="school">School:</label>
                                     <input
                                         type="text"
                                         name="school"
+                                        className="form-control"
                                         value={this.state.school}
                                         onChange={(event) => this.setState({school: event.target.value})}
                                         disabled={this.state.disable_edits} />
-                                </fieldset>
-                                <fieldset>
+                                </div>
+                                <div className="form-group">
                                     <label htmlFor="bio">Bio:</label>
                                     <textarea
                                         type="text"
                                         name="bio"
+                                        className="form-control"
                                         value={this.state.bio}
                                         onChange={(event) => this.setState({bio: event.target.value})}
                                         disabled={this.state.disable_edits}></textarea>
-                                </fieldset>
-                                <fieldset>
+                                </div>
+                                <div className="form-group">
                                     <label htmlFor="gradeLevel">Grade Level:</label>
                                     <input
                                         type="text"
                                         name="gradeLevel"
+                                        className="form-control"
                                         value={this.state.grade_level}
                                         onChange={(event) => this.setState({grade_level: event.target.value})}
                                         disabled={this.state.disable_edits} />
-                                </fieldset>
-                                <fieldset>
+                                </div>
+                                <div className="form-group">
                                     <label htmlFor="title">Title:</label>
                                     <input
                                         type="text"
                                         name="title"
+                                        className="form-control"
                                         value={this.state.title}
                                         onChange={(event) => this.setState({title: event.target.value})}
                                         disabled={this.state.disable_edits} />
-                                </fieldset>
-                                <fieldset>
+                                </div>
+                                <div className="form-group">
                                     <label htmlFor="pic">Picture:</label>
-                                    <input type="file" name="pic" onChange={this.handlePic}/>
-                                </fieldset>
-                                <fieldset>
+                                    <input
+                                        type="file"
+                                        name="pic"
+                                        className="form-control"
+                                        onChange={this.handlePic}/>
+                                </div>
+                                <div className="form-group">
                                     { this.state.disable_edits ?
-                                        <input type="button" value="Edit" onClick={this.toggleEditting} /> : null }
+                                        <input
+                                            type="button"
+                                            value="Edit"
+                                            className="btn btn-warning"
+                                            onClick={this.toggleEditting} /> : null }
                                     { !this.state.disable_edits ?
-                                        <input type="button" value="Save" onClick={this.saveChanges} /> : null }
-                                </fieldset>
+                                        <input
+                                            type="button"
+                                            value="Save"
+                                            className="btn btn-success"
+                                            onClick={this.saveChanges} /> : null }
+                                </div>
                             </form>
                         </div>
 					</div>
