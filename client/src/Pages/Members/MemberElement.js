@@ -41,54 +41,60 @@ class MemberElement extends Component {
 							</div>
 							<form>
 								<div className="modal-body">
-									<fieldset>
+									<div className="form-group">
 										<label htmlFor="name">Name:</label>
 										<input
 											type="text"
 											name="name"
+											className="form-control"
 											value={this.state.firstName + " " + this.state.lastName}
 											disabled={false} />
-									</fieldset>
-									<fieldset>
+									</div>
+									<div className="form-group">
 										<label htmlFor="email">Email:</label>
 										<input
 											type="text"
 											name="email"
+											className="form-control"
 											value={this.state.email}
 											disabled={false} />
-									</fieldset>
-									<fieldset>
+									</div>
+									<div className="form-group">
 										<label htmlFor="school">School:</label>
 										<input
 											type="text"
 											name="school"
+											className="form-control"
 											value={this.state.school}
 											disabled={false} />
-									</fieldset>
-									<fieldset>
+									</div>
+									<div className="form-group">
 										<label htmlFor="bio">Bio:</label>
 										<textarea
 											type="text"
 											name="bio"
+											className="form-control"
 											value={this.state.bio}
 											disabled={false}></textarea>
-									</fieldset>
-									<fieldset>
+									</div>
+									<div className="form-group">
 										<label htmlFor="gradeLevel">Grade Level:</label>
 										<input
 											type="text"
 											name="gradeLevel"
+											className="form-control"
 											value={this.state.gradeLevel}
 											disabled={false} />
-									</fieldset>
-									<fieldset>
+									</div>
+									<div className="form-group">
 										<label htmlFor="title">Title:</label>
 										<input
 											type="text"
 											name="title"
+											className="form-control"
 											value={this.state.title}
 											disabled={false} />
-									</fieldset>
+									</div>
 								</div>
 
 								<div className="modal-footer">
