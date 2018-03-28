@@ -67,11 +67,11 @@ class MemberElement extends Component {
 									</fieldset>
 									<fieldset>
 										<label htmlFor="bio">Bio:</label>
-										<input
+										<textarea
 											type="text"
 											name="bio"
 											value={this.state.bio}
-											disabled={false} />
+											disabled={false}></textarea>
 									</fieldset>
 									<fieldset>
 										<label htmlFor="gradeLevel">Grade Level:</label>
