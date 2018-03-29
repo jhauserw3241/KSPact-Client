@@ -54,9 +54,19 @@ class Signup extends Component {
                     grade_level: self.state.grade_level,
                     title: self.state.title,
                     pic: self.state.pic,
-                    priv: "pending member",
                     id: user.uid
                 }).catch(function(error) {
+                    self.setState({ formError: error.code + ": " + error.message });
+                });
+
+                fire.database().ref('member_priv').on('value', data => console.log(data.val()))
+
+                // Add user priv information to firebase DB
+                var updates = {};
+                updates['/member_priv/' + user.uid] = "pending member";
+                fire.database().ref()
+                .update(updates)
+                .catch(function(error) {
                     self.setState({ formError: error.code + ": " + error.message });
                 });
 
@@ -101,7 +111,7 @@ class Signup extends Component {
                     <div className="container">
                         <div className="content">
                             { (this.state.formError !== "") ?
-                                <div class="alert alert-danger">
+                                <div className="alert alert-danger">
                                     <strong>Error:</strong> {this.state.formError}
                                 </div> : null }
                             <h1 className="form-header">Sign Up</h1>
