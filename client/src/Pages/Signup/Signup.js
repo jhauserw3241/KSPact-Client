@@ -59,8 +59,6 @@ class Signup extends Component {
                     self.setState({ formError: error.code + ": " + error.message });
                 });
 
-                fire.database().ref('member_priv').on('value', data => console.log(data.val()))
-
                 // Add user priv information to firebase DB
                 var updates = {};
                 updates['/member_priv/' + user.uid] = "pending member";
@@ -77,6 +75,8 @@ class Signup extends Component {
                 }).catch(function(error) {
                     // An error happened.
                 });*/
+
+                self.setState({ redirect: true });
             }).catch(function(error) {
                 self.setState({ formError: error.code + ": " + error.message });
             });
@@ -103,7 +103,7 @@ class Signup extends Component {
 	render() {
         if(this.state.redirect) {
             return (
-                <Redirect to="/home" />
+                <Redirect to="/dashboard" />
             );
         } else {
             return (
