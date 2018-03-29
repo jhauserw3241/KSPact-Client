@@ -68,12 +68,12 @@ class Header extends Component {
 							<li className="nav-item">
 								<NavLink to="/about" className="nav-link">About</NavLink>
 							</li>
-							<LoginRequired>
+							<LoginRequired requiredRole="pending member">
 								<li className="nav-item">
 									<NavLink to="/dashboard" className="nav-link">Dashboard</NavLink>
 								</li>
 							</LoginRequired>
-							<LoginRequired>
+							<LoginRequired requiredRole="pending member">
 								<li className="nav-item">
 									<NavLink to="/signout" className="nav-link">Signout</NavLink>
 								</li>
