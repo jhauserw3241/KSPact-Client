@@ -43,8 +43,7 @@ class Profile extends Component {
 		if(this.state.user) {
             var membersRef = fire.database().ref("members/");
             membersRef.child(this.state.user.uid).on("value", function(data) {
-                console.log(data.val());
-                if(data.val() !== undefined) {
+                if(data.val()) {
                     var member = data.val();
                     self.setState({
                         first_name: member.first_name,
@@ -53,7 +52,8 @@ class Profile extends Component {
                         school: member.school,
                         bio: member.bio,
                         grade_level: member.grade_level,
-                        title: member.title
+                        title: member.title,
+                        pic: member.pic,
                     });
                 }
             });
@@ -72,7 +72,8 @@ class Profile extends Component {
             school: this.state.school,
             bio: this.state.bio,
             grade_level: this.state.grade_level,
-            title: this.state.title
+            title: this.state.title,
+            pic: this.state.pic,
         };
 
         // Update profile information
@@ -103,7 +104,7 @@ class Profile extends Component {
 
 	render() {
 		var divStyle = {
-			backgroundImage: `url(${this.props.pic ? this.props.pic : ProfilePic})`
+			backgroundImage: `url(${this.state.pic ? this.state.pic : ProfilePic})`
 		}
 		
 		if(this.state.user) {
