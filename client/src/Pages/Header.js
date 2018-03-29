@@ -41,9 +41,15 @@ class Header extends Component {
 							<li className="nav-item">
 								<NavLink to="/home" className="nav-link">Home</NavLink>
 							</li>
-							<li className="nav-item">
-								<NavLink to="/members" className="nav-link">Members</NavLink>
-							</li>
+							<div className="dropdown">
+								<NavLink to="/members" className="nav-link">
+									Members <i className="fa fa-caret-down"></i>
+								</NavLink>
+								<div className="dropdown-content">
+									<NavLink to="/members" className="nav-sublink">Members</NavLink>
+									<NavLink to="/memberapproval" className="nav-sublink">Member Approval</NavLink>
+								</div>
+							</div>
 							<div className="dropdown">
 								<NavLink to="/hardware" className="nav-link">
 									Hardware <i className="fa fa-caret-down"></i>

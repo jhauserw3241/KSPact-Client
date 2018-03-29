@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './Pages/Home/Home';
 import About from './Pages/About/About';
 import Members from './Pages/Members/Members';
+import MemberApproval from './Pages/MemberApproval/MemberApproval';
 import Hardware from './Pages/Hardware/Hardware';
 import HardwareApproval from './Pages/HardwareApproval/HardwareApproval';
 import Software from './Pages/Software/Software';
@@ -20,6 +21,7 @@ export const Main = () => (
 			<Route exact path='/' component={Home} />
 			<Route exact path='/home' component={Home} />
 			<Route exact path='/members' component={Members} />
+			<Route exact path='/memberapproval' component={MemberApproval} />
 			<Route exact path='/hardware' component={Hardware} />
 			<Route exact path='/hardwareapproval' component={HardwareApproval} />
 			<Route exact path='/software' component={Software} />
