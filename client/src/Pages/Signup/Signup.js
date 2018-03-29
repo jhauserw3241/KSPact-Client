@@ -210,6 +210,7 @@ class Signup extends Component {
                                         type="file"
                                         name="pic"
                                         className="form-control"
+                                        accept="image/*"
                                         onChange={this.handlePic}/>
                                 </div>
                                 <input type="submit" value="Submit" />

@@ -193,6 +193,7 @@ class Profile extends Component {
                                         type="file"
                                         name="pic"
                                         className="form-control"
+                                        accept="image/*"
                                         onChange={this.handlePic}
                                         disabled={this.state.disable_edits} />
                                 </div>
