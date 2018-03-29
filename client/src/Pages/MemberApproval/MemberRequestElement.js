@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import fire from './../../fire';
 import './../../CSS/Card.css';
 
-// CSS and JS for datetime picker
-import "./../../../node_modules/react-datetime/css/react-datetime.css";
-import DateTime from "./../../../node_modules/react-datetime/DateTime.js";
-
 class MemberRequestElement extends Component {
 	constructor(props) {
 		super(props);
@@ -15,8 +11,6 @@ class MemberRequestElement extends Component {
 	}
 
 	approveRequest() {
-		var self = this;
-
 		// Update the status of the request
 		var memberRequestRef = fire.database().ref('hardware_requests').child(this.props.id);
 		memberRequestRef.update({
@@ -28,8 +22,6 @@ class MemberRequestElement extends Component {
 	}
 
 	declineRequest() {
-		var self = this;
-
 		// Update the status of the request
 		var memberRequestRef = fire.database().ref('hardware_requests').child(this.props.id);
 		memberRequestRef.update({

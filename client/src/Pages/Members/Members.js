@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import MemberElement from './MemberElement';
-import Modal from 'react-modal';
 import fire from './../../fire';
 
 class Members extends Component {

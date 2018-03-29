@@ -101,7 +101,7 @@ class HardwareElement extends Component {
 	}
 
 	validStart( current ) {
-		if(this.state.request_end != "") {
+		if(this.state.request_end !== "") {
 			return current.isBefore( this.state.request_end );
 		} else {
 			return true;
@@ -109,7 +109,7 @@ class HardwareElement extends Component {
 	}
 
 	validEnd( current ) {
-		if(this.state.request_start != "") {
+		if(this.state.request_start !== "") {
 			return current.isAfter( this.state.request_start );
 		} else {
 			return true;
