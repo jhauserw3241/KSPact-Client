@@ -19,6 +19,7 @@ class Profile extends Component {
             grade_level: "",
             title: "",
             pic: "",
+            facebook_id: "",
             disable_edits: true
         }
 
@@ -54,6 +55,7 @@ class Profile extends Component {
                         grade_level: member.grade_level,
                         title: member.title,
                         pic: member.pic,
+                        facebook_id: member.facebook_id,
                     });
                 }
             });
@@ -74,6 +76,7 @@ class Profile extends Component {
             grade_level: this.state.grade_level,
             title: this.state.title,
             pic: this.state.pic,
+            facebook_id: this.state.facebook_id,
         };
 
         // Update profile information
@@ -195,6 +198,16 @@ class Profile extends Component {
                                         className="form-control"
                                         accept="image/*"
                                         onChange={this.handlePic}
+                                        disabled={this.state.disable_edits} />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="facebookId">Facebook ID:</label>
+                                    <input
+                                        type="text"
+                                        name="facebookId"
+                                        className="form-control"
+                                        value={this.state.facebook_id}
+                                        onChange={(event) => this.setState({facebook_id: event.target.value})}
                                         disabled={this.state.disable_edits} />
                                 </div>
                                 <div className="form-group">
