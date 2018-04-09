@@ -16,6 +16,7 @@ class MemberElement extends Component {
 			gradeLevel: this.props.gradeLevel,
 			title: this.props.title,
 			facebookId: this.props.facebookId,
+			twitterId: this.props.twitterId,
 		};
 	}
 	render() {
@@ -103,6 +104,15 @@ class MemberElement extends Component {
 											name="facebookId"
 											className="form-control"
 											value={this.state.facebookId}
+											disabled={false} />
+									</div>
+									<div className="form-group">
+										<label htmlFor="twitterId">Twitter ID:</label>
+										<input
+											type="text"
+											name="twitterId"
+											className="form-control"
+											value={this.state.twitterId}
 											disabled={false} />
 									</div>
 								</div>

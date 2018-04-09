@@ -35,6 +35,7 @@ class Members extends Component {
 								title={member.title}
 								pic={member.pic}
 								facebookId={member.facebook_id}
+								twitterId={member.twitter_id}
 								modalHandler={this.openModal} />
 						)}
 					</div>
