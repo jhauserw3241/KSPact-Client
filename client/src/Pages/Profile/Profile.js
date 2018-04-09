@@ -20,6 +20,7 @@ class Profile extends Component {
             title: "",
             pic: "",
             facebook_id: "",
+            twitter_id: "",
             disable_edits: true
         }
 
@@ -56,6 +57,7 @@ class Profile extends Component {
                         title: member.title,
                         pic: member.pic,
                         facebook_id: member.facebook_id,
+                        twitter_id: member.twitter_id,
                     });
                 }
             });
@@ -77,6 +79,7 @@ class Profile extends Component {
             title: this.state.title,
             pic: this.state.pic,
             facebook_id: this.state.facebook_id,
+            twitter_id: this.state.twitter_id,
         };
 
         // Update profile information
@@ -208,6 +211,16 @@ class Profile extends Component {
                                         className="form-control"
                                         value={this.state.facebook_id}
                                         onChange={(event) => this.setState({facebook_id: event.target.value})}
+                                        disabled={this.state.disable_edits} />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="twitterId">Twitter ID:</label>
+                                    <input
+                                        type="text"
+                                        name="twitterId"
+                                        className="form-control"
+                                        value={this.state.twitter_id}
+                                        onChange={(event) => this.setState({twitter_id: event.target.value})}
                                         disabled={this.state.disable_edits} />
                                 </div>
                                 <div className="form-group">
