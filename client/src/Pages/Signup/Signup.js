@@ -18,6 +18,7 @@ class Signup extends Component {
             grade_level: "",
             title: "",
             pic: "",
+            facebook_id: "",
             formError: "",
             redirect: false
         }
@@ -54,6 +55,7 @@ class Signup extends Component {
                     grade_level: self.state.grade_level,
                     title: self.state.title,
                     pic: self.state.pic,
+                    facebook_id: self.state.facebook_id,
                     id: user.uid
                 }).catch(function(error) {
                     self.setState({ formError: error.code + ": " + error.message });
@@ -212,6 +214,15 @@ class Signup extends Component {
                                         className="form-control"
                                         accept="image/*"
                                         onChange={this.handlePic}/>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="facebookId">Facebook ID:</label>
+                                    <input
+                                        type="text"
+                                        name="facebookId"
+                                        className="form-control"
+                                        value={this.state.facebook_id}
+                                        onChange={(event) => this.setState({facebook_id: event.target.value})} />
                                 </div>
                                 <input type="submit" value="Submit" />
                             </form>
