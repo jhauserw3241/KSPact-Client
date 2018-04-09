@@ -19,6 +19,7 @@ class Signup extends Component {
             title: "",
             pic: "",
             facebook_id: "",
+            twitter_id: "",
             formError: "",
             redirect: false
         }
@@ -56,6 +57,7 @@ class Signup extends Component {
                     title: self.state.title,
                     pic: self.state.pic,
                     facebook_id: self.state.facebook_id,
+                    twitter_id: self.state.twitter_id,
                     id: user.uid
                 }).catch(function(error) {
                     self.setState({ formError: error.code + ": " + error.message });
@@ -223,6 +225,15 @@ class Signup extends Component {
                                         className="form-control"
                                         value={this.state.facebook_id}
                                         onChange={(event) => this.setState({facebook_id: event.target.value})} />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="twitterId">Twitter ID:</label>
+                                    <input
+                                        type="text"
+                                        name="twitterId"
+                                        className="form-control"
+                                        value={this.state.twitter_id}
+                                        onChange={(event) => this.setState({twitter_id: event.target.value})} />
                                 </div>
                                 <input type="submit" value="Submit" />
                             </form>
