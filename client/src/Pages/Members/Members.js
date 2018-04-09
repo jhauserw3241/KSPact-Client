@@ -34,6 +34,7 @@ class Members extends Component {
 								gradeLevel={member.grade_level}
 								title={member.title}
 								pic={member.pic}
+								facebookId={member.facebook_id}
 								modalHandler={this.openModal} />
 						)}
 					</div>
