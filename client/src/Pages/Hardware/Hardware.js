@@ -55,12 +55,26 @@ class Hardware extends Component {
 	}
 	
 	componentDidMount() {
+		var self = this;
+
 		var hardwareRef = fire.database().ref("hardware/");
-		hardwareRef.orderByChild("name").on("value", (data) =>
-			this.setState({
-				origHardware: data.val() ? Object.values(data.val()) : [],
-				updatedHardware: data.val() ? Object.values(data.val()) : [],
-			}));
+		hardwareRef.orderByChild("name").on("value", function(data) {
+			// Get lit of hardware
+			var hardware = data.val() ? Object.values(data.val()): [];
+
+			// Sort list of members
+			var sortedHardware = hardware.sort((a, b) => {
+				var first_name = a.name.toUpperCase();
+				var second_name = b.name.toUpperCase();
+
+				return (first_name < second_name) ? -1 : (first_name > second_name) ? 1 : 0;
+			});
+
+			self.setState({
+				origHardware: sortedHardware,
+				updatedHardware: sortedHardware,
+			});
+		});
 	}
 
 	updateFormError(err) {
