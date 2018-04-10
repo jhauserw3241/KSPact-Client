@@ -7,7 +7,8 @@ class Curriculums extends Component {
 		super(props);
 	
 		this.state = {
-			curriculums: [],
+			origCurriculums: [],
+			updatedCurriculums: [],
 			name: "",
 			description: "",
 			link: "",
@@ -16,6 +17,7 @@ class Curriculums extends Component {
 		};
 
 		this.addCurriculum = this.addCurriculum.bind(this);
+		this.filterList = this.filterList.bind(this);
 	}
 
 	addCurriculum() {
@@ -45,11 +47,21 @@ class Curriculums extends Component {
 		});
 	}
 
+	filterList(event) {
+		var updatedList = this.state.origCurriculums;
+		updatedList = updatedList.filter(item =>
+			item.name.toLowerCase().search(event.target.value.toLowerCase()) !== -1);
+		this.setState({updatedCurriculums: updatedList});
+	}
+
 	componentDidMount() {
 		var curriculumRef = fire.database().ref("curriculums/");
 
 		curriculumRef.orderByChild("name").on("value", (data) =>
-			this.setState({curriculums: data.val() ? Object.values(data.val()) : []}));
+			this.setState({
+				origCurriculums: data.val() ? Object.values(data.val()) : [],
+				updatedCurriculums: data.val() ? Object.values(data.val()) : [],
+			}));
 	}
 
 	render() {
@@ -121,15 +133,24 @@ class Curriculums extends Component {
 				</div>
 		
 				<div className="container">
-					<button
-						type="button"
-						className="btn btn-success"
-						data-toggle="modal"
-						data-target="#addCurriculumModal">
-						Add
-					</button>
+					<div className="mod-opts">
+						<input
+							className="form-control"
+							placeholder="Search"
+							id="search"
+							onChange={this.filterList} />
+						<div className="mod-btns">
+							<button
+								type="button"
+								className="btn btn-success"
+								data-toggle="modal"
+								data-target="#addCurriculumModal">
+								Add
+							</button>
+						</div>
+					</div>
 					<div className="list-container">
-						{this.state.curriculums.map(curriculum =>
+						{this.state.updatedCurriculums.map(curriculum =>
 							<CurriculumElement
 								key={curriculum.id}
 								id={curriculum.id}

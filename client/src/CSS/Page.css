@@ -22,3 +22,19 @@ a, a:hover {
 	color: black;
 }
 
+.mod-opts {
+	display: flex;
+}
+
+#search {
+	width: 50%;
+	margin-right: 0px !important;
+}
+
+.mod-btns {
+	width: 50%;
+}
+
+.mod-btns>button {
+	float: right;
+}
