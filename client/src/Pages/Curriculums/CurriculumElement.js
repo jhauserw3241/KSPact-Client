@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import fire from './../../fire';
+import $ from 'jquery';
 import './../../CSS/Card.css';
+
+//window.$ = window.jQuery = require('jquery');
+//$ = require('jquery');
 
 class CurriculumElement extends Component {
 	constructor(props) {
@@ -53,11 +57,44 @@ class CurriculumElement extends Component {
 	resetEdit() {
 		this.setState({allowEdits: false});
 	}
+
+	componentWillMount() {
+		/*$(".modal").modal({
+			backdrop: "static",
+			keyboard: false,
+		});*/
+
+		$(document).ready(function($) {
+			$(".modal").modal({
+				backdrop: "static",
+				keyboard: false,
+			});
+		});
+	}
+
+	/*handleModal = () => {
+		$(".modal").modal({
+			backdrop: "static",
+			keyboard: false,
+		});
+	}*/
 	
+	/*$(document).ready(function($) {
+		$(".modal").modal({
+			backdrop: "static",
+			keyboard: false,
+		});
+	});*/
+
 	render() {
 		var divStyle = {
             backgroundColor: this.state.color
 		}
+
+		$(".modal").modal({
+			backdrop: "static",
+			keyboard: false,
+		});
 	
 		return (
 			<div className="CurriculumElement card">
