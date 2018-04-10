@@ -6,14 +6,30 @@ class Members extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			members: []
+			members: [],
 		};
 	}
 	
 	componentDidMount() {
+		var self = this;
+
 		var membersRef = fire.database().ref("members/");
-		membersRef.orderByChild("last_name").on("value", (data) =>
-			this.setState({members: data.val() ? Object.values(data.val()): []}));
+		membersRef.orderByChild("last_name").on("value", function(data) {
+			// Get lit of members
+			var members = data.val() ? Object.values(data.val()): [];
+
+			// Sort list of members
+			var updatedMembers = members.sort((a, b) => {
+				var first_name = (a.first_name + " " + a.last_name).toUpperCase();
+				var second_name = (b.first_name + " " + b.last_name).toUpperCase();
+
+				return (first_name < second_name) ? -1 : (first_name > second_name) ? 1 : 0;
+			});
+
+			self.setState({
+				members: updatedMembers,
+			});
+		});
 	}
 	
 	render() {
