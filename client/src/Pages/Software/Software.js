@@ -7,7 +7,8 @@ class Software extends Component {
 		super(props);
 
 		this.state = {
-			software: [],
+			origSoftware: [],
+			updatedSoftware: [],
 			name: "",
 			description: "",
 			link: "",
@@ -16,6 +17,7 @@ class Software extends Component {
 		};
 
 		this.addSoftware = this.addSoftware.bind(this);
+		this.filterList = this.filterList.bind(this);
 	}
 
 	addSoftware() {
@@ -44,12 +46,22 @@ class Software extends Component {
 			link: ""
 		});
 	}
+
+	filterList(event) {
+		var updatedList = this.state.origSoftware;
+		updatedList = updatedList.filter(item =>
+			item.name.toLowerCase().search(event.target.value.toLowerCase()) !== -1);
+		this.setState({updatedSoftware: updatedList});
+	}
 	
 	componentDidMount() {
 		var softwareRef = fire.database().ref("software/");
 
 		softwareRef.orderByChild("name").on("value", (data) =>
-			this.setState({software: data.val() ? Object.values(data.val()) : []}));
+			this.setState({
+				origSoftware: data.val() ? Object.values(data.val()) : [],
+				updatedSoftware: data.val() ? Object.values(data.val()) : [],
+			}));
 	}
 	
 	render() {
@@ -121,15 +133,24 @@ class Software extends Component {
 				</div>
 
 				<div className="container">
-					<button
-						type="button"
-						className="btn btn-success"
-						data-toggle="modal"
-						data-target="#addSoftwareModal">
-						Add
-					</button>
+					<div className="mod-opts">
+						<input
+							className="form-control"
+							placeholder="Search"
+							id="search"
+							onChange={this.filterList} />
+						<div className="mod-btns">
+							<button
+								type="button"
+								className="btn btn-success"
+								data-toggle="modal"
+								data-target="#addSoftwareModal">
+								Add
+							</button>
+						</div>
+					</div>
 					<div className="list-container">
-						{this.state.software.map(softwareElem =>
+						{this.state.updatedSoftware.map(softwareElem =>
 							<SoftwareElement
 								key={softwareElem.id}
 								id={softwareElem.id}
