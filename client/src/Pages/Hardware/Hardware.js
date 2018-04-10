@@ -7,7 +7,8 @@ class Hardware extends Component {
 		super(props);
 
 		this.state = {
-			hardware: [],
+			origHardware: [],
+			updatedHardware: [],
 			name: "",
 			description: "",
 			serialNum: "",
@@ -16,6 +17,7 @@ class Hardware extends Component {
 
 		this.addHardware = this.addHardware.bind(this);
 		this.updateFormError = this.updateFormError.bind(this);
+		this.filterList = this.filterList.bind(this);
 	}
 
 	addHardware() {
@@ -44,11 +46,21 @@ class Hardware extends Component {
 			serialNum: ""
 		});
 	}
+
+	filterList(event) {
+		var updatedList = this.state.origHardware;
+		updatedList = updatedList.filter(item =>
+			item.name.toLowerCase().search(event.target.value.toLowerCase()) !== -1);
+		this.setState({updatedHardware: updatedList});
+	}
 	
 	componentDidMount() {
 		var hardwareRef = fire.database().ref("hardware/");
 		hardwareRef.orderByChild("name").on("value", (data) =>
-			this.setState({hardware: data.val() ? Object.values(data.val()) : []}));
+			this.setState({
+				origHardware: data.val() ? Object.values(data.val()) : [],
+				updatedHardware: data.val() ? Object.values(data.val()) : [],
+			}));
 	}
 
 	updateFormError(err) {
@@ -130,15 +142,24 @@ class Hardware extends Component {
 							<strong>Error:</strong> {this.state.formError}
 						</div> : null }
 
-					<button
-						type="button"
-						className="btn btn-success"
-						data-toggle="modal"
-						data-target="#addHardwareModal">
-						Add
-					</button>
+					<div className="mod-opts">
+						<input
+							className="form-control"
+							placeholder="Search"
+							id="search"
+							onChange={this.filterList} />
+						<div className="mod-btns">
+							<button
+								type="button"
+								className="btn btn-success"
+								data-toggle="modal"
+								data-target="#addHardwareModal">
+								Add
+							</button>
+						</div>
+					</div>
 					<div className="list-container">
-						{this.state.hardware.map(hardwareElem =>
+						{this.state.updatedHardware.map(hardwareElem =>
 							<HardwareElement
 								key={hardwareElem.id}
 								id={hardwareElem.id}
