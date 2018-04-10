@@ -4,9 +4,9 @@ import './../../CSS/Card.css';
 
 class DashboardElement extends Component {
 	render() {
-		const imageUrl = require(`./../../Images/${this.props.pic}`)
+		console.log(this.props.pic);
 		var divStyle = {
-			backgroundImage: `url(${imageUrl})`
+			backgroundImage: `url(${this.props.pic})`
         }
 	
 		return (

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import  { Redirect } from 'react-router-dom';
-import ProfilePic from './../../Images/defaults/profile.png';
 import fire from './../../fire';
 import './../../CSS/Form.css';
 import './../../CSS/Profile.css';
@@ -110,7 +109,7 @@ class Profile extends Component {
 
 	render() {
 		var divStyle = {
-			backgroundImage: `url(${this.state.pic ? this.state.pic : ProfilePic})`
+			backgroundImage: `url(${this.state.pic})`
 		}
 		
 		if(this.state.user) {

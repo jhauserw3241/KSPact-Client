@@ -17,7 +17,7 @@ class Signup extends Component {
             bio: "",
             grade_level: "",
             title: "",
-            pic: "",
+            pic: "https://firebasestorage.googleapis.com/v0/b/ks-pact-website.appspot.com/o/defaults%2Fprofile.png?alt=media&token=08932e95-465f-4ada-b3a3-41432f168345",
             facebook_id: "",
             twitter_id: "",
             formError: "",

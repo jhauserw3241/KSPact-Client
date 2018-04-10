@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import LoginRequired from './Login/LoginRequired';
-import logo from './../Images/header/light-green-kspact.png';
 import fire from './../fire.js';
 import './../CSS/Header.css';
 
@@ -31,7 +30,10 @@ class Header extends Component {
 			<div className="Header">
 				<nav className="navbar navbar-expand-lg navbar-dark Navbar">
 					<div className="Header-logo">
-						<img src={logo} className="Logo-img" alt="logo" />
+						<img
+							src='https://firebasestorage.googleapis.com/v0/b/ks-pact-website.appspot.com/o/header%2Flight-green-kspact.png?alt=media&token=0069bf96-476f-4ae9-af52-fc22762ded44'
+							className="Logo-img"
+							alt="logo" />
 					</div>
 					<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 						<span className="navbar-toggler-icon"></span>

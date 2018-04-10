@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './../../CSS/Card.css';
-import ProfilePic from './../../Images/defaults/profile.png';
 
 class MemberElement extends Component {	
 	constructor(props) {
@@ -21,7 +20,7 @@ class MemberElement extends Component {
 	}
 	render() {
 		var divStyle = {
-			backgroundImage: `url(${this.props.pic ? this.props.pic : ProfilePic})`
+			backgroundImage: `url(${this.props.pic ? this.props.pic : 'gs://ks-pact-website.appspot.com/defaults/profile.png'})`
 		}
 		
 		return (
