@@ -55,13 +55,27 @@ class Curriculums extends Component {
 	}
 
 	componentDidMount() {
+		var self = this;
+
 		var curriculumRef = fire.database().ref("curriculums/");
 
-		curriculumRef.orderByChild("name").on("value", (data) =>
-			this.setState({
-				origCurriculums: data.val() ? Object.values(data.val()) : [],
-				updatedCurriculums: data.val() ? Object.values(data.val()) : [],
-			}));
+		curriculumRef.orderByChild("name").on("value", function(data) {
+			// Get list of curriculums
+			var curriculums = data.val() ? Object.values(data.val()) : [];
+
+			// Sort the curriculums
+			var sortedCurriculums = curriculums.sort((a, b) => {
+				var first_name = a.name.toUpperCase();
+				var second_name = b.name.toUpperCase();
+
+				return (first_name < second_name) ? -1 : (first_name > second_name) ? 1 : 0;
+			});
+
+			self.setState({
+				origCurriculums: sortedCurriculums,
+				updatedCurriculums: sortedCurriculums,
+			});
+		});
 	}
 
 	render() {
