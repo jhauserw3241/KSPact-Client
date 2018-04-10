@@ -19,7 +19,7 @@ class Members extends Component {
 			var members = data.val() ? Object.values(data.val()): [];
 
 			// Sort list of members
-			var updatedMembers = members.sort((a, b) => {
+			var sortedMembers = members.sort((a, b) => {
 				var first_name = (a.first_name + " " + a.last_name).toUpperCase();
 				var second_name = (b.first_name + " " + b.last_name).toUpperCase();
 
@@ -27,7 +27,7 @@ class Members extends Component {
 			});
 
 			self.setState({
-				members: updatedMembers,
+				members: sortedMembers,
 			});
 		});
 	}
