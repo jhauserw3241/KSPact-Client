@@ -55,13 +55,26 @@ class Software extends Component {
 	}
 	
 	componentDidMount() {
+		var self = this;
 		var softwareRef = fire.database().ref("software/");
 
-		softwareRef.orderByChild("name").on("value", (data) =>
-			this.setState({
-				origSoftware: data.val() ? Object.values(data.val()) : [],
-				updatedSoftware: data.val() ? Object.values(data.val()) : [],
-			}));
+		softwareRef.orderByChild("name").on("value", function(data) {
+			// Get list of software resources
+			var software = data.val() ? Object.values(data.val()) : [];
+
+			// Sort the software resources
+			var sortedSoftware = software.sort((a, b) => {
+				var first_name = a.name.toUpperCase();
+				var second_name = b.name.toUpperCase();
+
+				return (first_name < second_name) ? -1 : (first_name > second_name) ? 1 : 0;
+			});
+
+			self.setState({
+				origSoftware: sortedSoftware,
+				updatedSoftware: sortedSoftware,
+			});
+		});
 	}
 	
 	render() {
