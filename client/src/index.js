@@ -7,6 +7,9 @@ import { Main } from './routes';
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './CSS/Page.css';
 
+// Require important packages
+require('babel-polyfill');
+
 const App = () => (
 	<div>
 		<Header />
