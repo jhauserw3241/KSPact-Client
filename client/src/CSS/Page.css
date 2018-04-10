@@ -33,6 +33,7 @@ a, a:hover {
 
 .mod-btns {
 	width: 50%;
+	margin: 0px;
 }
 
 .mod-btns>button {

@@ -5,3 +5,13 @@
     background-size: contain;
     margin-left: calc(50% - 75px);
 }
+
+.prof-btns {
+	width: 100%;
+    margin: 0px;
+    height: 42px;
+}
+
+.prof-btns>input {
+	float: right;
+}

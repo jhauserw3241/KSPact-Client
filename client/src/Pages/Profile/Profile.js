@@ -123,6 +123,20 @@ class Profile extends Component {
                                 <div className="form-group">
                                     <div className="profile-img" style={divStyle}></div>
                                 </div>
+                                <div className="prof-btns">
+                                    { this.state.disable_edits ?
+                                        <input
+                                            type="button"
+                                            value="Edit"
+                                            className="btn btn-warning"
+                                            onClick={this.toggleEditting} /> : null }
+                                    { !this.state.disable_edits ?
+                                        <input
+                                            type="button"
+                                            value="Save"
+                                            className="btn btn-success"
+                                            onClick={this.saveChanges} /> : null }
+                                </div>
                                 <div className="form-group">
                                     <label htmlFor="firstName">First Name:</label>
                                     <input
