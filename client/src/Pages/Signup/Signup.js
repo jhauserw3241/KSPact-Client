@@ -235,7 +235,10 @@ class Signup extends Component {
                                         value={this.state.twitter_id}
                                         onChange={(event) => this.setState({twitter_id: event.target.value})} />
                                 </div>
-                                <input type="submit" value="Submit" />
+                                <input
+                                    type="submit"
+                                    className="btn btn-primary"
+                                    value="Submit" />
                             </form>
                         </div>
                     </div>
