@@ -179,19 +179,21 @@ class HardwareElement extends Component {
 								</div>
 
 								<div className="modal-footer">
-									{(this.state.allowEdits) ?
-										<button
-											type="button"
-											className="btn btn-success"
-											onClick={this.saveHardware}>
-											Save
-										</button> :
-										<button
-											type="button"
-											className="btn btn-warning"
-											onClick={this.editHardware}>
-											Edit
-										</button>}
+									<LoginRequired minRole="admin">
+										{(this.state.allowEdits) ?
+											<button
+												type="button"
+												className="btn btn-success"
+												onClick={this.saveHardware}>
+												Save
+											</button> :
+											<button
+												type="button"
+												className="btn btn-warning"
+												onClick={this.editHardware}>
+												Edit
+											</button>}
+									</LoginRequired>
 									<button
 										type="button"
 										className="btn btn-danger"
