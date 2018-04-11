@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import fire from './../../fire';
-import $ from 'jquery';
 import './../../CSS/Card.css';
-
-//window.$ = window.jQuery = require('jquery');
-//$ = require('jquery');
 
 class CurriculumElement extends Component {
 	constructor(props) {
@@ -58,43 +54,10 @@ class CurriculumElement extends Component {
 		this.setState({allowEdits: false});
 	}
 
-	componentWillMount() {
-		/*$(".modal").modal({
-			backdrop: "static",
-			keyboard: false,
-		});*/
-
-		$(document).ready(function($) {
-			$(".modal").modal({
-				backdrop: "static",
-				keyboard: false,
-			});
-		});
-	}
-
-	/*handleModal = () => {
-		$(".modal").modal({
-			backdrop: "static",
-			keyboard: false,
-		});
-	}*/
-	
-	/*$(document).ready(function($) {
-		$(".modal").modal({
-			backdrop: "static",
-			keyboard: false,
-		});
-	});*/
-
 	render() {
 		var divStyle = {
             backgroundColor: this.state.color
 		}
-
-		$(".modal").modal({
-			backdrop: "static",
-			keyboard: false,
-		});
 	
 		return (
 			<div className="CurriculumElement card">
@@ -103,6 +66,8 @@ class CurriculumElement extends Component {
 					id={"curriculumModal-" + this.props.id}
 					tabIndex="-1"
 					role="dialog"
+					data-backdrop="static"
+					data-keyboard={false}
 					aria-labelledby="CurriculumModal"
 					aria-hidden="true">
 					<div className="modal-dialog" role="document">
