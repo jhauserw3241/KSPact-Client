@@ -272,12 +272,14 @@ class HardwareElement extends Component {
 				</div>
 				<div className="card-btns">
 					<div className="mod-btns">
-						<button
-							className="btn btn-success hardware-request-btn"
-							data-toggle="modal"
-							data-target={"#requestHardwareModal-" + this.props.id}>
-							Request
-						</button>
+						<LoginRequired minRole="member">
+							<button
+								className="btn btn-success hardware-request-btn"
+								data-toggle="modal"
+								data-target={"#requestHardwareModal-" + this.props.id}>
+								Request
+							</button>
+						</LoginRequired>
 						<LoginRequired minRole="admin">
 							<button className="btn btn-danger" onClick={this.deleteHardware}>
 								Delete
