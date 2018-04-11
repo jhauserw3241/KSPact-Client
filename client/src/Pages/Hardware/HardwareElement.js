@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LoginRequired from '../Login/LoginRequired';
 import fire from './../../fire';
 import './../../CSS/Card.css';
 
@@ -275,9 +276,11 @@ class HardwareElement extends Component {
 							data-target={"#requestHardwareModal-" + this.props.id}>
 							Request
 						</button>
-						<button className="btn btn-danger" onClick={this.deleteHardware}>
-							Delete
-						</button>
+						<LoginRequired minRole="admin">
+							<button className="btn btn-danger" onClick={this.deleteHardware}>
+								Delete
+							</button>
+						</LoginRequired>
 					</div>
 				</div>
 			</div>
