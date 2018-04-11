@@ -33,6 +33,8 @@ class MemberElement extends Component {
 					id={"memberModal-" + this.props.id}
 					tabIndex="-1"
 					role="dialog"
+					data-backdrop="static"
+					data-keyboard={false}
 					aria-labelledby="MemberModal"
 					aria-hidden="true">
 					<div className="modal-dialog" role="document">

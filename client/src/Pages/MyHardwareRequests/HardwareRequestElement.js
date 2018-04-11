@@ -32,6 +32,8 @@ class HardwareRequestElement extends Component {
 					id={"requestDetailsModal-" + this.props.id}
 					tabIndex="-1"
 					role="dialog"
+					data-backdrop="static"
+					data-keyboard={false}
 					aria-labelledby="HardwareRequestModal"
 					aria-hidden="true">
 					<div className="modal-dialog" role="document">

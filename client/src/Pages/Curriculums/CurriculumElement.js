@@ -54,7 +54,7 @@ class CurriculumElement extends Component {
 	resetEdit() {
 		this.setState({allowEdits: false});
 	}
-	
+
 	render() {
 		var divStyle = {
             backgroundColor: this.state.color
@@ -67,6 +67,8 @@ class CurriculumElement extends Component {
 					id={"curriculumModal-" + this.props.id}
 					tabIndex="-1"
 					role="dialog"
+					data-backdrop="static"
+					data-keyboard={false}
 					aria-labelledby="CurriculumModal"
 					aria-hidden="true">
 					<div className="modal-dialog" role="document">

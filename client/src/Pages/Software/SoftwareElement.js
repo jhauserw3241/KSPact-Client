@@ -67,6 +67,8 @@ class SoftwareElement extends Component {
 					id={"softwareModal-" + this.props.id}
 					tabIndex="-1"
 					role="dialog"
+					data-backdrop="static"
+					data-keyboard={false}
 					aria-labelledby="SoftwareModal"
 					aria-hidden="true">
 					<div className="modal-dialog" role="document">

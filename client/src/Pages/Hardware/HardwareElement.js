@@ -129,6 +129,8 @@ class HardwareElement extends Component {
 					id={"editHardwareModal-" + this.props.id}
 					tabIndex="-1"
 					role="dialog"
+					data-backdrop="static"
+					data-keyboard={false}
 					aria-labelledby="HardwareModal"
 					aria-hidden="true">
 					<div className="modal-dialog" role="document">
