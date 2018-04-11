@@ -11,11 +11,12 @@ class MemberRequestElement extends Component {
 	}
 
 	approveRequest() {
-		// Update the status of the request
-		var memberRequestRef = fire.database().ref('hardware_requests').child(this.props.id);
-		memberRequestRef.update({
-			status: "approved"
-		})
+		// Update the privileges of the member
+		var updates = {};
+		updates['/member_priv/' + this.props.id] = "member";
+	  
+		fire.database().ref()
+		.update(updates)
 		.catch(function(error) {
 			this.props.updateFormError(error.code + ": " + error.message);
 		});
@@ -33,8 +34,6 @@ class MemberRequestElement extends Component {
 	}
 
 	render() {
-        console.log(this.props.pic);
-
 		var divStyle = {
             backgroundImage: "url(" + this.props.pic + ")"
 		}

@@ -12,31 +12,45 @@ class MemberApproval extends Component {
 			formError: ""
         };
 
+		this.inStrList = this.inStrList.bind(this);
 		this.updateFormError = this.updateFormError.bind(this);
+	}
+
+	inStrList(entry, list) {
+		console.log(entry);
+		console.log(list);
+		for(var index in list) {
+			var item = list[index];
+			if(entry === item) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	componentDidMount() {
         var self = this;
 
 		var memberPrivRef = fire.database().ref("member_priv");
-        memberPrivRef.orderByValue().equalTo("pending member")
-        .on("value", function(data) {
-            // Get IDs of pending members
-            self.setState({ member_ids: data.val() ? Object.keys(data.val()) : [] });
+        memberPrivRef.on("value", function(data) {
+			var memberPriv = data.val() ? data.val() : {};
+			var member_ids = [];
 
-            // Loop through all pending members
-            var membersRef = fire.database().ref("members");
-            for(var id in self.state.member_ids) {
-                // Get information about current pending member
-                var member_id = self.state.member_ids[id];
-                membersRef.child(member_id).on("value", function(data) {
-                    if(data.val()) {
-                        var temp = self.state.members;
-                        temp.push(data.val());
-                        self.setState({ members: temp });
-                    }
-                });
-            }
+			for(var member_id in memberPriv) {
+				if(memberPriv[member_id] === "pending member") {
+					member_ids.push(member_id);
+				}
+			}
+
+			// Get information about current pending member
+			fire.database().ref("members").on("value", function(data) {
+				var members = data.val() ? Object.values(data.val()) : [];
+
+				var filteredMembers = members.filter((member) =>
+					self.inStrList(member.id, member_ids));
+
+				self.setState({ members: filteredMembers });
+			});
         });
 	}
 
