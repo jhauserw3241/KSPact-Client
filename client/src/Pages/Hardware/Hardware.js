@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HardwareElement from './HardwareElement';
 import fire from './../../fire';
+import LoginRequired from '../Login/LoginRequired';
 
 class Hardware extends Component {
 	constructor(props) {
@@ -163,13 +164,15 @@ class Hardware extends Component {
 							id="search"
 							onChange={this.filterList} />
 						<div className="mod-btns">
-							<button
-								type="button"
-								className="btn btn-success"
-								data-toggle="modal"
-								data-target="#addHardwareModal">
-								Add
-							</button>
+							<LoginRequired minRole="admin">
+								<button
+									type="button"
+									className="btn btn-success"
+									data-toggle="modal"
+									data-target="#addHardwareModal">
+									Add
+								</button>
+							</LoginRequired>
 						</div>
 					</div>
 					<div className="list-container">
