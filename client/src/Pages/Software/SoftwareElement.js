@@ -123,19 +123,21 @@ class SoftwareElement extends Component {
 										onClick={this.goToLink}>
 										Go To Link
 									</button>
-									{(this.state.allowEdits) ?
-										<button
-											type="button"
-											className="btn btn-success"
-											onClick={this.saveSoftware}>
-											Save
-										</button> :
-										<button
-											type="button"
-											className="btn btn-warning"
-											onClick={this.editSoftware}>
-											Edit
-										</button>}
+									<LoginRequired minRole="admin">
+										{(this.state.allowEdits) ?
+											<button
+												type="button"
+												className="btn btn-success"
+												onClick={this.saveSoftware}>
+												Save
+											</button> :
+											<button
+												type="button"
+												className="btn btn-warning"
+												onClick={this.editSoftware}>
+												Edit
+											</button>}
+									</LoginRequired>
 									<button
 										type="button"
 										className="btn btn-danger"
