@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import  { Redirect } from 'react-router-dom';
+import createClass from 'create-react-class';
+import PropTypes from 'prop-types';
+import Select from 'react-select';
 import fire from './../../fire';
 import './../../CSS/Form.css';
 
@@ -24,8 +27,13 @@ class Signup extends Component {
             redirect: false
         }
 
+        this.getGradeLevels = this.getGradeLevels.bind(this);
         this.signUp = this.signUp.bind(this);
         this.handlePic = this.handlePic.bind(this);
+    }
+
+    getGradeLevels(input, callback) {
+        callback(null, ["1st", "2nd", "3rd"]);
     }
 
     signUp(event) {
@@ -191,13 +199,14 @@ class Signup extends Component {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="gradeLevel">Grade Level:</label>
-                                    <input
-                                        type="text"
-                                        name="gradeLevel"
-                                        className="form-control"
+                                    <Select.Async
+                                        multi={true}
                                         value={this.state.grade_level}
                                         onChange={(event) => this.setState({grade_level: event.target.value})}
-                                        required />
+                                        onValueClick={this.gotoContributor}
+                                        valueKey="github"
+                                        labelKey="name"
+                                        loadOptions={this.getGradeLevels} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="title">Title:</label>
