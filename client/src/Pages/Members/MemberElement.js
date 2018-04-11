@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import fire from './../../fire';
 import './../../CSS/Card.css';
+import LoginRequired from '../Login/LoginRequired';
 
 class MemberElement extends Component {	
 	constructor(props) {
@@ -187,12 +188,14 @@ class MemberElement extends Component {
 					{this.props.firstName} {this.props.lastName}
 				</div>
 				<div className="card-btns">
-					<button
-						className="btn btn-primary"
-						data-toggle="modal"
-						data-target={"#memberPrivModal-" + this.props.id}>
-						Privs
-					</button>
+					<LoginRequired minRole="owner">
+						<button
+							className="btn btn-primary"
+							data-toggle="modal"
+							data-target={"#memberPrivModal-" + this.props.id}>
+							Privs
+						</button>
+					</LoginRequired>
 				</div>
 			</div>
 		);
