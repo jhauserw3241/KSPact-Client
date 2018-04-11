@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import fire from './../../fire';
 import './../../CSS/Card.css';
+import LoginRequired from '../Login/LoginRequired';
 
 class CurriculumElement extends Component {
 	constructor(props) {
@@ -153,9 +154,11 @@ class CurriculumElement extends Component {
 					{this.props.name}
 				</div>
 				<div className="card-btns">
-					<button className="btn btn-danger card-delete-btn" onClick={this.deleteCurriculum}>
-						Delete
-					</button>
+					<LoginRequired minRole="admin">
+						<button className="btn btn-danger card-delete-btn" onClick={this.deleteCurriculum}>
+							Delete
+						</button>
+					</LoginRequired>
 				</div>
 			</div>
 		);
