@@ -7,27 +7,45 @@ class Members extends Component {
 		super(props);
 		this.state = {
 			members: [],
+			priv: "none",
 		};
 	}
 	
 	componentDidMount() {
 		var self = this;
 
-		var membersRef = fire.database().ref("members/");
-		membersRef.orderByChild("last_name").on("value", function(data) {
-			// Get lit of members
-			var members = data.val() ? Object.values(data.val()): [];
+		// Get member privilege levels
+		var memberPrivRef = fire.database().ref("member_priv");
+		memberPrivRef.on("value", function(data) {
+			var memberPrivs = data.val() ? data.val() : {};
+			
+			// Get member information
+			var membersRef = fire.database().ref("members/");
+			membersRef.orderByChild("last_name").on("value", function(data) {
+				// Get lit of members
+				var members = data.val() ? Object.values(data.val()): [];
 
-			// Sort list of members
-			var sortedMembers = members.sort((a, b) => {
-				var first_name = (a.first_name + " " + a.last_name).toUpperCase();
-				var second_name = (b.first_name + " " + b.last_name).toUpperCase();
+				// Sort list of members
+				var sortedMembers = members.sort((a, b) => {
+					var first_name = (a.first_name + " " + a.last_name).toUpperCase();
+					var second_name = (b.first_name + " " + b.last_name).toUpperCase();
 
-				return (first_name < second_name) ? -1 : (first_name > second_name) ? 1 : 0;
-			});
+					return (first_name < second_name) ? -1 : (first_name > second_name) ? 1 : 0;
+				});
 
-			self.setState({
-				members: sortedMembers,
+				// Update member objects with privilege level
+				sortedMembers.map((member) =>
+					member["priv"] = memberPrivs[member.id]);
+
+				// Filter member list by privilege level
+				var filteredMembers = sortedMembers.filter((member) =>
+					(member.priv === "member") ||
+					(member.priv === "admin") ||
+					(member.priv === "owner"));
+
+				self.setState({
+					members: filteredMembers,
+				});
 			});
 		});
 	}
@@ -52,7 +70,7 @@ class Members extends Component {
 								pic={member.pic}
 								facebookId={member.facebook_id}
 								twitterId={member.twitter_id}
-								modalHandler={this.openModal} />
+								priv={member.priv} />
 						)}
 					</div>
 				</div>
