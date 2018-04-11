@@ -43,15 +43,20 @@ class Header extends Component {
 							<li className="nav-item">
 								<NavLink to="/home" className="nav-link">Home</NavLink>
 							</li>
-							<div className="dropdown">
-								<NavLink to="/members" className="nav-link">
-									Members <i className="fa fa-caret-down"></i>
-								</NavLink>
-								<div className="dropdown-content">
-									<NavLink to="/members" className="nav-sublink">Members</NavLink>
-									<NavLink to="/memberapproval" className="nav-sublink">Member Approval</NavLink>
+							<LoginRequired minRole="admin">
+								<div className="dropdown">
+									<NavLink to="/members" className="nav-link">
+										Members <i className="fa fa-caret-down"></i>
+									</NavLink>
+									<div className="dropdown-content">
+										<NavLink to="/members" className="nav-sublink">Members</NavLink>
+										<NavLink to="/memberapproval" className="nav-sublink">Member Approval</NavLink>
+									</div>
 								</div>
-							</div>
+							</LoginRequired>
+							<LoginRequired minRole="none" maxRole="member">
+								<NavLink to="/members" className="nav-link">Members</NavLink>
+							</LoginRequired>
 							<div className="dropdown">
 								<NavLink to="/hardware" className="nav-link">
 									Hardware <i className="fa fa-caret-down"></i>
@@ -70,22 +75,22 @@ class Header extends Component {
 							<li className="nav-item">
 								<NavLink to="/about" className="nav-link">About</NavLink>
 							</li>
-							<LoginRequired requiredRole="pending member">
+							<LoginRequired minRole="pending member">
 								<li className="nav-item">
 									<NavLink to="/dashboard" className="nav-link">Dashboard</NavLink>
 								</li>
 							</LoginRequired>
-							<LoginRequired requiredRole="pending member">
+							<LoginRequired minRole="pending member">
 								<li className="nav-item">
 									<NavLink to="/signout" className="nav-link">Signout</NavLink>
 								</li>
 							</LoginRequired>
-							<LoginRequired requiredRole="none">
+							<LoginRequired minRole="none" maxRole="none">
 								<li className="nav-item">
 									<NavLink to="/login" className="nav-link">Login</NavLink>
 								</li>
 							</LoginRequired>
-							<LoginRequired requiredRole="none">
+							<LoginRequired minRole="none" maxRole="none">
 								<li className="nav-item">
 									<NavLink to="/signup" className="nav-link">Signup</NavLink>
 								</li>

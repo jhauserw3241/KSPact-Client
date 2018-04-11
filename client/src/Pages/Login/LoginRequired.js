@@ -7,48 +7,34 @@ class LoginRequired extends Component {
 		this.state = {
             user: fire.auth().currentUser,
             priv: "none",
-            requiredRole: "member"
+            privNum: 0,
+            minRole: "member",
+            maxRole: "owner",
         };
         
+        this.getPrivNum = this.getPrivNum.bind(this);
+        this.getUserPrivLevel = this.getUserPrivLevel.bind(this);
         this.checkPrivs = this.checkPrivs.bind(this);
-        this.getPrivLevel = this.getPrivLevel.bind(this);
     }
 
-    checkPrivs() {
-        switch(this.state.requiredRole) {
-            // Check if the user is logged in as an amdin
+    getPrivNum(priv) {
+        switch(priv) {
             case "owner":
-                return this.state.user &&
-                    this.state.priv === "owner";
-            // Check if the user is logged in as an admin
+                return 4;
             case "admin":
-                return this.state.user &&
-                    (this.state.priv === "owner" ||
-                    this.state.priv === "admin");
-            // Check if the user is logged in as a member
+                return 3;
             case "member":
-                return this.state.user &&
-                    (this.state.priv === "owner" ||
-                    this.state.priv === "admin" ||
-                    this.state.priv === "member");
-            // Check if the user is logged in as a pending member
+                return 2;
             case "pending member":
-                return this.state.user &&
-                    (this.state.priv === "owner" ||
-                    this.state.priv === "admin" ||
-                    this.state.priv === "member" ||
-                    this.state.priv === "pending member");
-            // Check if the user isn't logged in
+                return 1;
             case "none":
-                return !this.state.user &&
-                    this.state.priv === "none";
-            // Default to not showing information
+                return 0;
             default:
-                return false;
+                return 0;
         }
     }
 
-    getPrivLevel() {
+    getUserPrivLevel() {
         var self = this;
 
         if(self.state.user) {
@@ -58,39 +44,59 @@ class LoginRequired extends Component {
                 if( (data.val() !== undefined) &&
                     (data.val() !== null)) {
                     var priv = data.val()[self.state.user.uid];
-                    self.setState({priv: priv ? priv : "none"});
+                    self.setState({
+                        priv: priv ? priv : "none",
+                        privNum: priv ? self.getPrivNum(priv) : 0,
+                    });
                 } else {
-                    self.setState({priv: "none"});
+                    self.setState({
+                        priv: "none",
+                        privNum: 0,
+                    });
                 }
             });
         } else {
-            self.setState({priv: "none"});
+            self.setState({
+                priv: "none",
+                privNum: 0,
+            });
         }
+    }
+
+    checkPrivs() {
+        var minRoleNum = this.getPrivNum(this.state.minRole);
+        var maxRoleNum = this.getPrivNum(this.state.maxRole);
+
+        return (minRoleNum <= this.state.privNum) &&
+            (this.state.privNum <= maxRoleNum);
     }
 
     componentDidMount() {
         // Setup handler for change in authentication state
         var self = this;
         fire.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                self.setState({user: user});
-                self.getPrivLevel();
-            } else {
-                self.setState({user: undefined});
-                self.getPrivLevel();
-            }
+            self.setState({user: user ? user : undefined});
+            self.getUserPrivLevel();
         });
 
-        // Check if required role is specified
+        // Check if min role is specified
         if( (this.props !== undefined) &&
-            (this.props.requiredRole !== undefined) &&
-            (this.props.requiredRole !== null) &&
-            (this.props.requiredRole !== "")) {
-            this.setState({requiredRole: this.props.requiredRole});
+            (this.props.minRole !== undefined) &&
+            (this.props.minRole !== null) &&
+            (this.props.minRole !== "")) {
+            this.setState({minRole: this.props.minRole});
+        }
+
+        // Check if max role is specified
+        if( (this.props !== undefined) &&
+            (this.props.maxRole !== undefined) &&
+            (this.props.maxRole !== null) &&
+            (this.props.maxRole !== "")) {
+            this.setState({maxRole: this.props.maxRole});
         }
 
         // Get current permission level
-        this.getPrivLevel();
+        this.getUserPrivLevel();
     }
 
 	render() {
