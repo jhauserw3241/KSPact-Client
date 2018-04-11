@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SoftwareElement from './SoftwareElement';
 import fire from './../../fire';
+import LoginRequired from '../Login/LoginRequired';
 
 class Software extends Component {
 	constructor(props) {
@@ -153,13 +154,15 @@ class Software extends Component {
 							id="search"
 							onChange={this.filterList} />
 						<div className="mod-btns">
-							<button
-								type="button"
-								className="btn btn-success"
-								data-toggle="modal"
-								data-target="#addSoftwareModal">
-								Add
-							</button>
+							<LoginRequired minRole="admin">
+								<button
+									type="button"
+									className="btn btn-success"
+									data-toggle="modal"
+									data-target="#addSoftwareModal">
+									Add
+								</button>
+							</LoginRequired>
 						</div>
 					</div>
 					<div className="list-container">
