@@ -123,19 +123,21 @@ class CurriculumElement extends Component {
 										onClick={this.goToLink}>
 										Go to Link
 									</button>
-									{(this.state.allowEdits) ?
-										<button
-											type="button"
-											className="btn btn-success"
-											onClick={this.saveCurriculum}>
-											Save
-										</button> :
-										<button
-											type="button"
-											className="btn btn-warning"
-											onClick={this.editCurriculum}>
-											Edit
-										</button>}
+									<LoginRequired minRole="admin">
+										{(this.state.allowEdits) ?
+											<button
+												type="button"
+												className="btn btn-success"
+												onClick={this.saveCurriculum}>
+												Save
+											</button> :
+											<button
+												type="button"
+												className="btn btn-warning"
+												onClick={this.editCurriculum}>
+												Edit
+											</button>}
+									</LoginRequired>
 									<button
 										type="button"
 										className="btn btn-danger"
