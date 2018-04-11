@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LoginRequired from '../Login/LoginRequired';
 import fire from './../../fire';
 import './../../CSS/Card.css';
 
@@ -153,9 +154,11 @@ class SoftwareElement extends Component {
 					{this.props.name}
 				</div>
 				<div className="card-btns">
-					<button className="btn btn-danger card-delete-btn" onClick={this.deleteSoftware}>
-						Delete
-					</button>
+					<LoginRequired minRole="admin">
+						<button className="btn btn-danger card-delete-btn" onClick={this.deleteSoftware}>
+							Delete
+						</button>
+					</LoginRequired>
 				</div>
 			</div>
 		);
