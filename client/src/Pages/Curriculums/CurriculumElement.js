@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import fire from './../../fire';
 import './../../CSS/Card.css';
-import LoginRequired from '../Login/LoginRequired';
+import LoginRequired from './../Login/LoginRequired';
+import GradeLevelTagInput from './../Common/GradeLevelTagInput';
 
 class CurriculumElement extends Component {
 	constructor(props) {
@@ -57,6 +58,8 @@ class CurriculumElement extends Component {
 	}
 
 	render() {
+		console.log(this.state.allowEdits);
+
 		var divStyle = {
             backgroundColor: this.state.color
 		}
@@ -119,13 +122,16 @@ class CurriculumElement extends Component {
 									</div>
 									<div className="form-group">
 										<label htmlFor="gradeLevels">Grade Levels:</label>
-										<input
-											type="text"
+										<GradeLevelTagInput
 											name="gradeLevels"
-											className="form-control"
 											onChange={event => this.setState({grade_levels: event.target.value})}
-											value={this.state.grade_levels.join(", ")}
-											disabled={ this.state.allowEdits ? false : true } />
+											tags={this.state.grade_levels.map(grade => {
+												return {
+													id: grade,
+													text: grade
+												}
+											})}
+											readOnly={ this.state.allowEdits ? false : true } />
 									</div>
 								</div>
 								<div className="modal-footer">
