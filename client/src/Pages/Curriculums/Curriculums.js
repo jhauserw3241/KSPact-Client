@@ -174,6 +174,7 @@ class Curriculums extends Component {
 								name={curriculum.name}
 								description={curriculum.description}
 								link={curriculum.link}
+								grade_levels={curriculum.grade_levels ? Object.values(curriculum.grade_levels) : []}
 								color={curriculum.color} />
 						)}
 					</div>

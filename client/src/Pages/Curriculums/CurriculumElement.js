@@ -12,6 +12,7 @@ class CurriculumElement extends Component {
 			name: this.props.name,
 			description: this.props.description,
 			link: this.props.link,
+			grade_levels: this.props.grade_levels,
 			color: this.props.color
 		};
 
@@ -116,8 +117,17 @@ class CurriculumElement extends Component {
 											value={this.state.link}
 											disabled={ this.state.allowEdits ? false : true } />
 									</div>
+									<div className="form-group">
+										<label htmlFor="gradeLevels">Grade Levels:</label>
+										<input
+											type="text"
+											name="gradeLevels"
+											className="form-control"
+											onChange={event => this.setState({grade_levels: event.target.value})}
+											value={this.state.grade_levels.join(", ")}
+											disabled={ this.state.allowEdits ? false : true } />
+									</div>
 								</div>
-
 								<div className="modal-footer">
 									<button
 										type="button"
