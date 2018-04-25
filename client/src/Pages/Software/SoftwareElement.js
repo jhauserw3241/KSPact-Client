@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import LoginRequired from '../Login/LoginRequired';
+import LoginRequired from './../Login/LoginRequired';
+import SoftwareGradesTagInput from './SoftwareGradesTagInput';
 import fire from './../../fire';
 import './../../CSS/Card.css';
 
@@ -29,13 +30,11 @@ class SoftwareElement extends Component {
 	saveSoftware() {
 		// Update profile information
         var updates = {};
-        updates['/software/' + this.props.id] = {
-			id: this.props.id,
-			name: this.state.name,
-			description: this.state.description,
-			link: this.state.link,
-			color: this.state.color
-		};
+        updates['/software/' + this.props.id + "/id"] = this.props.id;
+        updates['/software/' + this.props.id + "/name"] = this.props.name;
+        updates['/software/' + this.props.id + "/description"] = this.props.description;
+        updates['/software/' + this.props.id + "/link"] = this.props.link;
+        updates['/software/' + this.props.id + "/color"] = this.props.color;
         fire.database().ref().update(updates);
 
 		this.setState({allowEdits: false});
@@ -116,8 +115,13 @@ class SoftwareElement extends Component {
 											value={this.state.link}
 											disabled={this.state.allowEdits ? false : true} />
 									</div>
+									<div className="form-group">
+										<label htmlFor="gradeLevels">Grade Levels:</label>
+										<SoftwareGradesTagInput
+											software_id={ this.props.id }
+											readOnly={ this.state.allowEdits ? false : true } />
+									</div>
 								</div>
-
 								<div className="modal-footer">
 									<button
 										type="button"

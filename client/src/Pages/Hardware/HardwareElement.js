@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import LoginRequired from '../Login/LoginRequired';
+import LoginRequired from './../Login/LoginRequired';
+import HardwareGradesTagInput from './HardwareGradesTagInput';
 import fire from './../../fire';
 import './../../CSS/Card.css';
 
@@ -38,13 +39,11 @@ class HardwareElement extends Component {
 	saveHardware() {
 		// Update profile information
         var updates = {};
-        updates['/hardware/' + this.props.id] = {
-			id: this.props.id,
-			name: this.state.name,
-			description: this.state.description,
-			serialNum: this.state.serialNum,
-			color: this.state.color
-		};
+        updates['/hardware/' + this.props.id + "/id"] = this.props.id;
+        updates['/hardware/' + this.props.id + "/name"] = this.props.name;
+        updates['/hardware/' + this.props.id + "/description"] = this.props.description;
+        updates['/hardware/' + this.props.id + "/serialNum"] = this.props.serialNum;
+        updates['/hardware/' + this.props.id + "/color"] = this.props.color;
         fire.database().ref().update(updates);
 
 		this.setState({allowEdits: false});
@@ -177,6 +176,12 @@ class HardwareElement extends Component {
 											onChange={event => this.setState({serialNum: event.target.value})}
 											value={this.state.serialNum}
 											disabled={this.state.allowEdits ? false : true} />
+									</div>
+									<div className="form-group">
+										<label htmlFor="gradeLevels">Grade Levels:</label>
+										<HardwareGradesTagInput
+											hardware_id={ this.props.id }
+											readOnly={ this.state.allowEdits ? false : true } />
 									</div>
 								</div>
 
