@@ -21,16 +21,16 @@ class HardwareCurriculumsTagInput extends Component {
 
         // Get tags
         fire.database().ref("hardware").child(this.props.hardware_id).child("curriculums").on("value", function(data) {
-            var gradeLevels = data.val() ? Object.values(data.val()) : [];
+            var curriculums = data.val() ? Object.values(data.val()) : [];
 
-            var updatedGradeLevels = gradeLevels.map((grade) => {
+            var updatedCurriculums = curriculums.map((curriculum) => {
                 return {
-                    id: grade,
-                    text: grade,
+                    id: curriculum,
+                    text: curriculum,
                 };
             });
 
-            self.setState({ tags: updatedGradeLevels });
+            self.setState({ tags: updatedCurriculums });
         });
 
         // Get suggestions
