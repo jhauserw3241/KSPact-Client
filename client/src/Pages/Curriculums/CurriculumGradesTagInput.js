@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { WithContext as ReactTags } from 'react-tag-input';
-import "./../../CSS/Tag.css";
+import fire from './../../fire';
+import TagInput from './../Common/TagInput';
 
 const grade_levels = [
     { id: 'Kindergarden', text: 'Kindergarden' },
@@ -18,7 +18,7 @@ const grade_levels = [
     { id: '12th', text: '12th' },
 ];
 
-class GradeLevelTagInput extends Component {
+class CurriculumGradesTagInput extends Component {
     constructor(props) {
         super(props);
 
@@ -26,21 +26,38 @@ class GradeLevelTagInput extends Component {
             tags: this.props.tags,
             suggestions: grade_levels
         };
+
         this.handleDelete = this.handleDelete.bind(this);
         this.handleAddition = this.handleAddition.bind(this);
         this.handleDrag = this.handleDrag.bind(this);
     }
 
-    handleDelete(i) {
-        const { tags } = this.state;
-        this.setState({
-         tags: tags.filter((tag, index) => index !== i),
+    componentDidMount() {
+        var self = this;
+
+        // Get tags
+        fire.database().ref("curriculums").child(this.props.curriculum_id).child("grade_levels").on("value", function(data) {
+            var gradeLevels = data.val() ? Object.values(data.val()) : [];
+
+            var updatedGradeLevels = gradeLevels.map((grade) => {
+                return {
+                    id: grade,
+                    text: grade,
+                };
+            });
+
+            self.setState({ tags: updatedGradeLevels });
         });
     }
 
+    handleDelete(i) {
+        fire.database().ref("curriculums").child(this.props.curriculum_id).child("grade_levels")
+        .set(this.state.tags.filter((tag, index) => index !== i));
+    }
+
     handleAddition(tag) {
-        const { tags } = this.state;
-        this.setState({tags: [...tags, ...[tag]] });
+        fire.database().ref("curriculums").child(this.props.curriculum_id).child("grade_levels")
+        .set([...this.state.tags, ...[tag]]);
     }
 
     handleDrag(tag, currPos, newPos) {
@@ -50,16 +67,16 @@ class GradeLevelTagInput extends Component {
         newTags.splice(currPos, 1);
         newTags.splice(newPos, 0, tag);
 
-        // re-render
-        this.setState({ tags: newTags });
+        fire.database().ref("curriculums").child(this.props.curriculum_id).child("grade_levels")
+        .set(newTags);
     }
 
     render() {
-        const { tags, suggestions } = this.state;
         return (
             <div>
-                <ReactTags tags={tags}
-                    suggestions={suggestions}
+                <TagInput
+                    tags={this.state.tags}
+                    suggestions={this.state.suggestions}
                     handleDelete={this.handleDelete}
                     handleAddition={this.handleAddition}
                     handleDrag={this.handleDrag}
@@ -69,4 +86,4 @@ class GradeLevelTagInput extends Component {
     }
 };
 
-export default GradeLevelTagInput;
+export default CurriculumGradesTagInput;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import fire from './../../fire';
 import './../../CSS/Card.css';
 import LoginRequired from './../Login/LoginRequired';
-import GradeLevelTagInput from './../Common/GradeLevelTagInput';
+import CurriculumGradesTagInput from './CurriculumGradesTagInput';
 
 class CurriculumElement extends Component {
 	constructor(props) {
@@ -58,8 +58,6 @@ class CurriculumElement extends Component {
 	}
 
 	render() {
-		console.log(this.state.allowEdits);
-
 		var divStyle = {
             backgroundColor: this.state.color
 		}
@@ -122,15 +120,8 @@ class CurriculumElement extends Component {
 									</div>
 									<div className="form-group">
 										<label htmlFor="gradeLevels">Grade Levels:</label>
-										<GradeLevelTagInput
-											name="gradeLevels"
-											onChange={event => this.setState({grade_levels: event.target.value})}
-											tags={this.state.grade_levels.map(grade => {
-												return {
-													id: grade,
-													text: grade
-												}
-											})}
+										<CurriculumGradesTagInput
+											curriculum_id={ this.props.id }
 											readOnly={ this.state.allowEdits ? false : true } />
 									</div>
 								</div>
