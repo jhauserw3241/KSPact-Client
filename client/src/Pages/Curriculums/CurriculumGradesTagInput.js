@@ -51,13 +51,23 @@ class CurriculumGradesTagInput extends Component {
     }
 
     handleDelete(i) {
+        var tags = this.state.tags.filter((tag, index) => index !== i);
+        var updatedTags = tags.map((tag) => {
+            return tag.text;
+        });
         fire.database().ref("curriculums").child(this.props.curriculum_id).child("grade_levels")
-        .set(this.state.tags.filter((tag, index) => index !== i));
+        .set(updatedTags);
     }
 
     handleAddition(tag) {
+        var tags = [...this.state.tags, ...[tag]];
+        var updatedTags = [];
+        for(var tag_id in tags) {
+            var tag = tags[tag_id];
+            updatedTags[tag.text] = tag.text;
+        }
         fire.database().ref("curriculums").child(this.props.curriculum_id).child("grade_levels")
-        .set([...this.state.tags, ...[tag]]);
+        .set(updatedTags);
     }
 
     handleDrag(tag, currPos, newPos) {
@@ -67,8 +77,12 @@ class CurriculumGradesTagInput extends Component {
         newTags.splice(currPos, 1);
         newTags.splice(newPos, 0, tag);
 
+        var updatedTags = newTags.map((tag) => {
+            return tag.text;
+        });
+
         fire.database().ref("curriculums").child(this.props.curriculum_id).child("grade_levels")
-        .set(newTags);
+        .set(updatedTags);
     }
 
     render() {

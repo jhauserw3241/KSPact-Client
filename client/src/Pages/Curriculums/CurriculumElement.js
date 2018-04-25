@@ -31,13 +31,11 @@ class CurriculumElement extends Component {
 	saveCurriculum() {
         // Update curriculum information
         var updates = {};
-        updates['/curriculums/' + this.props.id] = {
-			id: this.props.id,
-			name: this.state.name,
-			description: this.state.description,
-			link: this.state.link,
-			color: this.state.color
-		};
+        updates['/curriculums/' + this.props.id + "/id"] = this.props.id;
+        updates['/curriculums/' + this.props.id + "/name"] = this.props.name;
+        updates['/curriculums/' + this.props.id + "/description"] = this.props.description;
+        updates['/curriculums/' + this.props.id + "/link"] = this.props.link;
+        updates['/curriculums/' + this.props.id + "/color"] = this.props.color;
         fire.database().ref().update(updates);
 		
 		this.setState({allowEdits: false});
