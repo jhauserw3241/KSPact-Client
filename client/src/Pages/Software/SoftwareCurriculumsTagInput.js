@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import fire from './../../fire';
 import TagInput from './../Common/TagInput';
 
-class HardwareCurriculumsTagInput extends Component {
+class SoftwareCurriculumsTagInput extends Component {
     constructor(props) {
         super(props);
 
@@ -20,17 +20,17 @@ class HardwareCurriculumsTagInput extends Component {
         var self = this;
 
         // Get tags
-        fire.database().ref("hardware").child(this.props.hardware_id).child("curriculums").on("value", function(data) {
-            var gradeLevels = data.val() ? Object.values(data.val()) : [];
+        fire.database().ref("software").child(this.props.software_id).child("curriculums").on("value", function(data) {
+            var curriculums = data.val() ? Object.values(data.val()) : [];
 
-            var updatedGradeLevels = gradeLevels.map((grade) => {
+            var updatedCurriculums = curriculums.map((curriculum) => {
                 return {
-                    id: grade,
-                    text: grade,
+                    id: curriculum,
+                    text: curriculum,
                 };
             });
 
-            self.setState({ tags: updatedGradeLevels });
+            self.setState({ tags: updatedCurriculums });
         });
 
         // Get suggestions
@@ -52,7 +52,7 @@ class HardwareCurriculumsTagInput extends Component {
         var updatedTags = tags.map((tag) => {
             return tag.text;
         });
-        fire.database().ref("hardware").child(this.props.hardware_id).child("curriculums")
+        fire.database().ref("software").child(this.props.software_id).child("curriculums")
         .set(updatedTags);
     }
 
@@ -63,7 +63,7 @@ class HardwareCurriculumsTagInput extends Component {
             var tag = tags[tag_id];
             updatedTags[tag.text] = tag.text;
         }
-        fire.database().ref("hardware").child(this.props.hardware_id).child("curriculums")
+        fire.database().ref("software").child(this.props.software_id).child("curriculums")
         .set(updatedTags);
     }
 
@@ -78,7 +78,7 @@ class HardwareCurriculumsTagInput extends Component {
             return tag.text;
         });
 
-        fire.database().ref("hardware").child(this.props.hardware_id).child("curriculums")
+        fire.database().ref("software").child(this.props.software_id).child("curriculums")
         .set(updatedTags);
     }
 
@@ -97,4 +97,4 @@ class HardwareCurriculumsTagInput extends Component {
     }
 };
 
-export default HardwareCurriculumsTagInput;
+export default SoftwareCurriculumsTagInput;

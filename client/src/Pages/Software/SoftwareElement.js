@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LoginRequired from './../Login/LoginRequired';
+import SoftwareCurriculumsTagInput from './SoftwareCurriculumsTagInput';
 import SoftwareGradesTagInput from './SoftwareGradesTagInput';
 import fire from './../../fire';
 import './../../CSS/Card.css';
@@ -114,6 +115,12 @@ class SoftwareElement extends Component {
 											onChange={event => this.setState({link: event.target.value})}
 											value={this.state.link}
 											disabled={this.state.allowEdits ? false : true} />
+									</div>
+									<div className="form-group">
+										<label htmlFor="curriculums">Associated Curriculums:</label>
+										<SoftwareCurriculumsTagInput
+											software_id={ this.props.id }
+											readOnly={ this.state.allowEdits ? false : true } />
 									</div>
 									<div className="form-group">
 										<label htmlFor="gradeLevels">Grade Levels:</label>
