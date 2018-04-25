@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LoginRequired from './../Login/LoginRequired';
+import HardwareCurriculumsTagInput from './HardwareCurriculumsTagInput';
 import HardwareGradesTagInput from './HardwareGradesTagInput';
 import fire from './../../fire';
 import './../../CSS/Card.css';
@@ -176,6 +177,12 @@ class HardwareElement extends Component {
 											onChange={event => this.setState({serialNum: event.target.value})}
 											value={this.state.serialNum}
 											disabled={this.state.allowEdits ? false : true} />
+									</div>
+									<div className="form-group">
+										<label htmlFor="curriculums">Associated Curriculums:</label>
+										<HardwareCurriculumsTagInput
+											hardware_id={ this.props.id }
+											readOnly={ this.state.allowEdits ? false : true } />
 									</div>
 									<div className="form-group">
 										<label htmlFor="gradeLevels">Grade Levels:</label>
