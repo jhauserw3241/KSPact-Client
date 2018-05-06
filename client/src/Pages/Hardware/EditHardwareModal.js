@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import LoginRequired from './../Login/LoginRequired';
-import CurriculumGradesTagInput from './CurriculumGradesTagInput';
+import HardwareCurriculumsTagInput from './HardwareCurriculumsTagInput';
+import HardwareGradesTagInput from './HardwareGradesTagInput';
 import fire from './../../fire';
-import './../../CSS/Card.css';
 
-class EditCurriculumModal extends Component {
+class EditHardwareModal extends Component {
 	constructor(props) {
 		super(props);
 
@@ -14,34 +14,32 @@ class EditCurriculumModal extends Component {
 			name_updated: false,
 			description: this.props.description,
 			description_updated: false,
-			link: this.props.link,
-			link_updated: false,
-			grade_levels: this.props.grade_levels,
-			grade_levels_updated: false,
+			serialNum: this.props.serialNum,
+			serialNum_updated: false,
 			color: this.props.color,
 			color_updated: false,
 		};
 
-		this.editCurriculum = this.editCurriculum.bind(this);
-		this.saveCurriculum = this.saveCurriculum.bind(this);
+		this.editHardware = this.editHardware.bind(this);
+		this.saveHardware = this.saveHardware.bind(this);
 		this.resetEdit = this.resetEdit.bind(this);
 		this.getFieldValue = this.getFieldValue.bind(this);
 	}
 
-	editCurriculum() {
+	editHardware() {
 		this.setState({allowEdits: true});
 	}
 
-	saveCurriculum() {
-        // Update curriculum information
+	saveHardware() {
+		// Update profile information
         var updates = {};
-        updates['/curriculums/' + this.props.id + "/id"] = this.props.id;
-        updates['/curriculums/' + this.props.id + "/name"] = this.getFieldValue("name");
-        updates['/curriculums/' + this.props.id + "/description"] = this.getFieldValue("description");
-        updates['/curriculums/' + this.props.id + "/link"] = this.getFieldValue("link");
-        updates['/curriculums/' + this.props.id + "/color"] = this.getFieldValue("color");
+        updates['/hardware/' + this.props.id + "/id"] = this.props.id;
+        updates['/hardware/' + this.props.id + "/name"] = this.getFieldValue("name");
+        updates['/hardware/' + this.props.id + "/description"] = this.getFieldValue("description");
+        updates['/hardware/' + this.props.id + "/serialNum"] = this.getFieldValue("serialNum");
+        updates['/hardware/' + this.props.id + "/color"] = this.getFieldValue("color");
         fire.database().ref().update(updates);
-		
+
 		this.setState({allowEdits: false});
 	}
 
@@ -60,17 +58,17 @@ class EditCurriculumModal extends Component {
 		return (
 			<div
 				className="modal fade"
-				id={"curriculumModal-" + this.props.id}
+				id={"editHardwareModal-" + this.props.id}
 				tabIndex="-1"
 				role="dialog"
 				data-backdrop="static"
 				data-keyboard={false}
-				aria-labelledby="CurriculumModal"
+				aria-labelledby="HardwareModal"
 				aria-hidden="true">
 				<div className="modal-dialog" role="document">
 					<div className="modal-content">
 						<div className="modal-header">
-							<h5 className="modal-title" id="curriculumModalTitle">Edit Curriculum</h5>
+							<h5 className="modal-title" id="editHardwareModalTitle">Edit Hardware</h5>
 							<button
 								type="button"
 								className="close"
@@ -90,7 +88,7 @@ class EditCurriculumModal extends Component {
 										className="form-control"
 										onChange={event => this.setState({name: event.target.value})}
 										value={this.getFieldValue("name")}
-										disabled={ this.state.allowEdits ? false : true } />
+										disabled={this.state.allowEdits ? false : true} />
 								</div>
 								<div className="form-group">
 									<label htmlFor="description">Description:</label>
@@ -103,41 +101,42 @@ class EditCurriculumModal extends Component {
 										disabled={this.state.allowEdits ? false : true}></textarea>
 								</div>
 								<div className="form-group">
-									<label htmlFor="link">Link:</label>
+									<label htmlFor="serialNum">Serial Number:</label>
 									<input
 										type="text"
-										name="link"
+										name="serialNum"
 										className="form-control"
-										onChange={event => this.setState({link: event.target.value})}
-										value={this.getFieldValue("link")}
-										disabled={ this.state.allowEdits ? false : true } />
+										onChange={event => this.setState({serialNum: event.target.value})}
+										value={this.getFieldValue("serialNum")}
+										disabled={this.state.allowEdits ? false : true} />
+								</div>
+								<div className="form-group">
+									<label htmlFor="curriculums">Associated Curriculums:</label>
+									<HardwareCurriculumsTagInput
+										hardware_id={ this.props.id }
+										readOnly={ this.state.allowEdits ? false : true } />
 								</div>
 								<div className="form-group">
 									<label htmlFor="gradeLevels">Grade Levels:</label>
-									<CurriculumGradesTagInput
-										curriculum_id={ this.props.id }
+									<HardwareGradesTagInput
+										hardware_id={ this.props.id }
 										readOnly={ this.state.allowEdits ? false : true } />
 								</div>
 							</div>
+
 							<div className="modal-footer">
-								<button
-									type="button"
-									className="btn btn-primary"
-									onClick={this.props.goToLink}>
-									Go to Link
-								</button>
 								<LoginRequired minRole="admin">
 									{(this.state.allowEdits) ?
 										<button
 											type="button"
 											className="btn btn-success"
-											onClick={this.saveCurriculum}>
+											onClick={this.saveHardware}>
 											Save
 										</button> :
 										<button
 											type="button"
 											className="btn btn-warning"
-											onClick={this.editCurriculum}>
+											onClick={this.editHardware}>
 											Edit
 										</button>}
 								</LoginRequired>
@@ -157,4 +156,4 @@ class EditCurriculumModal extends Component {
 	}
 }
 
-export default EditCurriculumModal;
+export default EditHardwareModal;
