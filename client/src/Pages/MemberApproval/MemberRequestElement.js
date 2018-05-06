@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MemberRequestInfoModal from './MemberRequestInfoModal';
 import fire from './../../fire';
 import './../../CSS/Card.css';
 
@@ -34,104 +35,26 @@ class MemberRequestElement extends Component {
 	}
 
 	render() {
-		var divStyle = {
-            backgroundImage: "url(" + this.props.pic + ")"
-		}
-	
 		return (
 			<div className="MemberRequestElement card">
-				<div
-					className="modal fade"
-					id={"requestDetailsModal-" + this.props.id}
-					tabIndex="-1"
-					role="dialog"
-					data-backdrop="static"
-					data-keyboard={false}
-					aria-labelledby="MemberRequestModal"
-					aria-hidden="true">
-					<div className="modal-dialog" role="document">
-						<div className="modal-content">
-							<div className="modal-header">
-								<h5 className="modal-title" id="requestDetailsTitle">Member Information</h5>
-								<button
-									type="button"
-									className="close"
-									data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<form>
-								<div className="modal-body">
-									<div className="form-group">
-										<label htmlFor="name">Name:</label>
-										<input
-											type="text"
-											name="name"
-											className="form-control"
-											value={this.props.first_name + " " + this.props.last_name}
-											disabled={true} />
-									</div>
-									<div className="form-group">
-										<label htmlFor="email">Email:</label>
-										<input
-											type="text"
-											name="email"
-											className="form-control"
-											value={this.props.email}
-											disabled={true} />
-									</div>
-									<div className="form-group">
-										<label htmlFor="school">School:</label>
-										<input
-											type="text"
-											name="school"
-											className="form-control"
-											value={this.props.school}
-											disabled={true} />
-									</div>
-									<div className="form-group">
-										<label htmlFor="bio">Bio:</label>
-										<textarea
-											className="form-control"
-											name="bio"
-											value={this.props.bio}
-											disabled={true}></textarea>
-									</div>
-									<div className="form-group">
-										<label htmlFor="title">Title:</label>
-										<input
-											type="text"
-											name="title"
-											className="form-control"
-											value={this.props.title}
-											disabled={true} />
-									</div>
-								</div>
-
-								<div className="modal-footer">
-									<button
-										type="button"
-										className="btn btn-success"
-										onClick={this.approveRequest}
-										data-dismiss="modal">
-										Approve
-									</button>
-									<button
-										type="button"
-										className="btn btn-danger"
-										onClick={this.declineRequest}
-										data-dismiss="modal">
-										Decline
-									</button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
+				<MemberRequestInfoModal
+					id={this.props.id}
+					first_name={this.props.first_name}
+					last_name={this.props.last_name}
+					email={this.props.email}
+					school={this.props.school}
+					bio={this.props.bio}
+					title={this.props.title} />
 		
-				<div className="card-img" style={divStyle} data-toggle="modal" data-target={"#requestDetailsModal-" + this.props.id}></div>
-				<div className="card-text" data-toggle="modal" data-target={"#requestDetailsModal-" + this.props.id}>
+				<div
+					className="card-img"
+					style={{ backgroundImage: "url(" + this.props.pic + ")" }}
+					data-toggle="modal"
+					data-target={"#requestDetailsModal-" + this.props.id}></div>
+				<div
+					className="card-text"
+					data-toggle="modal"
+					data-target={"#requestDetailsModal-" + this.props.id}>
 					{this.props.name}
 				</div>
 				<div className="card-btns">
