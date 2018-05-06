@@ -7,10 +7,6 @@ class About extends Component {
 				<div className="container">
 					<div className="content">
 						<h2>Kansas Partnership for Applied Computational Thinking</h2>
-						KS-PACT is a regional chapter of the Computer Science Teachers Association with a special mission &emdash;
-						incorporating computation into K-12 curriculum not as its own discipline for its own sake, but rather, as a
-						tool supporting other disciplines, i.e. music, literature, mathematics, science, and social studies.<br />
-						<br />
 						KS-PACT was formed as a partnership between Kansas State Computer Science and Education faculty and K-12
 						teachers who had been involved in programs sponsored by these departments like GK-12 INSIGHT and CI-TEAM.
 						Additionally, Kansas State University’s ACM-W student club – organized with the goal of increasing diversity
