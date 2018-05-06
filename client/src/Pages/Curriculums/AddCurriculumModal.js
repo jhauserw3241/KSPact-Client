@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import grade_levels from './../Common/GradeLevels';
 import fire from './../../fire';
 
-class Curriculums extends Component {
+class AddCurriculumModal extends Component {
 	constructor(props) {
 		super(props);
 	

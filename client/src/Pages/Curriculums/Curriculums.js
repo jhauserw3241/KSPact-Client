@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import CurriculumElement from './CurriculumElement';
-import fire from './../../fire';
 import LoginRequired from '../Login/LoginRequired';
+import CurriculumFilter from './CurriculumFilter';
 import AddCurriculumModal from './AddCurriculumModal';
+import { isInList } from './../Common/List';
+import fire from './../../fire';
 
 class Curriculums extends Component {
 	constructor(props) {
@@ -14,22 +16,14 @@ class Curriculums extends Component {
 			formError: "",
 		};
 
-		this.filterList = this.filterList.bind(this);
-	}
-
-	filterList(event) {
-		var updatedList = this.state.origCurriculums;
-		updatedList = updatedList.filter(item =>
-			item.name.toLowerCase().search(event.target.value.toLowerCase()) !== -1);
-		this.setState({updatedCurriculums: updatedList});
 	}
 
 	componentDidMount() {
 		var self = this;
 
-		var curriculumRef = fire.database().ref("curriculums/");
+		var curriculumRef = fire.database().ref("curriculums");
 
-		curriculumRef.orderByChild("name").on("value", function(data) {
+		curriculumRef.on("value", function(data) {
 			// Get list of curriculums
 			var curriculums = data.val() ? Object.values(data.val()) : [];
 
@@ -53,13 +47,12 @@ class Curriculums extends Component {
 			<div className="Curriculums">
 				<AddCurriculumModal />
 
+				<CurriculumFilter
+					list={this.state.origCurriculums}
+					handleSuccess={(list) => this.setState({ updatedCurriculums: list })} />
+
 				<div className="container">
 					<div className="mod-opts">
-						<input
-							className="form-control"
-							placeholder="Search"
-							id="search"
-							onChange={this.filterList} />
 						<div className="mod-btns">
 							<LoginRequired minRole="admin">
 								<button
