@@ -26,11 +26,6 @@ a, a:hover {
 	display: flex;
 }
 
-#search {
-	width: 50%;
-	margin-right: 0px !important;
-}
-
 .mod-btns {
 	width: 50%;
 	margin: 0px;
