@@ -25,13 +25,15 @@
 
 .card-btns {
 	padding: 5px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	flex-shrink: .5;
 }
 
-.mod-btns {
-	margin-left: 20%;
-}
-
-.mod-btns>button {
+.card-btns>button {
 	margin: 5px;
 }
 

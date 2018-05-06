@@ -135,20 +135,18 @@ class MemberRequestElement extends Component {
 					{this.props.name}
 				</div>
 				<div className="card-btns">
-					<div className="mod-btns">
-						<button
-							type="button"
-							className="btn btn-success"
-							onClick={this.approveRequest}>
-							Approve
-						</button>
-						<button
-							type="button"
-							className="btn btn-danger"
-							onClick={this.declineRequest}>
-							Decline
-						</button>
-					</div>
+					<button
+						type="button"
+						className="btn btn-success"
+						onClick={this.approveRequest}>
+						Approve
+					</button>
+					<button
+						type="button"
+						className="btn btn-danger"
+						onClick={this.declineRequest}>
+						Decline
+					</button>
 				</div>
 			</div>
 		);
