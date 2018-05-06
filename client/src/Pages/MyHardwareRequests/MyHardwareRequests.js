@@ -15,7 +15,11 @@ class MyHardwareRequests extends Component {
 	}
 	
 	componentDidMount() {
-        var member_id = fire.auth().currentUser.uid;
+		var cur_member = fire.auth().currentUser;
+		if(!cur_member) {
+			return;
+		}
+        var member_id = cur_member.uid;
 
 		var hardwareRef = fire.database().ref("hardware_requests");
 		hardwareRef.orderByChild("requestor_id").equalTo(member_id).on("value", (data) =>
