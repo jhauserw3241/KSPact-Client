@@ -1,0 +1,27 @@
+.Panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    width: 100%;
+    margin: 0px;
+    padding: 10px;
+}
+
+.PanelButtons {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	flex-shrink: .5;
+}
+
+.PanelButton {
+    margin: 0px;
+    background-color: white;
+    outline: none !important;
+    border: none;
+}
