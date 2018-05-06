@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SoftwareElement from './SoftwareElement';
+import { generateColor } from './../Common/Color';
 import fire from './../../fire';
 import LoginRequired from '../Login/LoginRequired';
 
@@ -32,7 +33,7 @@ class AddSoftwareModal extends Component {
 			name: self.state.name,
 			description: self.state.description,
 			link: self.state.link,
-			color: "#"+((1<<24)*Math.random()|0).toString(16) // Generate random color
+			color: generateColor(),
 		}).catch(function(error) {
 			self.setState({ formError: error.code + ": " + error.message });
 		});
