@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import  { Redirect } from 'react-router-dom';
+import { formatTagsForDB } from './../Common/TagsFunctions';
+import MemberGradesTagInput from './../Common/MemberGradesTagInput';
 import fire from './../../fire';
 import './../../CSS/Form.css';
 
@@ -15,7 +17,7 @@ class Signup extends Component {
             confirmPassword: "",
             school: "",
             bio: "",
-            grade_level: "",
+            grade_levels: [],
             title: "",
             pic: "https://firebasestorage.googleapis.com/v0/b/ks-pact-website.appspot.com/o/defaults%2Fprofile.png?alt=media&token=08932e95-465f-4ada-b3a3-41432f168345",
             facebook_id: "",
@@ -26,6 +28,9 @@ class Signup extends Component {
 
         this.signUp = this.signUp.bind(this);
         this.handlePic = this.handlePic.bind(this);
+        this.handleGradeDelete = this.handleGradeDelete.bind(this);
+        this.handleGradeAddition = this.handleGradeAddition.bind(this);
+        this.handleGradeDrag = this.handleGradeDrag.bind(this);
     }
 
     signUp(event) {
@@ -53,7 +58,7 @@ class Signup extends Component {
                     email: self.state.email,
                     school: self.state.school,
                     bio: self.state.bio,
-                    grade_level: self.state.grade_level,
+                    grade_level: formatTagsForDB(self.state.grade_levels),
                     title: self.state.title,
                     pic: self.state.pic,
                     facebook_id: self.state.facebook_id,
@@ -102,6 +107,26 @@ class Signup extends Component {
         }).catch((error) => {
             self.setState({ formError: error.code + ": " + error.message });
         });
+    }
+
+	handleGradeDelete(i) {
+		var tags = this.state.grade_levels.filter((tag, index) => index !== i);
+		this.setState({ grade_levels: tags });
+	}
+
+    handleGradeAddition(tag) {
+		var tags = [...this.state.grade_levels, ...[tag]];
+		this.setState({ grade_levels: tags });
+    }
+
+    handleGradeDrag(tag, currPos, newPos) {
+        const tags = [...this.state.grade_levels];
+        const newTags = tags.slice();
+
+        newTags.splice(currPos, 1);
+		newTags.splice(newPos, 0, tag);
+		
+		this.setState({ grade_levels: newTags });
     }
 
 	render() {
@@ -191,13 +216,11 @@ class Signup extends Component {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="gradeLevel">Grade Level:</label>
-                                    <input
-                                        type="text"
-                                        name="gradeLevel"
-                                        className="form-control"
-                                        value={this.state.grade_level}
-                                        onChange={(event) => this.setState({grade_level: event.target.value})}
-                                        required />
+                                    <MemberGradesTagInput
+										tags={this.state.grade_levels}
+										handleDelete={this.handleGradeDelete}
+										handleAddition={this.handleGradeAddition}
+										handleDrag={this.handleGradeDrag} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="title">Title:</label>
