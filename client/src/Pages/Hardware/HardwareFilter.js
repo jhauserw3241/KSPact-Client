@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import FilterPanelGroup from './../Common/FilterPanelGroup';
-import HardwareGradesTagInput from './HardwareGradesTagInput';
-import { filterByName, filterByGrade } from './../Common/Filter';
+import GradeFilter from './../Common/GradeFilter';
 
 class HardwareFilter extends Component {
 	render() {
 		return (
             <div className="HardwareFilter">
 				<FilterPanelGroup
-					filterByName={filterByName}
-					list={this.props.list}
-					handleSuccess={this.props.handleSuccess}>
+					updateFilterText={this.props.updateFilterText}>
+
+					<GradeFilter
+						updateFilterGrades={this.props.updateFilterGrades}
+						getFilterGradeChecked={this.props.getFilterGradeChecked} />
 				</FilterPanelGroup>
             </div>
 		);
