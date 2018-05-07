@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import FilterPanelGroup from './../Common/FilterPanelGroup';
 import GradeFilter from './../Common/GradeFilter';
-import { filterByName, filterByGrade } from './../Common/Filter';
 
 class CurriculumFilter extends Component {
 	render() {
 		return (
             <div className="CurriculumFilter">
 				<FilterPanelGroup
-					filterByName={filterByName}
-					list={this.props.list}
-					handleSuccess={this.props.handleSuccess}>
-					<GradeFilter />
+					updateFilterText={this.props.updateFilterText}>
+
+					<GradeFilter
+						updateFilterGrades={this.props.updateFilterGrades}
+						getFilterGradeChecked={this.props.getFilterGradeChecked} />
 				</FilterPanelGroup>
             </div>
 		);

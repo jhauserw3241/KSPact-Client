@@ -13,10 +13,7 @@ class FilterPanelGroup extends Component {
 						placeholder="Search"
 						id="search"
 						onChange={(event) =>
-							this.props.filterByName(
-								event,
-								this.props.list,
-								this.props.handleSuccess)} />
+							this.props.updateFilterText(event.target.value)} />
 
 					{this.props.children}
 				</PanelGroup>
