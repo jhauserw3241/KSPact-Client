@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import HardwareElement from './HardwareElement';
-import fire from './../../fire';
-import LoginRequired from '../Login/LoginRequired';
+import HardwareFilter from './HardwareFilter';
+import LoginRequired from './../Login/LoginRequired';
 import AddHardwareModal from './AddHardwareModal';
+import fire from './../../fire';
 
 class Hardware extends Component {
 	constructor(props) {
@@ -57,6 +58,10 @@ class Hardware extends Component {
 			<div className="Hardware">
 				<AddHardwareModal />
 
+				<HardwareFilter
+					list={this.state.origHardware}
+					handleSuccess={(list) => this.setState({ updatedHardware: list })} />
+
 				<div className="container">
 					{ (this.state.formError !== "") ?
 						<div className="alert alert-danger">
@@ -64,11 +69,6 @@ class Hardware extends Component {
 						</div> : null }
 
 					<div className="mod-opts">
-						<input
-							className="form-control"
-							placeholder="Search"
-							id="search"
-							onChange={this.filterList} />
 						<div className="mod-btns">
 							<LoginRequired minRole="admin">
 								<button
