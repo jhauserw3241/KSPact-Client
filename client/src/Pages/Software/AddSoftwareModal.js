@@ -49,7 +49,8 @@ class AddSoftwareModal extends Component {
 		this.setState({
 			name: "",
 			description: "",
-			link: ""
+			link: "",
+			grade_levels: [],
 		});
 	}
 
