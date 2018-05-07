@@ -55,7 +55,7 @@ class HardwareRequestElement extends Component {
 					className="card-text"
 					data-toggle="modal"
 					data-target={"#requestDetailsModal-" + this.props.id}>
-					{this.props.name}
+					{this.props.requestor_name}
 				</div>
 				<div className="card-btns">
 					<div className="mod-btns">
