@@ -42,7 +42,7 @@ class HardwareRequestElement extends Component {
 					className="card-text"
 					data-toggle="modal"
 					data-target={"#requestDetailsModal-" + this.props.id}>
-					{this.props.name}
+					{this.props.requested_hardware_name}
 				</div>
 				<div className="card-btns">
 					{((this.props.request_status !== "cancelled") && (this.props.request_status !== "declined")) ?
