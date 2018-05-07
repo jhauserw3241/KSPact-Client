@@ -19,19 +19,21 @@ class HardwareCurriculumsTagInput extends Component {
     componentDidMount() {
         var self = this;
 
-        // Get tags
-        fire.database().ref("hardware").child(this.props.hardware_id).child("curriculums").on("value", function(data) {
-            var curriculums = data.val() ? Object.values(data.val()) : [];
+        if(this.props.hardware_id) {
+            // Get tags
+            fire.database().ref("hardware").child(this.props.hardware_id).child("curriculums").on("value", function(data) {
+                var curriculums = data.val() ? Object.values(data.val()) : [];
 
-            var updatedCurriculums = curriculums.map((curriculum) => {
-                return {
-                    id: curriculum,
-                    text: curriculum,
-                };
+                var updatedCurriculums = curriculums.map((curriculum) => {
+                    return {
+                        id: curriculum,
+                        text: curriculum,
+                    };
+                });
+
+                self.setState({ tags: updatedCurriculums });
             });
-
-            self.setState({ tags: updatedCurriculums });
-        });
+        }
 
         // Get suggestions
         fire.database().ref("curriculums").on("value", function(data) {
@@ -86,11 +88,11 @@ class HardwareCurriculumsTagInput extends Component {
         return (
             <div>
                 <TagInput
-                    tags={this.state.tags}
+                    tags={this.props.tags ? this.props.tags : this.state.tags}
                     suggestions={this.state.suggestions}
-                    handleDelete={this.handleDelete}
-                    handleAddition={this.handleAddition}
-                    handleDrag={this.handleDrag}
+                    handleDelete={this.props.handleDelete ? this.props.handleDelete : this.handleDelete}
+                    handleAddition={this.props.handleAddition ? this.props.handleAddition : this.handleAddition}
+                    handleDrag={this.props.handleDrag ? this.props.handleDrag : this.handleDrag}
                     readOnly={this.props.readOnly} />
             </div>
         )
