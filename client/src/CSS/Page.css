@@ -22,12 +22,7 @@ a, a:hover {
 	color: black;
 }
 
-.mod-opts {
-	display: flex;
-}
-
 .mod-btns {
-	width: 50%;
 	margin: 0px;
 }
 

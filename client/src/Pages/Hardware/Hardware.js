@@ -41,8 +41,8 @@ class Hardware extends Component {
 	componentDidMount() {
 		var self = this;
 
-		var hardwareRef = fire.database().ref("hardware/");
-		hardwareRef.orderByChild("name").on("value", function(data) {
+		var hardwareRef = fire.database().ref("hardware");
+		hardwareRef.on("value", function(data) {
 			// Get lit of hardware
 			var hardware = data.val() ? Object.values(data.val()): [];
 

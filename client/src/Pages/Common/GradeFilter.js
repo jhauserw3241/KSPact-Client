@@ -31,7 +31,7 @@ class GradeFilter extends Component {
 										onChange={(event) => this.props.updateFilterGrades(grade, event.target.checked)} />
 									<label
 										className="form-check-label"
-										for={grade}>
+										htmlFor={grade}>
 										{grade}
 									</label>
 								</div>

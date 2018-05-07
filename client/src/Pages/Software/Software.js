@@ -39,8 +39,8 @@ class Software extends Component {
 	
 	componentDidMount() {
 		var self = this;
-		var softwareRef = fire.database().ref("software");
 
+		var softwareRef = fire.database().ref("software");
 		softwareRef.on("value", function(data) {
 			// Get list of software resources
 			var software = data.val() ? Object.values(data.val()) : [];
@@ -74,6 +74,10 @@ class Software extends Component {
 	}
 
 	oneOrMoreMatchingGrades(subset, list) {
+		if(subset === []) {
+			return true;
+		}
+
 		for(var item_id in list) {
 			var item = list[item_id];;
 			for(var sitem_id in subset) {
@@ -125,18 +129,16 @@ class Software extends Component {
 					getFilterGradeChecked={this.getFilterGradeChecked} />
 
 				<div className="container">
-					<div className="mod-opts">
-						<div className="mod-btns">
-							<LoginRequired minRole="admin">
-								<button
-									type="button"
-									className="btn btn-success"
-									data-toggle="modal"
-									data-target="#addSoftwareModal">
-									Add
-								</button>
-							</LoginRequired>
-						</div>
+					<div className="mod-btns">
+						<LoginRequired minRole="admin">
+							<button
+								type="button"
+								className="btn btn-success"
+								data-toggle="modal"
+								data-target="#addSoftwareModal">
+								Add
+							</button>
+						</LoginRequired>
 					</div>
 					<div className="list-container">
 						{this.filterList(this.state.origSoftware).map(softwareElem =>
