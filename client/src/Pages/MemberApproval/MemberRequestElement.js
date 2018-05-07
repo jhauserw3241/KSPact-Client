@@ -55,7 +55,7 @@ class MemberRequestElement extends Component {
 					className="card-text"
 					data-toggle="modal"
 					data-target={"#requestDetailsModal-" + this.props.id}>
-					{this.props.name}
+					{this.props.first_name} {this.props.last_name}
 				</div>
 				<div className="card-btns">
 					<button
