@@ -3,6 +3,7 @@ import SoftwareElement from './SoftwareElement';
 import { generateColor } from './../Common/Color';
 import { formatTagsForDB } from './../Common/TagsFunctions';
 import SoftwareGradesTagInput from './SoftwareGradesTagInput';
+import SoftwareCurriculumsTagInput from './SoftwareCurriculumsTagInput';
 import fire from './../../fire';
 import LoginRequired from '../Login/LoginRequired';
 
@@ -16,6 +17,7 @@ class AddSoftwareModal extends Component {
 			link: "",
 			color: "",
 			grade_levels: [],
+			curriculums: [],
 			formError: "",
 		};
 
@@ -23,6 +25,9 @@ class AddSoftwareModal extends Component {
 		this.handleGradeDelete = this.handleGradeDelete.bind(this)
 		this.handleGradeAddition = this.handleGradeAddition.bind(this);
 		this.handleGradeDrag = this.handleGradeDrag.bind(this);
+		this.handleCurriculumDelete = this.handleCurriculumDelete.bind(this)
+		this.handleCurriculumAddition = this.handleCurriculumAddition.bind(this);
+		this.handleCurriculumDrag = this.handleCurriculumDrag.bind(this);
 	}
 
 	addSoftware() {
@@ -40,6 +45,7 @@ class AddSoftwareModal extends Component {
 			description: self.state.description,
 			link: self.state.link,
 			grade_levels: formatTagsForDB(self.state.grade_levels),
+			curriculums: formatTagsForDB(self.state.curriculums),
 			color: generateColor(),
 		}).catch(function(error) {
 			self.setState({ formError: error.code + ": " + error.message });
@@ -51,6 +57,7 @@ class AddSoftwareModal extends Component {
 			description: "",
 			link: "",
 			grade_levels: [],
+			curriculums: [],
 		});
 	}
 
@@ -72,6 +79,26 @@ class AddSoftwareModal extends Component {
 		newTags.splice(newPos, 0, tag);
 		
 		this.setState({ grade_levels: newTags });
+    }
+
+	handleCurriculumDelete(i) {
+		var tags = this.state.curriculums.filter((tag, index) => index !== i);
+		this.setState({ curriculums: tags });
+	}
+
+    handleCurriculumAddition(tag) {
+		var tags = [...this.state.curriculums, ...[tag]];
+		this.setState({ curriculums: tags });
+    }
+
+    handleCurriculumDrag(tag, currPos, newPos) {
+        const tags = [...this.state.curriculums];
+        const newTags = tags.slice();
+
+        newTags.splice(currPos, 1);
+		newTags.splice(newPos, 0, tag);
+		
+		this.setState({ curriculums: newTags });
     }
 	
 	render() {
@@ -119,6 +146,14 @@ class AddSoftwareModal extends Component {
 										className="form-control"
 										onChange={event => this.setState({link: event.target.value})}
 										value={this.state.link} />
+								</div>
+								<div className="form-group">
+									<label htmlFor="curriculums">Associated Curriculums:</label>
+									<SoftwareCurriculumsTagInput
+										tags={this.state.curriculums}
+										handleDelete={this.handleCurriculumDelete}
+										handleAddition={this.handleCurriculumAddition}
+										handleDrag={this.handleCurriculumDrag} />
 								</div>
 								<div className="form-group">
 									<label htmlFor="gradeLevels">Grade Levels:</label>
