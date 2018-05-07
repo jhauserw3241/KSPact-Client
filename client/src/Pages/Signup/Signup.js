@@ -53,17 +53,17 @@ class Signup extends Component {
                 // Add user information to firebase DB
                 fire.database().ref('/members/' + user.uid)
                 .set({
+                    id: user.uid,
                     first_name: self.state.first_name,
                     last_name: self.state.last_name,
                     email: self.state.email,
                     school: self.state.school,
                     bio: self.state.bio,
-                    grade_level: formatTagsForDB(self.state.grade_levels),
+                    grade_levels: formatTagsForDB(self.state.grade_levels),
                     title: self.state.title,
                     pic: self.state.pic,
                     facebook_id: self.state.facebook_id,
                     twitter_id: self.state.twitter_id,
-                    id: user.uid
                 }).catch(function(error) {
                     self.setState({ formError: error.code + ": " + error.message });
                 });
@@ -215,7 +215,7 @@ class Signup extends Component {
                                         onChange={(event) => this.setState({bio: event.target.value})}></textarea>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="gradeLevel">Grade Level:</label>
+                                    <label htmlFor="gradeLevel">Grade Levels:</label>
                                     <MemberGradesTagInput
 										tags={this.state.grade_levels}
 										handleDelete={this.handleGradeDelete}

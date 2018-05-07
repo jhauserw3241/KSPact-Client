@@ -20,7 +20,7 @@ class Members extends Component {
 			var memberPrivs = data.val() ? data.val() : {};
 			
 			// Get member information
-			var membersRef = fire.database().ref("members/");
+			var membersRef = fire.database().ref("members");
 			membersRef.orderByChild("last_name").on("value", function(data) {
 				// Get lit of members
 				var members = data.val() ? Object.values(data.val()): [];

@@ -23,7 +23,7 @@ class MemberGradesTagInput extends Component {
         super(props);
 
         this.state = {
-            tags: this.props.tags,
+            tags: this.props.tags || [],
             suggestions: grade_levels
         };
 

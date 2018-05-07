@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import  { Redirect } from 'react-router-dom';
+import { formatTagsForDB } from './../Common/TagsFunctions';
+import MemberGradesTagInput from './../Common/MemberGradesTagInput';
 import fire from './../../fire';
 import './../../CSS/Form.css';
 import './../../CSS/Profile.css';
@@ -15,7 +17,7 @@ class Profile extends Component {
             email: "",
             school: "",
             bio: "",
-            grade_level: "",
+            grade_levels: [],
             title: "",
             pic: "",
             facebook_id: "",
@@ -52,7 +54,6 @@ class Profile extends Component {
                         email: member.email,
                         school: member.school,
                         bio: member.bio,
-                        grade_level: member.grade_level,
                         title: member.title,
                         pic: member.pic,
                         facebook_id: member.facebook_id,
@@ -68,22 +69,17 @@ class Profile extends Component {
     }
 
     saveChanges(event) {
-        var newMember = {
-            first_name: this.state.first_name,
-            last_name: this.state.last_name,
-            email: this.state.email,
-            school: this.state.school,
-            bio: this.state.bio,
-            grade_level: this.state.grade_level,
-            title: this.state.title,
-            pic: this.state.pic,
-            facebook_id: this.state.facebook_id,
-            twitter_id: this.state.twitter_id,
-        };
-
         // Update profile information
         var updates = {};
-        updates['/members/' + this.state.user.uid] = newMember;
+        updates['/members/' + this.state.user.uid + '/first_name'] = this.state.first_name;
+        updates['/members/' + this.state.user.uid + '/last_name'] = this.state.last_name;
+        updates['/members/' + this.state.user.uid + '/email'] = this.state.email;
+        updates['/members/' + this.state.user.uid + '/school'] = this.state.school;
+        updates['/members/' + this.state.user.uid + '/bio'] = this.state.bio;
+        updates['/members/' + this.state.user.uid + '/title'] = this.state.title;
+        updates['/members/' + this.state.user.uid + '/pic'] = this.state.pic;
+        updates['/members/' + this.state.user.uid + '/facebook_id'] = this.state.facebook_id;
+        updates['/members/' + this.state.user.uid + '/twitter_id'] = this.state.twitter_id;
         fire.database().ref().update(updates);
 
         // Change the profile contact info to be disabled
@@ -187,14 +183,10 @@ class Profile extends Component {
                                         disabled={this.state.disable_edits}></textarea>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="gradeLevel">Grade Level:</label>
-                                    <input
-                                        type="text"
-                                        name="gradeLevel"
-                                        className="form-control"
-                                        value={this.state.grade_level}
-                                        onChange={(event) => this.setState({grade_level: event.target.value})}
-                                        disabled={this.state.disable_edits} />
+                                    <label htmlFor="gradeLevel">Grade Levels:</label>
+                                    <MemberGradesTagInput
+                                        member_id={this.state.user.uid}
+                                        readOnly={this.state.disable_edits} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="title">Title:</label>
