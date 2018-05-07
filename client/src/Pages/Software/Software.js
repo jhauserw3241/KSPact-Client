@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import SoftwareElement from './SoftwareElement';
-import AddSoftwareModal from './AddSoftwareModal';
-import fire from './../../fire';
 import LoginRequired from '../Login/LoginRequired';
+import AddSoftwareModal from './AddSoftwareModal';
+import SoftwareFilter from './SoftwareFilter';
+import fire from './../../fire';
 
 class Software extends Component {
 	constructor(props) {
@@ -52,13 +53,12 @@ class Software extends Component {
 			<div className="Software">
 				<AddSoftwareModal />
 
+				<SoftwareFilter
+					list={this.state.origSoftware}
+					handleSuccess={(list) => this.setState({ updatedSoftware: list })} />
+
 				<div className="container">
 					<div className="mod-opts">
-						<input
-							className="form-control"
-							placeholder="Search"
-							id="search"
-							onChange={this.filterList} />
 						<div className="mod-btns">
 							<LoginRequired minRole="admin">
 								<button
