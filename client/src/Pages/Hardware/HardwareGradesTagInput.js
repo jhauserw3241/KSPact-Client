@@ -35,19 +35,21 @@ class HardwareGradesTagInput extends Component {
     componentDidMount() {
         var self = this;
 
-        // Get tags
-        fire.database().ref("hardware").child(this.props.hardware_id).child("grade_levels").on("value", function(data) {
-            var gradeLevels = data.val() ? Object.values(data.val()) : [];
+        if(this.props.hardware_id) {
+            // Get tags
+            fire.database().ref("hardware").child(this.props.hardware_id).child("grade_levels").on("value", function(data) {
+                var gradeLevels = data.val() ? Object.values(data.val()) : [];
 
-            var updatedGradeLevels = gradeLevels.map((grade) => {
-                return {
-                    id: grade,
-                    text: grade,
-                };
+                var updatedGradeLevels = gradeLevels.map((grade) => {
+                    return {
+                        id: grade,
+                        text: grade,
+                    };
+                });
+
+                self.setState({ tags: updatedGradeLevels });
             });
-
-            self.setState({ tags: updatedGradeLevels });
-        });
+        }
     }
 
     handleDelete(i) {
@@ -89,11 +91,11 @@ class HardwareGradesTagInput extends Component {
         return (
             <div>
                 <TagInput
-                    tags={this.state.tags}
+                    tags={this.props.tags ? this.props.tags : this.state.tags}
                     suggestions={this.state.suggestions}
-                    handleDelete={this.handleDelete}
-                    handleAddition={this.handleAddition}
-                    handleDrag={this.handleDrag}
+                    handleDelete={this.props.handleDelete ? this.props.handleDelete : this.handleDelete}
+                    handleAddition={this.props.handleAddition ? this.props.handleAddition : this.handleAddition}
+                    handleDrag={this.props.handleDrag ? this.props.handleDrag: this.handleDrag}
                     readOnly={this.props.readOnly} />
             </div>
         )
