@@ -1,22 +1,7 @@
 import React, {Component} from 'react';
-import fire from './../../fire';
+import { grade_levels } from './../Common/GradeLevels';
 import TagInput from './../Common/TagInput';
-
-const grade_levels = [
-    { id: 'Kindergarden', text: 'Kindergarden' },
-    { id: '1st', text: '1st' },
-    { id: '2nd', text: '2nd' },
-    { id: '3rd', text: '3rd' },
-    { id: '4th', text: '4th' },
-    { id: '5th', text: '5th' },
-    { id: '6th', text: '6th' },
-    { id: '7th', text: '7th' },
-    { id: '8th', text: '8th' },
-    { id: '9th', text: '9th' },
-    { id: '10th', text: '10th' },
-    { id: '11th', text: '11th' },
-    { id: '12th', text: '12th' },
-];
+import fire from './../../fire';    
 
 class CurriculumGradesTagInput extends Component {
     constructor(props) {
@@ -24,7 +9,7 @@ class CurriculumGradesTagInput extends Component {
 
         this.state = {
             tags: this.props.tags,
-            suggestions: grade_levels
+            suggestions: grade_levels,
         };
 
         this.handleDelete = this.handleDelete.bind(this);
@@ -35,19 +20,22 @@ class CurriculumGradesTagInput extends Component {
     componentDidMount() {
         var self = this;
 
-        // Get tags
-        fire.database().ref("curriculums").child(this.props.curriculum_id).child("grade_levels").on("value", function(data) {
-            var gradeLevels = data.val() ? Object.values(data.val()) : [];
+        // Get tags if they are available
+        if(this.props.curriculum_id) {
+            // Get tags
+            fire.database().ref("curriculums").child(this.props.curriculum_id).child("grade_levels").on("value", function(data) {
+                var gradeLevels = data.val() ? Object.values(data.val()) : [];
 
-            var updatedGradeLevels = gradeLevels.map((grade) => {
-                return {
-                    id: grade,
-                    text: grade,
-                };
+                var updatedGradeLevels = gradeLevels.map((grade) => {
+                    return {
+                        id: grade,
+                        text: grade,
+                    };
+                });
+
+                self.setState({ tags: updatedGradeLevels });
             });
-
-            self.setState({ tags: updatedGradeLevels });
-        });
+        }
     }
 
     handleDelete(i) {

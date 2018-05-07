@@ -16,14 +16,6 @@ class Hardware extends Component {
 		};
 
 		this.updateFormError = this.updateFormError.bind(this);
-		this.filterList = this.filterList.bind(this);
-	}
-
-	filterList(event) {
-		var updatedList = this.state.origHardware;
-		updatedList = updatedList.filter(item =>
-			item.name.toLowerCase().search(event.target.value.toLowerCase()) !== -1);
-		this.setState({updatedHardware: updatedList});
 	}
 	
 	componentDidMount() {

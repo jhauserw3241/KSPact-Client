@@ -3,7 +3,6 @@ import CurriculumElement from './CurriculumElement';
 import LoginRequired from '../Login/LoginRequired';
 import CurriculumFilter from './CurriculumFilter';
 import AddCurriculumModal from './AddCurriculumModal';
-import { isInList } from './../Common/List';
 import fire from './../../fire';
 
 class Curriculums extends Component {
@@ -15,7 +14,6 @@ class Curriculums extends Component {
 			updatedCurriculums: [],
 			formError: "",
 		};
-
 	}
 
 	componentDidMount() {
@@ -73,7 +71,8 @@ class Curriculums extends Component {
 								name={curriculum.name}
 								description={curriculum.description}
 								link={curriculum.link}
-								grade_levels={curriculum.grade_levels ? Object.values(curriculum.grade_levels) : []}
+								grade_levels={curriculum.grade_levels ?
+									Object.values(curriculum.grade_levels) : []}
 								color={curriculum.color} />
 						)}
 					</div>

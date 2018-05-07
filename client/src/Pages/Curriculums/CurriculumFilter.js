@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FilterPanelGroup from './../Common/FilterPanelGroup';
-import CurriculumGradesTagInput from './CurriculumGradesTagInput';
+import GradeFilter from './../Common/GradeFilter';
 import { filterByName, filterByGrade } from './../Common/Filter';
 
 class CurriculumFilter extends Component {
@@ -11,6 +11,7 @@ class CurriculumFilter extends Component {
 					filterByName={filterByName}
 					list={this.props.list}
 					handleSuccess={this.props.handleSuccess}>
+					<GradeFilter />
 				</FilterPanelGroup>
             </div>
 		);

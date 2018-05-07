@@ -13,7 +13,7 @@ class PanelGroup extends Component {
 	render() {
 		return (
             <div className="PanelGroup">
-                <div className="Panel" style={{ display: this.state.open ? "block" : "none" }}>
+                <div className="Panel" style={{ display: this.state.open ? "flex" : "none" }}>
 					{this.props.children}
                 </div>
 				<div className="PanelButtons">

@@ -14,15 +14,6 @@ class Software extends Component {
 			updatedSoftware: [],
 			formError: ""
 		};
-
-		this.filterList = this.filterList.bind(this);
-	}
-
-	filterList(event) {
-		var updatedList = this.state.origSoftware;
-		updatedList = updatedList.filter(item =>
-			item.name.toLowerCase().search(event.target.value.toLowerCase()) !== -1);
-		this.setState({updatedSoftware: updatedList});
 	}
 	
 	componentDidMount() {
