@@ -4,14 +4,13 @@ import './../../CSS/Card.css';
 
 class DashboardElement extends Component {
 	render() {
-		console.log(this.props.pic);
-		var divStyle = {
-			backgroundImage: `url(${this.props.pic})`
-        }
-	
 		return (
-			<Link className="HardwareElement card" to={this.props.link}>
-				<div className="card-img" style={divStyle}></div>
+			<Link
+				className="HardwareElement card"
+				to={this.props.link}>
+				<div
+					className="card-img"
+					style={{ backgroundImage: `url(${this.props.pic})` }}></div>
 				<div className="card-text">
 					{this.props.name}
 				</div>
