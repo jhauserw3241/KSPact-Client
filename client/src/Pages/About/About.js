@@ -21,7 +21,8 @@ class About extends Component {
 						for a week or two of use in their own classroom.<br />
 						<br />
 						<h2>Interested?</h2>
-						If you would like to become a charter member of KS-PACT, sign up on the login page. There is no cost for becoming
+						If you would like to become a charter member of KS-PACT,&nbsp;
+						<a className="classic-a" href="#/signup">sign up here</a>. There is no cost for becoming
 						a member, and a world of potential benefits. <br />
 						<br />
 						Keep watching this website for updates!
