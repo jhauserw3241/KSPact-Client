@@ -89,7 +89,7 @@ class HardwareRequestInfoModal extends Component {
 								</button>
 								<button
 									type="button"
-									className="btn btn-danger"
+									className="btn"
 									data-dismiss="modal">
 									Cancel
 								</button>
